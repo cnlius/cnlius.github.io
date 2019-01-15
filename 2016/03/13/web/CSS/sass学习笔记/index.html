@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="大前端,CSS,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/logo.jpg?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="文章概述 本篇文章记录sass的学习笔记。">
+<meta name="keywords" content="大前端,CSS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sass学习笔记">
+<meta property="og:url" content="http://liusong.site/2016/03/13/web/CSS/sass学习笔记/index.html">
+<meta property="og:site_name" content="挑灯看剑">
+<meta property="og:description" content="文章概述 本篇文章记录sass的学习笔记。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-10T05:08:14.773Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="sass学习笔记">
+<meta name="twitter:description" content="文章概述 本篇文章记录sass的学习笔记。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liusong.site/2016/03/13/web/CSS/sass学习笔记/">
+
+
+
+
+
+  <title>sass学习笔记 | 挑灯看剑</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <a href="https://github.com/ethancalc"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/121cd7cbdc3e4855075ea8b558508b91ac463ac2/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_green_007200.png"></a>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">挑灯看剑</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Personal Blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            文章列表
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            联系我
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liusong.site/2016/03/13/web/CSS/sass学习笔记/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ethancalc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/images/head/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="挑灯看剑">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">sass学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-13T00:00:00+08:00">
+                2016-03-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/大前端/" itemprop="url" rel="index">
+                    <span itemprop="name">大前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/大前端/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2016/03/13/web/CSS/sass学习笔记/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2016/03/13/web/CSS/sass学习笔记/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </span></div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="文章概述"><a href="#文章概述" class="headerlink" title="文章概述"></a>文章概述</h3><blockquote>
+<p>本篇文章记录sass的学习笔记。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="sass"><a href="#sass" class="headerlink" title="sass"></a>sass</h3><p>sass基于Ruby语言开发而成，因此安装sass前需要安装Ruby。</p>
+<ul>
+<li><a href="https://www.sass.hk/docs/" target="_blank" rel="noopener">中文网</a></li>
+</ul>
+<h4 id="安装sass"><a href="#安装sass" class="headerlink" title="安装sass"></a>安装sass</h4><p>ruby环境自带包管理工具gem下载sass：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gem install sass</span><br></pre></td></tr></table></figure>
+<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><ul>
+<li>//：这种注释方式，不会被编译到css文件中，只能保留在源文件;</li>
+<li>/**/： 这种注释可以被编译到css文件中;</li>
+</ul>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p>SassScript 支持 6 种主要的数据类型：</p>
+<ul>
+<li>数字，1, 2, 13, 10px</li>
+<li>字符串，有引号字符串与无引号字符串，”foo”, ‘bar’, baz</li>
+<li>颜色，blue, #04a3f9, rgba(255,0,0,0.5)</li>
+<li>布尔型，true, false</li>
+<li>空值，null</li>
+<li>数组 (list)，用空格或逗号作分隔符，1.5em 1em 0 2em, Helvetica, Arial, sans-serif</li>
+<li>maps, 相当于 JavaScript 的 object，(key1: value1, key2: value2)</li>
+</ul>
+<h3 id="运算"><a href="#运算" class="headerlink" title="运算"></a>运算</h3><h4 id="数学运算"><a href="#数学运算" class="headerlink" title="数学运算"></a>数学运算</h4><p>支持数字的加减乘除、取整等运算 (+, -, *, /, %)，如果必要会在不同单位间转换值。</p>
+<h4 id="关系运算"><a href="#关系运算" class="headerlink" title="关系运算"></a>关系运算</h4><p>关系运算 &lt;, &gt;, &lt;=, &gt;= 也可用于数字运算，相等运算 ==, != 可用于所有数据类型。</p>
+<h4 id="布尔运算"><a href="#布尔运算" class="headerlink" title="布尔运算"></a>布尔运算</h4><p>支持布尔型的 and or 以及 not 运算。</p>
+<h4 id="颜色值运算"><a href="#颜色值运算" class="headerlink" title="颜色值运算"></a>颜色值运算</h4><ul>
+<li>颜色值的运算是分段计算进行的，也就是分别计算红色，绿色，以及蓝色的值:</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#010203</span> + <span class="number">#040506</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>需要注意的是，如果颜色值包含 alpha channel（rgba 或 hsla 两种颜色值），必须拥有相等的 alpha 值才能进行运算，因为算术运算不会作用于 alpha 值。</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="built_in">rgba</span>(255, 0, 0, 0.75) + <span class="built_in">rgba</span>(0, 255, 0, 0.75);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="字符串运算"><a href="#字符串运算" class="headerlink" title="字符串运算"></a>字符串运算</h4><ul>
+<li>+可用于连接字符串;</li>
+</ul>
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><h4 id="声明和使用"><a href="#声明和使用" class="headerlink" title="声明和使用"></a>声明和使用</h4><ul>
+<li>Scss语法支持使用变量，变量都以$符号开头；</li>
+<li>变量的赋值与css一致；</li>
+<li>变量使用时，可直接将变量名赋值给css属性；</li>
+<li>变量命名推荐中划线分割单词；</li>
+<li>通过#{}插值语句可以在选择器、属性名、字符串中使用变量；</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//定义</span><br><span class="line">$font-color: #ff637c;</span><br><span class="line">$sm-padding: 6px;</span><br><span class="line"></span><br><span class="line">//使用</span><br><span class="line"><span class="selector-class">.main</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: $font-color;</span><br><span class="line">    <span class="attribute">padding-top</span>: $sm-padding;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="变量的操作"><a href="#变量的操作" class="headerlink" title="变量的操作"></a>变量的操作</h4><ul>
+<li>直接操作变量，即变量表达式；</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1. 变量表达式支持：加减乘除、&gt;=、&lt;=、&gt;、&lt;、==、!=、();</span><br><span class="line">2. sass的数值计算可以带单位，但是单位不能混用；</span><br></pre></td></tr></table></figure>
+<ul>
+<li>通过函数操作：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1. 跟代码块无关的函数，多是内置的函数，称functions;</span><br><span class="line">2. 可重用的代码块：mixin(混合器)</span><br><span class="line">    1&gt; mixin使用@include来调用；</span><br><span class="line">    2&gt; 通过@extend来调用；</span><br></pre></td></tr></table></figure>
+<h4 id="变量管理"><a href="#变量管理" class="headerlink" title="变量管理"></a>变量管理</h4><p>可以定义变量代表默认的一些样式，这些变量集中存储到单独的scss局部文件,文件名以下划线开头(为局部文件,编译时不会打包到单独的css文件),在使用时用@import引用此文件(引用文件时，文件名不用加下划线)。</p>
+<h3 id="css嵌套规则"><a href="#css嵌套规则" class="headerlink" title="css嵌套规则"></a>css嵌套规则</h3><ul>
+<li>scss支持选择器嵌套使用,但是嵌套越深，css效率越低;</li>
+<li>父选择器的标识符使用&amp;;</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">//包含关系</span><br><span class="line"><span class="selector-id">#content</span> &#123;</span><br><span class="line">  #contentChild &#123; background-color: #EEE &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//引用父类</span><br><span class="line"><span class="selector-tag">a</span> &#123;</span><br><span class="line">    //嵌套伪类时，需要用&amp;链接父类选择器；</span><br><span class="line">    &amp;<span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">        <span class="attribute">color</span>: red;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//属性嵌套</span><br><span class="line"><span class="selector-class">.content</span> &#123;</span><br><span class="line">  <span class="attribute">border</span>: &#123;</span><br><span class="line">      style: solid;</span><br><span class="line">      <span class="attribute">width</span>: <span class="number">1px</span>;</span><br><span class="line">      <span class="attribute">color</span>: <span class="number">#ccc</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-tag">font</span>: &#123;</span><br><span class="line">      <span class="attribute">weight</span>: bold;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="at-root指令"><a href="#at-root指令" class="headerlink" title="at-root指令"></a>at-root指令</h4><p>防止多层选择器嵌套影响效率，可使用@at-root指令，将被修饰的选择器直接输出到当前样式表的顶层，提高了css效率。</p>
+<h3 id="导入外部样式文件"><a href="#导入外部样式文件" class="headerlink" title="导入外部样式文件"></a>导入外部样式文件</h3><p>sass样式支持导入外部sass文件，可以使用其中的变量、样式，导入方式有：</p>
+<ul>
+<li>导入sass文件；</li>
+<li>导入局部sass文件：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- 不需要独立生成css文件的sass文件称&lt;span style=&quot;color:red&quot;&gt;局部sass文件&lt;/span&gt; color，只有在使用的时候才会引入，通常使用下划线作为前缀，样式表中引用时，只用引用下划线后面的文件名即可；</span><br><span class="line">- 局部sass文件：通常用来管理一些默认的样式、变量，可维护性高；</span><br></pre></td></tr></table></figure>
+<ul>
+<li>支持嵌套导入：即允许@import命令写在css规则内；</li>
+<li>支持原生CSS文件导入：被导入文件的名字以.css结尾；</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//导入sass文件: _x.scss</span><br><span class="line">@<span class="keyword">import</span> <span class="string">'./path/x.scss'</span>;</span><br><span class="line">//导入原生css样式文件：</span><br><span class="line">@<span class="keyword">import</span> <span class="string">'./path/test.css'</span>;</span><br><span class="line"></span><br><span class="line">//嵌套导入</span><br><span class="line"><span class="selector-class">.blue-theme</span> &#123;</span><br><span class="line">    @import "blue-theme"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="优化建议"><a href="#优化建议" class="headerlink" title="优化建议"></a>优化建议</h3><ul>
+<li>使用变量管理一些默认配置样式，用单独的局部sass文件进行管理；</li>
+</ul>
+<h3 id="自定义函数"><a href="#自定义函数" class="headerlink" title="自定义函数"></a>自定义函数</h3><p>Sass支持自定义函数，并能在任何属性值或Sass script中使用，sass使用关键字@function来定义函数，使用@return关键字来返回函数的结果，如下是定义和调用的方式：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$grid-width: 40px;</span><br><span class="line">$gutter-width: 10px;</span><br><span class="line"></span><br><span class="line">//定义函数</span><br><span class="line">@<span class="keyword">function</span> grid-width($n) &#123;</span><br><span class="line">  @<span class="keyword">return</span> $n * $grid-width + ($n - <span class="number">1</span>) * $gutter-width;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//调用</span><br><span class="line">//简单调用：</span><br><span class="line"><span class="selector-id">#sidebar</span> &#123; <span class="attribute">width</span>: <span class="built_in">grid-width</span>(5); &#125;</span><br><span class="line">//关键词调用：</span><br><span class="line"><span class="selector-id">#sidebar</span> &#123; <span class="attribute">width</span>: <span class="built_in">grid-width</span>($n: 5); &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="mixin混合器"><a href="#mixin混合器" class="headerlink" title="mixin混合器"></a>mixin混合器</h3><p>混合器用来封装公共的东西，提高代码质量；</p>
+<h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>定义：sass使用@mixin关键字来定义混合器，关键字@include来使用混合器，@include调用会把混合器中的所有样式提取出来放在@include被调用的地方。</p>
+<blockquote>
+<p>混合器中不仅可以包含属性，也可以包含css规则，包含选择器和选择器中的属性;</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">mixin</span> no-bullets &#123;</span><br><span class="line">  <span class="selector-tag">list-style</span>: <span class="selector-tag">none</span>;</span><br><span class="line">  <span class="selector-tag">li</span> &#123;</span><br><span class="line">    <span class="attribute">list-style-image</span>: none;</span><br><span class="line">    <span class="attribute">list-style-type</span>: none;</span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">0px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="语法定义"><a href="#语法定义" class="headerlink" title="语法定义"></a>语法定义</h4><ul>
+<li>mixin混合器带参数时需要加括号，不带参数时不需要加；</li>
+<li>mixin混合器带参数时，可以设置默认值；</li>
+</ul>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">mixin</span> test(arguments)&#123;</span><br><span class="line">    <span class="comment">//语句块</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="mixin不带参数"><a href="#mixin不带参数" class="headerlink" title="mixin不带参数"></a>mixin不带参数</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//定义混合器</span><br><span class="line">@<span class="keyword">mixin</span> rounded-corners &#123;</span><br><span class="line">  <span class="selector-tag">-moz-border-radius</span>: 5<span class="selector-tag">px</span>;</span><br><span class="line">  <span class="selector-tag">-webkit-border-radius</span>: 5<span class="selector-tag">px</span>;</span><br><span class="line">  <span class="selector-tag">border-radius</span>: 5<span class="selector-tag">px</span>;</span><br><span class="line">&#125;</span><br><span class="line">//使用混合器：</span><br><span class="line"><span class="selector-tag">notice</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: green;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">2px</span> solid <span class="number">#00aa00</span>;</span><br><span class="line">  @include rounded-corners;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="mixin带参数"><a href="#mixin带参数" class="headerlink" title="mixin带参数"></a>mixin带参数</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//定义带参数混合器：</span><br><span class="line">@<span class="keyword">mixin</span> link-colors($normal, $hover, $visited) &#123;</span><br><span class="line">  color: $normal;</span><br><span class="line">  &amp;<span class="selector-pseudo">:hover</span> &#123; <span class="attribute">color</span>: $hover; &#125;</span><br><span class="line">  &amp;<span class="selector-pseudo">:visited</span> &#123; <span class="attribute">color</span>: $visited; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//使用</span><br><span class="line"><span class="selector-tag">a</span> &#123;</span><br><span class="line">  @include link-colors(blue, red, green);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="mixin参数默认值"><a href="#mixin参数默认值" class="headerlink" title="mixin参数默认值"></a>mixin参数默认值</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">mixin</span> link-colors($normal,$hover: $normal,$visited: $normal)&#123;</span><br><span class="line">  color: $normal;</span><br><span class="line">  &amp;<span class="selector-pseudo">:hover</span> &#123; <span class="attribute">color</span>: $hover; &#125;</span><br><span class="line">  &amp;<span class="selector-pseudo">:visited</span> &#123; <span class="attribute">color</span>: $visited; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="mixin管理"><a href="#mixin管理" class="headerlink" title="mixin管理"></a>mixin管理</h4><p>mixin常抽离到单独的文件，如_mixin.scss，来集中管理混合器；</p>
+<h3 id="选择器继承精简CSS"><a href="#选择器继承精简CSS" class="headerlink" title="选择器继承精简CSS"></a>选择器继承精简CSS</h3><p>选择器继承是说一个选择器可以继承为另一个选择器定义的所有样式。这个通过@extend语法实现,示例代码如下:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//通过选择器继承继承样式</span><br><span class="line"><span class="selector-class">.error</span> &#123;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid red;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#fdd</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.seriousError</span> &#123;</span><br><span class="line">  @extend .error;</span><br><span class="line">  <span class="selector-tag">border-width</span>: 3<span class="selector-tag">px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="仅被继承选择器"><a href="#仅被继承选择器" class="headerlink" title="仅被继承选择器"></a>仅被继承选择器</h4><p>使用%修饰的样式选择器，不会被编译成单独的样式，这种选择器只能被继承，</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">%<span class="selector-tag">success</span> &#123;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid red;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#fdd</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.perfectSuccess</span> &#123;</span><br><span class="line">    @extend %success;</span><br><span class="line">    <span class="selector-tag">border-width</span>: 3<span class="selector-tag">px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="条件控制指令"><a href="#条件控制指令" class="headerlink" title="条件控制指令"></a>条件控制指令</h3><p>SassScript 提供了一些基础的控制指令，比如在满足一定条件时引用样式，或者设定范围重复输出格式。控制指令是一种高级功能，日常编写过程中并不常用到，主要与混合指令 (mixin) 配合使用。</p>
+<h4 id="if条件判断"><a href="#if条件判断" class="headerlink" title="@if条件判断"></a>@if条件判断</h4><p>当 @if 的表达式返回值不是 false 或者 null 时，条件成立，输出 {} 内的代码，支持@else if和@else指令来辅助@if；</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">  @if 1 + 1 == 2 &#123; border: 1px solid; &#125;</span><br><span class="line">  @<span class="keyword">if</span> <span class="number">5</span> &lt; <span class="number">3</span> &#123; <span class="selector-tag">border</span>: 2<span class="selector-tag">px</span> <span class="selector-tag">dotted</span>; &#125;</span><br><span class="line">  @<span class="keyword">if</span> null  &#123; <span class="selector-tag">border</span>: 3<span class="selector-tag">px</span> <span class="selector-tag">double</span>; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="for遍历"><a href="#for遍历" class="headerlink" title="@for遍历"></a>@for遍历</h4><p>@for指令可以在限制的范围内重复输出格式，每次按要求（变量的值）对输出结果做出变动。</p>
+<h5 id="语法格式"><a href="#语法格式" class="headerlink" title="语法格式"></a>语法格式</h5><p>@for指令包含两种格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//格式一：当使用through时，条件范围包含&lt;start&gt;与&lt;end&gt;的值；</span><br><span class="line">@for $var from &lt;start&gt; through &lt;end&gt;</span><br><span class="line">//格式二：使用to时条件范围只包含&lt;start&gt;的值不包含&lt;end&gt;的值；</span><br><span class="line">@for $var from &lt;start&gt; to &lt;end&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">【注意】</span><br><span class="line">&gt; $var 可以是任何变量，比如 $i；</span><br><span class="line">&gt; &lt;start&gt; 和 &lt;end&gt; 必须是整数值。</span><br></pre></td></tr></table></figure>
+<h4 id="each遍历"><a href="#each遍历" class="headerlink" title="@each遍历"></a>@each遍历</h4><p>@each 指令的格式是 $var in <list>, $var 可以是任何变量名，比如 $length 或者 $name，而<list> 是一连串的值，也就是值列表。</list></list></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//@each 将变量 $var 作用于值列表中的每一个项目，然后输出结果，例如：</span><br><span class="line">@<span class="keyword">each</span> $animal in puma, sea-slug, egret, salamander &#123;</span><br><span class="line">  .#&#123;$animal&#125;-icon &#123;</span><br><span class="line">    background-image: url('/images/#&#123;$animal&#125;.png');</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="while条件循环"><a href="#while条件循环" class="headerlink" title="@while条件循环"></a>@while条件循环</h4><p>@while 指令重复输出格式直到表达式返回结果为 false。这样可以实现比 @for 更复杂的循环，只是很少会用到。例如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$i: 6;</span><br><span class="line">@<span class="keyword">while</span> $i &gt; <span class="number">0</span> &#123;</span><br><span class="line">  .item-#&#123;$i&#125; &#123; width: 2em * $i; &#125;</span><br><span class="line">  $i: $i - 2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="常用内置函数"><a href="#常用内置函数" class="headerlink" title="常用内置函数"></a>常用内置函数</h3><h4 id="数据类型判断"><a href="#数据类型判断" class="headerlink" title="数据类型判断"></a>数据类型判断</h4><p>用于对数据类型判断：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//判断变量类型是number;</span><br><span class="line">@if type-of($test) == number&#123;&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="单位操作"><a href="#单位操作" class="headerlink" title="单位操作"></a>单位操作</h4><ul>
+<li>unitless($number)：判断一个值是否不带带位；</li>
+<li>unit($number)：返回一个值的单位</li>
+</ul>
+<h4 id="comparable"><a href="#comparable" class="headerlink" title="comparable"></a>comparable</h4><p>comparable($number-1, $number-2)用来判断两个值是否可以做加、减和合并。</p>
+<h3 id="sass使用media-query"><a href="#sass使用media-query" class="headerlink" title="sass使用media query"></a>sass使用media query</h3><p>sass中media query可以直接嵌套在css规则中，在生成css的时候，media query才会被提到样式的最高级，这样避免了重复书写选择器或者打乱样式表的流程。</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><h4 id="日志输出指令"><a href="#日志输出指令" class="headerlink" title="日志输出指令"></a>日志输出指令</h4><p>sass提供@debug、@error、@warn来向控制台输出一段日志文字，用来表示错误信息，语法格式如下:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">warn</span> <span class="string">"this is warn"</span>;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/uploads/images/reward/wechat-reward-image.jpg" alt="ethancalc 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/uploads/images/reward/alipay-reward-image.jpg" alt="ethancalc 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/大前端/" rel="tag"><i class="fa fa-tag"></i> 大前端</a>
+          
+            <a href="/tags/CSS/" rel="tag"><i class="fa fa-tag"></i> CSS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/06/web/JavaScript/细说ajax跨域/" rel="next" title="细说ajax跨域">
+                <i class="fa fa-chevron-left"></i> 细说ajax跨域
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/20/web/CSS/sass编译工具compass/" rel="prev" title="sass编译工具compass">
+                sass编译工具compass <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="SOHUCS"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="/uploads/images/head/avatar.jpg" alt="ethancalc">
+          
+            <p class="site-author-name" itemprop="name">ethancalc</p>
+            <p class="site-description motion-element" itemprop="description">操千曲而后晓声，观千剑而后识器.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ethancalc" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.google.com/" title="google" target="_blank">google</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#文章概述"><span class="nav-number">1.</span> <span class="nav-text">文章概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sass"><span class="nav-number">2.</span> <span class="nav-text">sass</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装sass"><span class="nav-number">2.1.</span> <span class="nav-text">安装sass</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注释"><span class="nav-number">3.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据类型"><span class="nav-number">4.</span> <span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运算"><span class="nav-number">5.</span> <span class="nav-text">运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数学运算"><span class="nav-number">5.1.</span> <span class="nav-text">数学运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关系运算"><span class="nav-number">5.2.</span> <span class="nav-text">关系运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#布尔运算"><span class="nav-number">5.3.</span> <span class="nav-text">布尔运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#颜色值运算"><span class="nav-number">5.4.</span> <span class="nav-text">颜色值运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串运算"><span class="nav-number">5.5.</span> <span class="nav-text">字符串运算</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量"><span class="nav-number">6.</span> <span class="nav-text">变量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#声明和使用"><span class="nav-number">6.1.</span> <span class="nav-text">声明和使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#变量的操作"><span class="nav-number">6.2.</span> <span class="nav-text">变量的操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#变量管理"><span class="nav-number">6.3.</span> <span class="nav-text">变量管理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#css嵌套规则"><span class="nav-number">7.</span> <span class="nav-text">css嵌套规则</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#at-root指令"><span class="nav-number">7.1.</span> <span class="nav-text">at-root指令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#导入外部样式文件"><span class="nav-number">8.</span> <span class="nav-text">导入外部样式文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优化建议"><span class="nav-number">9.</span> <span class="nav-text">优化建议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义函数"><span class="nav-number">10.</span> <span class="nav-text">自定义函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mixin混合器"><span class="nav-number">11.</span> <span class="nav-text">mixin混合器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概念"><span class="nav-number">11.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#语法定义"><span class="nav-number">11.2.</span> <span class="nav-text">语法定义</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#mixin不带参数"><span class="nav-number">11.2.1.</span> <span class="nav-text">mixin不带参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#mixin带参数"><span class="nav-number">11.2.2.</span> <span class="nav-text">mixin带参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#mixin参数默认值"><span class="nav-number">11.2.3.</span> <span class="nav-text">mixin参数默认值</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mixin管理"><span class="nav-number">11.3.</span> <span class="nav-text">mixin管理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择器继承精简CSS"><span class="nav-number">12.</span> <span class="nav-text">选择器继承精简CSS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#仅被继承选择器"><span class="nav-number">12.1.</span> <span class="nav-text">仅被继承选择器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条件控制指令"><span class="nav-number">13.</span> <span class="nav-text">条件控制指令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#if条件判断"><span class="nav-number">13.1.</span> <span class="nav-text">@if条件判断</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#for遍历"><span class="nav-number">13.2.</span> <span class="nav-text">@for遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法格式"><span class="nav-number">13.2.1.</span> <span class="nav-text">语法格式</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#each遍历"><span class="nav-number">13.3.</span> <span class="nav-text">@each遍历</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#while条件循环"><span class="nav-number">13.4.</span> <span class="nav-text">@while条件循环</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用内置函数"><span class="nav-number">14.</span> <span class="nav-text">常用内置函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据类型判断"><span class="nav-number">14.1.</span> <span class="nav-text">数据类型判断</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单位操作"><span class="nav-number">14.2.</span> <span class="nav-text">单位操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#comparable"><span class="nav-number">14.3.</span> <span class="nav-text">comparable</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sass使用media-query"><span class="nav-number">15.</span> <span class="nav-text">sass使用media query</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">16.</span> <span class="nav-text">参考</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#日志输出指令"><span class="nav-number">16.1.</span> <span class="nav-text">日志输出指令</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ethancalc</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytFhNP7b';
+      var conf = 'a8f0e5bccaabb0580489df2a08f8a24f';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+</body>
+</html>
+

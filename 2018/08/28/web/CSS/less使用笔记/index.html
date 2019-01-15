@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="大前端,CSS,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/logo.jpg?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="文章概述 本篇文章记录less的使用笔记。">
+<meta name="keywords" content="大前端,CSS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="less使用笔记">
+<meta property="og:url" content="http://liusong.site/2018/08/28/web/CSS/less使用笔记/index.html">
+<meta property="og:site_name" content="挑灯看剑">
+<meta property="og:description" content="文章概述 本篇文章记录less的使用笔记。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-10T05:08:14.772Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="less使用笔记">
+<meta name="twitter:description" content="文章概述 本篇文章记录less的使用笔记。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liusong.site/2018/08/28/web/CSS/less使用笔记/">
+
+
+
+
+
+  <title>less使用笔记 | 挑灯看剑</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <a href="https://github.com/ethancalc"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/121cd7cbdc3e4855075ea8b558508b91ac463ac2/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_green_007200.png"></a>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">挑灯看剑</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Personal Blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            文章列表
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            联系我
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liusong.site/2018/08/28/web/CSS/less使用笔记/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ethancalc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/images/head/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="挑灯看剑">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">less使用笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-28T00:00:00+08:00">
+                2018-08-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/大前端/" itemprop="url" rel="index">
+                    <span itemprop="name">大前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/大前端/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2018/08/28/web/CSS/less使用笔记/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2018/08/28/web/CSS/less使用笔记/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </span></div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="文章概述"><a href="#文章概述" class="headerlink" title="文章概述"></a>文章概述</h3><blockquote>
+<p>本篇文章记录less的使用笔记。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>Less是一门CSS预处理语言，使用方式类似sass。</p>
+<h4 id="参考网站"><a href="#参考网站" class="headerlink" title="参考网站"></a>参考网站</h4><ul>
+<li><a href="http://lesscss.org/" target="_blank" rel="noopener">less官网</a></li>
+</ul>
+<h3 id="使用less"><a href="#使用less" class="headerlink" title="使用less"></a>使用less</h3><ol>
+<li>安装less：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yarn -D add less</span><br></pre></td></tr></table></figure>
+<ol>
+<li>编译less文件：</li>
+</ol>
+<p>less包bin目录中有lessc文件用来执行编译less文件为css文件；</p>
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><h4 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h4><p>less使用@符号定义和使用变量；</p>
+<h4 id="变量定义变量"><a href="#变量定义变量" class="headerlink" title="变量定义变量"></a>变量定义变量</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.用一个变量来定义另一个变量；</span></span><br><span class="line"><span class="variable">@colorVar:</span> <span class="number">#fff</span>;</span><br><span class="line"><span class="variable">@myColor:</span> <span class="variable">@colorVar</span>;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#testId</span><span class="selector-pseudo">::before</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="variable">@myColor</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//2.@符号加一个变量值是字符串等于另一个变量名组合的变量；</span></span><br><span class="line"><span class="variable">@contentVar:</span> <span class="string">'hello world'</span>;</span><br><span class="line"><span class="variable">@myContent:</span> <span class="string">'contentVar'</span>;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#testId</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="variable">@@myContent</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="变量运算"><a href="#变量运算" class="headerlink" title="变量运算"></a>变量运算</h4><p>变量运算: 运算符和变量之间一定要加空格，否则会被认为是变量名；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- 加减法时：以第一个数据的单位为基准;</span><br><span class="line">- 乘除法时：注意单位一定要统一;</span><br></pre></td></tr></table></figure>
+<p>示例：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@width:</span> <span class="number">300px</span>;</span><br><span class="line"><span class="variable">@color:</span> <span class="number">#222</span>;</span><br><span class="line"><span class="selector-id">#operation</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="variable">@width</span> - <span class="number">20</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="variable">@width</span> - <span class="number">20</span>*<span class="number">5</span>;</span><br><span class="line">  <span class="attribute">margin</span>: (<span class="variable">@width</span> - <span class="number">20</span>)*<span class="number">5</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="variable">@color</span> * <span class="number">2</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="variable">@color</span> + <span class="number">111</span>;</span><br><span class="line">  <span class="attribute">border-color</span>: <span class="variable">@color</span> + <span class="number">#111</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="变量的类型"><a href="#变量的类型" class="headerlink" title="变量的类型"></a>变量的类型</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.值变量：</span></span><br><span class="line"><span class="variable">@theme-color:</span> red;</span><br><span class="line"><span class="selector-class">.app</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="variable">@theme-color</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.选择器变量：变量名必须使用大括号包裹；</span></span><br><span class="line"><span class="variable">@classSelector:</span> wrap;</span><br><span class="line"><span class="selector-class">.@&#123;classSelector&#125;</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#999</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">50%</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">@idSelector:</span> wrap;</span><br><span class="line"><span class="selector-id">#@&#123;idSelector&#125;</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#666</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//3.属性变量：变量名必须使用大括号包裹；</span></span><br><span class="line"><span class="variable">@borderStyle:</span> border-style;</span><br><span class="line"><span class="selector-id">#wrap</span> &#123;</span><br><span class="line">    <span class="attribute">@&#123;borderStyle&#125;</span>: solid;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//4. url变量：可用于给地址加统一前缀；</span></span><br><span class="line"><span class="variable">@baseImageUrl:</span> <span class="string">"http://www.lewei.cool"</span>;</span><br><span class="line"><span class="selector-class">.myImage</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: url(<span class="string">"@&#123;baseImageUrl&#125;/dog.png"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//5. 样式表变量：指一组样式，使用时需要在变量后加圆括号()来引入;</span></span><br><span class="line"><span class="variable">@listBackground:</span> &#123; <span class="attribute">background</span>: red; &#125;;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.listBox</span> &#123;</span><br><span class="line">  <span class="variable">@listBackground</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="样式嵌套"><a href="#样式嵌套" class="headerlink" title="样式嵌套"></a>样式嵌套</h3><ol>
+<li>less支持选择器多级嵌套，但是层级越深效率月低，推荐限制在两个层级；</li>
+</ol>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="selector-class">.title</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#000</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-id">#item</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">12pt</span>;</span><br><span class="line">    <span class="selector-id">#content</span> &#123;</span><br><span class="line">      <span class="attribute">color</span>: red;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>嵌套内引用父选择器名，可以使用&amp;代表父选择器名；</li>
+</ol>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#header</span> &#123;</span><br><span class="line">  <span class="selector-tag">&amp;</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">"Less is more!"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.title</span> &#123;</span><br><span class="line">    <span class="attribute">font-weight</span>: bold;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-tag">&amp;</span><span class="selector-tag">_content</span> &#123;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">20px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>媒体查询嵌套：缺点是每一个元素都会编译出自己的@media样式表，并不会合并。</li>
+</ol>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#main</span> &#123;</span><br><span class="line">  <span class="keyword">@media</span> screen &#123;</span><br><span class="line">    <span class="keyword">@media</span> (<span class="attribute">max-width</span>: <span class="number">768px</span>) &#123;</span><br><span class="line">      <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">@media</span> tv &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">2000px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="mix混合器方法"><a href="#mix混合器方法" class="headerlink" title="mix混合器方法"></a>mix混合器方法</h3><p>mix混合器方法用来优化代码，将多次使用的样式封装到公共的方法来获取，提高代码的质量；</p>
+<h4 id="无参方法"><a href="#无参方法" class="headerlink" title="无参方法"></a>无参方法</h4><p>无参数混合器方法: 混合器方法必须使用.做前缀；</p>
+<ul>
+<li>定义时：可以不加括号，但是不推荐。不加括号不仅代表混合器方法，也代表一个样式表，都会被单独编译；</li>
+<li>使用时：引用时，直接引入选择器或者引入选择器并且加括号,两种引用方式等价；</li>
+</ul>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.mix-card</span>() &#123;</span><br><span class="line">  <span class="attribute">-webkit-box-shadow</span>: <span class="number">0</span> <span class="number">1px</span> <span class="number">2px</span> rgba(<span class="number">151</span>, <span class="number">151</span>, <span class="number">151</span>, .<span class="number">58</span>);</span><br><span class="line">  <span class="attribute">box-shadow</span>: <span class="number">0</span> <span class="number">1px</span> <span class="number">2px</span> rgba(<span class="number">151</span>, <span class="number">151</span>, <span class="number">151</span>, .<span class="number">58</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.myCard</span> &#123;</span><br><span class="line">  <span class="selector-class">.mix-card</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#myCard</span> &#123;</span><br><span class="line">  <span class="selector-class">.mix-card</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="带参方法"><a href="#带参方法" class="headerlink" title="带参方法"></a>带参方法</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1&gt; 普通带参数方法：</span></span><br><span class="line"><span class="selector-class">.me-padding</span>(<span class="variable">@top</span>,<span class="variable">@right</span>,<span class="variable">@bottom</span>,<span class="variable">@left</span>) &#123;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="variable">@top</span> <span class="variable">@right</span> <span class="variable">@bottom</span> <span class="variable">@left</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.myArg</span> &#123;</span><br><span class="line">  <span class="selector-class">.me-padding</span>(<span class="number">3px</span>, <span class="number">3px</span>, <span class="number">4px</span>, <span class="number">4px</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2&gt; 默认参数方法：</span></span><br><span class="line"><span class="selector-class">.me-margin</span>(<span class="variable">@top</span>: <span class="number">6px</span>,<span class="variable">@right</span>: <span class="number">6px</span>,<span class="variable">@bottom</span>: <span class="number">6px</span>,<span class="variable">@left</span>: <span class="number">6px</span>) &#123;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="variable">@top</span> <span class="variable">@right</span> <span class="variable">@bottom</span> <span class="variable">@left</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#my-margin-default</span> &#123;</span><br><span class="line">  <span class="selector-class">.me-margin</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#my-margin</span> &#123;</span><br><span class="line">  <span class="selector-class">.me-margin</span>(<span class="number">11px</span>, <span class="number">11px</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#my-margin-all</span> &#123;</span><br><span class="line">  <span class="selector-class">.me-margin</span>(<span class="number">11px</span>, <span class="number">11px</span>, <span class="number">11px</span>, <span class="number">11px</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="全参关键字"><a href="#全参关键字" class="headerlink" title="全参关键字"></a>全参关键字</h5><p>全部参数关键字：arguments</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.mix-args</span>(<span class="variable">@width</span>,<span class="variable">@style</span>,<span class="variable">@color</span>) &#123;</span><br><span class="line">  <span class="attribute">border</span>: <span class="variable">@arguments</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#me-args</span> &#123;</span><br><span class="line">  <span class="selector-class">.mix-args</span>(<span class="number">1px</span>, solid, blue);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="匹配模式"><a href="#匹配模式" class="headerlink" title="匹配模式"></a>匹配模式</h4><p>混合器方法的匹配模式: 与面向对象中的多态相似;</p>
+<ul>
+<li>如果匹配的参数使用常量做标识，使用时会优先使用匹配程度最高的方法，如果匹配程度相同，将合并样式。</li>
+<li>如果匹配的参数是变量，使用@_标识；</li>
+</ul>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 示例：显示各个方向上的三角形箭头？</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//常量匹配模式</span></span><br><span class="line"><span class="selector-class">.triangle</span>(top,<span class="variable">@width</span>:<span class="number">20px</span>,<span class="variable">@color</span>:<span class="number">#f00</span>) &#123;</span><br><span class="line">  <span class="attribute">border-width</span>: <span class="variable">@width</span>;</span><br><span class="line">  <span class="attribute">border-color</span>: transparent transparent <span class="variable">@color</span> transparent;</span><br><span class="line">  <span class="attribute">border-style</span>: dashed dashed solid dashed;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.triangle</span>(bottom,<span class="variable">@width</span>:<span class="number">20px</span>,<span class="variable">@color</span>:<span class="number">#f00</span>) &#123;</span><br><span class="line">  <span class="attribute">border-width</span>: <span class="variable">@width</span>;</span><br><span class="line">  <span class="attribute">border-color</span>: <span class="variable">@color</span> transparent transparent transparent;</span><br><span class="line">  <span class="attribute">border-style</span>: solid dashed dashed dashed;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.triangle</span>(right,<span class="variable">@width</span>:<span class="number">20px</span>,<span class="variable">@color</span>:<span class="number">#f00</span>) &#123;</span><br><span class="line">  <span class="attribute">border-width</span>: <span class="variable">@width</span>;</span><br><span class="line">  <span class="attribute">border-color</span>: transparent transparent transparent <span class="variable">@color</span>;</span><br><span class="line">  <span class="attribute">border-style</span>: dashed dashed solid dashed;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.triangle</span>(left,<span class="variable">@width</span>:<span class="number">20px</span>,<span class="variable">@color</span>:<span class="number">#f00</span>) &#123;</span><br><span class="line">  <span class="attribute">border-width</span>: <span class="variable">@width</span>;</span><br><span class="line">  <span class="attribute">border-color</span>: transparent <span class="variable">@color</span> transparent transparent;</span><br><span class="line">  <span class="attribute">border-style</span>: dashed solid dashed dashed;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//变量匹配模式，与常量匹配程度相同；</span></span><br><span class="line"><span class="selector-class">.triangle</span>(<span class="variable">@_</span>,<span class="variable">@width</span>:<span class="number">20px</span>,<span class="variable">@color</span>:<span class="number">#f00</span>) &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.arrow</span> &#123;</span><br><span class="line">  <span class="selector-class">.triangle</span>(bottom, <span class="number">100px</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="方法命名空间"><a href="#方法命名空间" class="headerlink" title="方法命名空间"></a>方法命名空间</h4><p>使用命名空间方法时，使用符号&gt;标识的直接子方法的父方法不能加括号；</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.namespace</span>() &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#723232</span>;</span><br><span class="line">  <span class="selector-class">.d</span>(<span class="variable">@w</span>:<span class="number">300px</span>) &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="variable">@w</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#namespace</span> &#123;</span><br><span class="line">  <span class="selector-class">.namespace</span> &gt; <span class="selector-class">.d</span>(<span class="number">1px</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="数量不定的参数"><a href="#数量不定的参数" class="headerlink" title="数量不定的参数"></a>数量不定的参数</h4><p>方法接受数量不定的参数，可以使用…表示，用arguments关键字引用;</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.boxShadow</span>(...) &#123;</span><br><span class="line">  <span class="attribute">box-shadow</span>: <span class="variable">@arguments</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.textShadow</span>(<span class="variable">@a</span>,...) &#123;</span><br><span class="line">  <span class="attribute">text-shadow</span>: <span class="variable">@arguments</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#main</span> &#123;</span><br><span class="line">  <span class="selector-class">.boxShadow</span>(<span class="number">1px</span>, <span class="number">4px</span>, <span class="number">30px</span>, red);</span><br><span class="line">  <span class="selector-class">.textShadow</span>(<span class="number">1px</span>, <span class="number">4px</span>, <span class="number">30px</span>, red);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="批量important"><a href="#批量important" class="headerlink" title="批量important"></a>批量important</h4><p>方法使用important,来让混合器方法内部样式批量添加important，直接在方法名后加上important关键字即可；</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.level-border</span> &#123;</span><br><span class="line">  <span class="attribute">border</span>: solid <span class="number">1px</span> red;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">50px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#main</span> &#123;</span><br><span class="line">  <span class="selector-class">.level-border</span> !important;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="条件筛选方法"><a href="#条件筛选方法" class="headerlink" title="条件筛选方法"></a>条件筛选方法</h4><p>Less没有if…else表达式，less用when…and/not来做条件匹配；</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#condition</span> &#123;</span><br><span class="line">  <span class="comment">// and 运算符 ，相当于 与运算 &amp;&amp;，必须条件全部符合才会执行</span></span><br><span class="line">  <span class="selector-class">.border</span>(<span class="variable">@width</span>,<span class="variable">@color</span>,<span class="variable">@style</span>) <span class="keyword">when</span> (<span class="variable">@width</span>&gt;<span class="number">100px</span>) <span class="keyword">and</span>(<span class="variable">@color</span>=<span class="number">#999</span>)&#123;</span><br><span class="line">    <span class="attribute">border</span>: <span class="variable">@style</span> <span class="variable">@color</span> <span class="variable">@width</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// not 运算符，相当于 非运算 !，条件为 不符合才会执行</span></span><br><span class="line">  <span class="selector-class">.background</span>(<span class="variable">@color</span>) <span class="keyword">when</span> <span class="keyword">not</span> (<span class="variable">@color</span>&gt;=<span class="number">#222</span>) &#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="variable">@color</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// , 逗号分隔符：相当于 或运算 ||，只要有一个符合条件就会执行</span></span><br><span class="line">  <span class="selector-class">.font</span>(<span class="variable">@size</span>:<span class="number">20px</span>) <span class="keyword">when</span> (<span class="variable">@size</span>&gt;<span class="number">50px</span>), (<span class="variable">@size</span>&lt;<span class="number">100px</span>) &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="variable">@size</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#condition</span> &#123;</span><br><span class="line">  <span class="selector-id">#condition</span>&gt; <span class="selector-class">.border</span>(<span class="number">200px</span>, <span class="number">#999</span>, solid);</span><br><span class="line">  <span class="selector-id">#condition</span> <span class="selector-class">.background</span>(<span class="number">#111</span>);</span><br><span class="line">  <span class="selector-id">#condition</span> &gt; <span class="selector-class">.font</span>(<span class="number">40px</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="循环方法"><a href="#循环方法" class="headerlink" title="循环方法"></a>循环方法</h4><p>Less并没有提供for循环功能，可以使用递归去实现。</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.generate-columns</span>(<span class="variable">@n</span>, <span class="variable">@i</span>: <span class="number">1</span>) <span class="keyword">when</span> (<span class="variable">@i</span> =&lt; <span class="variable">@n</span>) &#123;</span><br><span class="line">  <span class="selector-class">.column-</span><span class="variable">@&#123;i&#125;</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: (<span class="variable">@i</span> * <span class="number">100%</span> / <span class="variable">@n</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.generate-columns</span>(<span class="variable">@n</span>, (<span class="variable">@i</span> + <span class="number">1</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.generate-columns</span>(<span class="number">4</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p>extend是Less的一个伪类。它可继承所匹配声明中的全部样式。extend扩展样式必须放在选择器最后面;</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.animation</span>() &#123;</span><br><span class="line">  <span class="attribute">transition</span>: all .<span class="number">3s</span> ease-out;</span><br><span class="line">  <span class="selector-class">.animationChild</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: scale(<span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.test</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//继承单个选择器样式</span></span><br><span class="line"><span class="selector-id">#extend1</span> &#123;</span><br><span class="line">  <span class="selector-tag">&amp;</span><span class="selector-pseudo">:extend(.animation)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#extend2</span> &#123;</span><br><span class="line">  <span class="selector-tag">&amp;</span><span class="selector-pseudo">:extend(.animation</span> <span class="selector-class">.animationChild</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//继承多个选择器样式</span></span><br><span class="line"><span class="selector-id">#extend3</span> &#123;</span><br><span class="line">  <span class="selector-tag">&amp;</span><span class="selector-pseudo">:extend(.animation</span> <span class="selector-class">.hide</span>,<span class="selector-class">.test</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//继承某个选择器的所有样式</span></span><br><span class="line"><span class="selector-id">#extend4</span> &#123;</span><br><span class="line">  <span class="selector-tag">&amp;</span><span class="selector-pseudo">:extend(.animation</span> <span class="keyword">all</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="引用外部样式"><a href="#引用外部样式" class="headerlink" title="引用外部样式"></a>引用外部样式</h3><p>less使用外部样式</p>
+<ol>
+<li>普通导入并使用外部样式：</li>
+</ol>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@import</span> <span class="string">"outerLess"</span>;</span><br><span class="line"><span class="keyword">@import</span> <span class="string">"outerLess.less"</span>;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>导入外部样式文件，但不编译到css，只会编译引用到的样式【推荐导入方式】：</li>
+</ol>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@import</span> (reference) <span class="string">"outerLess"</span>;</span><br><span class="line"><span class="selector-class">.title</span>&#123;</span><br><span class="line">  <span class="selector-class">.outerThemeColor</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>@import (once)导入方式，@import语句的默认行为,相同的文件只会被导入一次，随后的导入文件的重复代码都不会解析：</li>
+</ol>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@import</span> (once) <span class="string">"outerLess"</span>;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>@import (multiple)导入方式，允许导入多个同名文件,每个文件的样式都会被解析一遍，会出现个重复的样式：</li>
+</ol>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@import</span> (multiple) <span class="string">"outerLess"</span>;</span><br><span class="line"><span class="keyword">@import</span> (multiple) <span class="string">"outerLess"</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="属性避免编译"><a href="#属性避免编译" class="headerlink" title="属性避免编译"></a>属性避免编译</h3><p>属性避免编译，可以将属性添加到引号内，并在属性引号前加~</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.not-build</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="string">~'calc(300px-20px)'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="内置函数"><a href="#内置函数" class="headerlink" title="内置函数"></a>内置函数</h3><p>less内置一些辅助函数，详见官网。</p>
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#fn-style</span>&#123;</span><br><span class="line">  <span class="attribute">color</span>: color(<span class="string">'#ff0'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/uploads/images/reward/wechat-reward-image.jpg" alt="ethancalc 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/uploads/images/reward/alipay-reward-image.jpg" alt="ethancalc 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/大前端/" rel="tag"><i class="fa fa-tag"></i> 大前端</a>
+          
+            <a href="/tags/CSS/" rel="tag"><i class="fa fa-tag"></i> CSS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/02/Blog/Hexo搭建的GitHubPage中支持Mathjax数学公式/" rel="next" title="Hexo搭建的GitHubPage中支持Mathjax数学公式">
+                <i class="fa fa-chevron-left"></i> Hexo搭建的GitHubPage中支持Mathjax数学公式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/30/web/JavaScript/ES6转码工具babel7.x的配置/" rel="prev" title="ES6转码工具babel7.x的配置">
+                ES6转码工具babel7.x的配置 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="SOHUCS"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="/uploads/images/head/avatar.jpg" alt="ethancalc">
+          
+            <p class="site-author-name" itemprop="name">ethancalc</p>
+            <p class="site-description motion-element" itemprop="description">操千曲而后晓声，观千剑而后识器.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ethancalc" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.google.com/" title="google" target="_blank">google</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#文章概述"><span class="nav-number">1.</span> <span class="nav-text">文章概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-number">2.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#参考网站"><span class="nav-number">2.1.</span> <span class="nav-text">参考网站</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用less"><span class="nav-number">3.</span> <span class="nav-text">使用less</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量"><span class="nav-number">4.</span> <span class="nav-text">变量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概述-1"><span class="nav-number">4.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#变量定义变量"><span class="nav-number">4.2.</span> <span class="nav-text">变量定义变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#变量运算"><span class="nav-number">4.3.</span> <span class="nav-text">变量运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#变量的类型"><span class="nav-number">4.4.</span> <span class="nav-text">变量的类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样式嵌套"><span class="nav-number">5.</span> <span class="nav-text">样式嵌套</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mix混合器方法"><span class="nav-number">6.</span> <span class="nav-text">mix混合器方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#无参方法"><span class="nav-number">6.1.</span> <span class="nav-text">无参方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#带参方法"><span class="nav-number">6.2.</span> <span class="nav-text">带参方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#全参关键字"><span class="nav-number">6.2.1.</span> <span class="nav-text">全参关键字</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#匹配模式"><span class="nav-number">6.3.</span> <span class="nav-text">匹配模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法命名空间"><span class="nav-number">6.4.</span> <span class="nav-text">方法命名空间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数量不定的参数"><span class="nav-number">6.5.</span> <span class="nav-text">数量不定的参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#批量important"><span class="nav-number">6.6.</span> <span class="nav-text">批量important</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#条件筛选方法"><span class="nav-number">6.7.</span> <span class="nav-text">条件筛选方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#循环方法"><span class="nav-number">6.8.</span> <span class="nav-text">循环方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继承"><span class="nav-number">7.</span> <span class="nav-text">继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引用外部样式"><span class="nav-number">8.</span> <span class="nav-text">引用外部样式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#属性避免编译"><span class="nav-number">9.</span> <span class="nav-text">属性避免编译</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内置函数"><span class="nav-number">10.</span> <span class="nav-text">内置函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#示例"><span class="nav-number">10.1.</span> <span class="nav-text">示例</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ethancalc</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytFhNP7b';
+      var conf = 'a8f0e5bccaabb0580489df2a08f8a24f';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+</body>
+</html>
+

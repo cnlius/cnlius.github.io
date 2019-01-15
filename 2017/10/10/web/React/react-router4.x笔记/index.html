@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="大前端,React,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/logo.jpg?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="文章概述 本篇文章记录react-router 4.x的笔记。">
+<meta name="keywords" content="大前端,React">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react-router 4.x笔记">
+<meta property="og:url" content="http://liusong.site/2017/10/10/web/React/react-router4.x笔记/index.html">
+<meta property="og:site_name" content="挑灯看剑">
+<meta property="og:description" content="文章概述 本篇文章记录react-router 4.x的笔记。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-10T05:08:14.775Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="react-router 4.x笔记">
+<meta name="twitter:description" content="文章概述 本篇文章记录react-router 4.x的笔记。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liusong.site/2017/10/10/web/React/react-router4.x笔记/">
+
+
+
+
+
+  <title>react-router 4.x笔记 | 挑灯看剑</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <a href="https://github.com/ethancalc"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/121cd7cbdc3e4855075ea8b558508b91ac463ac2/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_green_007200.png"></a>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">挑灯看剑</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Personal Blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            文章列表
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            联系我
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liusong.site/2017/10/10/web/React/react-router4.x笔记/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ethancalc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/images/head/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="挑灯看剑">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">react-router 4.x笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T00:00:00+08:00">
+                2017-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/大前端/" itemprop="url" rel="index">
+                    <span itemprop="name">大前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/大前端/React/" itemprop="url" rel="index">
+                    <span itemprop="name">React</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/10/10/web/React/react-router4.x笔记/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2017/10/10/web/React/react-router4.x笔记/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </span></div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="文章概述"><a href="#文章概述" class="headerlink" title="文章概述"></a>文章概述</h3><blockquote>
+<p>本篇文章记录react-router 4.x的笔记。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
+<li>Github仓库：<a href="https://github.com/ReactTraining/react-router" target="_blank" rel="noopener">https://github.com/ReactTraining/react-router</a></li>
+<li>官方文档：<a href="https://reacttraining.com/react-router/web/guides/quick-start" target="_blank" rel="noopener">https://reacttraining.com/react-router/web/guides/quick-start</a></li>
+<li>官方文档翻译：<a href="http://reacttraining.cn/web/api/BrowserRouter" target="_blank" rel="noopener">http://reacttraining.cn/web/api/BrowserRouter</a></li>
+</ul>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><ul>
+<li>React Router是React官方推荐的标准路由库，用来管理一个多视图的React应用中那些来回切换的页面URL。</li>
+<li>React Router V4基于Lerna管理多个Repository。此代码库包括：</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>包名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>react-router</td>
+<td>React Router 核心组件</td>
+</tr>
+<tr>
+<td>react-router-dom</td>
+<td>用于 DOM 绑定的 React Router</td>
+</tr>
+<tr>
+<td>react-router-native</td>
+<td>用于React Native的 React Router</td>
+</tr>
+<tr>
+<td>react-router-redux</td>
+<td>React Router 和 Redux 的集成</td>
+</tr>
+<tr>
+<td>react-router-config</td>
+<td>静态路由配置帮助助手</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>React Router V4遵循了Reac的理念：万物皆组件。因此 Route、Link、Switch等都是一个普通的组件。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">组件里也可以添加router，路由放在组件中，需要的时候再去定义；</span><br></pre></td></tr></table></figure>
+<ul>
+<li>React Router V4的特点是：声明式、可组合。</li>
+</ul>
+<h3 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h3><h4 id="react-router-dom"><a href="#react-router-dom" class="headerlink" title="react-router-dom"></a>react-router-dom</h4><p>react-router-dom提供了BrowserRouter,Route,Link等api,我们可以通过dom的事件控制路由，对比react-router多出了<link> <browserrouter> DOM类组件。如果搭配redux，你还需要使用react-router-redux。</browserrouter></p>
+<h5 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install react-router-dom -S</span><br></pre></td></tr></table></figure>
+<h5 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h5><p>在react应用中，引入相关路由组件即可使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import &#123;HashRouter as Router, Link, Route, Switch&#125; from &apos;react-router-dom&apos;;</span><br></pre></td></tr></table></figure>
+<h3 id="内置组件简介"><a href="#内置组件简介" class="headerlink" title="内置组件简介"></a>内置组件简介</h3><p>常用的组件有：</p>
+<ul>
+<li>Router：路由；</li>
+<li>Route：路由规则；</li>
+<li>Switch：包裹Route,避免多次匹配；</li>
+<li>Link：与Route平级，相当于a标签，用来设置与Route的路径对应的地址，导航作用；</li>
+<li>NavLink：同Link,新增了一些状态控制api;</li>
+<li>Redirect: url重定向；</li>
+</ul>
+<h4 id="Router"><a href="#Router" class="headerlink" title="Router"></a>Router</h4><blockquote>
+<p>在 React Router 4中，你可以将各种组件及标签放进 <router>组件中，他的角色也更像是Redux中的 <provider>。不同的是<provider>是用来保持与store的更新，而<router>是用来保持与location的同步。示例如下：</router></provider></provider></router></p>
+</blockquote>
+<h5 id="使用示例"><a href="#使用示例" class="headerlink" title="使用示例"></a>使用示例</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;Router&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;ul&gt;</span><br><span class="line">        &lt;li&gt;<span class="xml"><span class="tag">&lt;<span class="name">Link</span> <span class="attr">to</span>=<span class="string">"/"</span>&gt;</span>首页<span class="tag">&lt;/<span class="name">Link</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">        &lt;li&gt;<span class="xml"><span class="tag">&lt;<span class="name">Link</span> <span class="attr">to</span>=<span class="string">"/about"</span>&gt;</span>关于<span class="tag">&lt;/<span class="name">Link</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">        &lt;li&gt;<span class="xml"><span class="tag">&lt;<span class="name">Link</span> <span class="attr">to</span>=<span class="string">"/topics"</span>&gt;</span>主题列表<span class="tag">&lt;/<span class="name">Link</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">      &lt;<span class="regexp">/ul&gt;</span></span><br><span class="line"><span class="regexp">      &lt;Route exact path="/</span><span class="string">" component=&#123;Home&#125;/&gt;</span></span><br><span class="line"><span class="string">      &lt;Route path="</span>/about<span class="string">" component=&#123;About&#125;/&gt;</span></span><br><span class="line"><span class="string">      &lt;Route path="</span>/topics<span class="string">" component=&#123;Topics&#125;/&gt;</span></span><br><span class="line"><span class="string">    &lt;/div&gt;</span></span><br><span class="line"><span class="string">&lt;/Router&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h5><ul>
+<li>Router组件下只允许存在一个子元素；</li>
+<li>Router是所有路由组件共用的底层接口，一般我们的应用并不会使用这个接口，而是使用高级的路由：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;BrowserRouter&gt;：使用HTML5提供的history API（pushState，replaceState和popstate事件）来保持UI和URL的同步；</span><br><span class="line">&lt;HashRouter&gt;：使用URL的hash (例如：window.location.hash) 来保持UI和URL的同步,兼容老的浏览器，最终的url中会有明显的#(http://example.com/#/about)；</span><br><span class="line">&lt;MemoryRouter&gt;：能在内存保存你 “URL” 的历史纪录(并没有对地址栏读写)；</span><br><span class="line">&lt;StaticRouter&gt;：从不会改变地址；</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：BrowserRouter</p>
+</blockquote>
+<p><span style="color:blue"><br>如果使用BrowserRouter，path配置时，最好不要使用双斜线，webpack服务二次刷新页面会报错‘cannot get …’,需要配置devServer添加如下配置：
+</span></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">devServer: &#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    historyApiFallback: &#123;</span><br><span class="line">      <span class="comment">// Paths with dots should still use the history fallback.</span></span><br><span class="line">      <span class="comment">// See https://github.com/facebookincubator/create-react-app/issues/387.</span></span><br><span class="line">      disableDotRule: <span class="literal">true</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Route"><a href="#Route" class="headerlink" title="Route"></a>Route</h4><h5 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h5><p>Route控制了路径对应显示的组件或要渲染的内容，path属性与Link的to属性进行匹配。</p>
+<h5 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h5><h6 id="path"><a href="#path" class="headerlink" title="path"></a>path</h6><blockquote>
+<p>path(string)：路由的匹配路径；</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//【示例】</span></span><br><span class="line">&lt;Route path=<span class="string">"/users/:id"</span> component=&#123;User&#125;/&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>path通配符传参：</p>
+</blockquote>
+<p>【常用通配符】(为了区分，中括号内的是通配符)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; [:paramName]：参数通配符；</span><br><span class="line">1&gt; paramName匹配URL的一个部分，直到遇到下一个/、?、#为止;</span><br><span class="line">2&gt; 这个路径参数在组件中，可以通过this.props.params.paramName取出;</span><br><span class="line">3&gt; 目标组件页面可以通过render返回的函数中添加route（props）参数来获取参数值：&#123;route.match.params.id&#125;。</span><br><span class="line">&gt; [()]：()表示URL的这个部分是可选的。</span><br><span class="line">&gt; [*]：*匹配任意字符，直到模式里面的下一个字符为止。匹配方式是非贪婪模式。</span><br><span class="line">&gt; [**]：** 匹配任意字符，直到下一个/、?、#为止。匹配方式是贪婪模式。</span><br></pre></td></tr></table></figure>
+<p>【通配符示例】</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">//【传参通配符】</span><br><span class="line">&lt;Route path=&quot;/hello/:name&quot;&gt;</span><br><span class="line">// 匹配 /hello/michael</span><br><span class="line">// 匹配 /hello/ryan</span><br><span class="line"></span><br><span class="line">//【其他通配符】</span><br><span class="line">&lt;Route path=&quot;/hello(/:name)&quot;&gt;</span><br><span class="line">// 匹配 /hello</span><br><span class="line">// 匹配 /hello/michael</span><br><span class="line">// 匹配 /hello/ryan</span><br><span class="line"></span><br><span class="line">&lt;Route path=&quot;/files/*.*&quot;&gt;</span><br><span class="line">// 匹配 /files/hello.jpg</span><br><span class="line">// 匹配 /files/hello.html</span><br><span class="line"></span><br><span class="line">&lt;Route path=&quot;/files/*&quot;&gt;</span><br><span class="line">// 匹配 /files/ </span><br><span class="line">// 匹配 /files/a</span><br><span class="line">// 匹配 /files/a/b</span><br><span class="line"></span><br><span class="line">&lt;Route path=&quot;/**/*.jpg&quot;&gt;</span><br><span class="line">// 匹配 /files/hello.jpg</span><br><span class="line">// 匹配 /files/path/to/file.jpg</span><br></pre></td></tr></table></figure>
+<h6 id="exact"><a href="#exact" class="headerlink" title="exact"></a>exact</h6><blockquote>
+<p>exact(bool): 为true时，要求路径与location.pathname（即path）必须完全匹配;</p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>测试路径</th>
+<th>path</th>
+<th>exact</th>
+<th>是否匹配</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/one</td>
+<td>/one/two</td>
+<td>true</td>
+<td>否</td>
+</tr>
+<tr>
+<td>/one</td>
+<td>/one/two</td>
+<td>false</td>
+<td>是</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//【示例】</span></span><br><span class="line">&lt;Route exact path=<span class="string">"/one"</span> component=&#123;About&#125;/&gt;</span><br></pre></td></tr></table></figure>
+<h6 id="strict"><a href="#strict" class="headerlink" title="strict"></a>strict</h6><blockquote>
+<p>strict(bool): true的时候，匹配url时，结尾斜线也要匹配；</p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>测试路径</th>
+<th>path</th>
+<th>strict</th>
+<th>是否匹配</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/one/</td>
+<td>/one</td>
+<td>true</td>
+<td>否</td>
+</tr>
+<tr>
+<td>/one/</td>
+<td>/one/</td>
+<td>true</td>
+<td>是</td>
+</tr>
+<tr>
+<td>/one/</td>
+<td>/one/two</td>
+<td>true</td>
+<td>是</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//【示例】</span></span><br><span class="line">&lt;Route strict path=<span class="string">"/one/"</span> component=&#123;About&#125;/&gt;</span><br></pre></td></tr></table></figure>
+<h6 id="component"><a href="#component" class="headerlink" title="component"></a>component</h6><blockquote>
+<p>component：表示path对应显示的组件；</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">【注意】</span><br><span class="line">&lt;Route component&gt;的优先级要比&lt;Route render&gt;高，所以不要在同一个&lt;Route&gt;中同时使用这两个属性。</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//【示例】</span></span><br><span class="line"><span class="comment">//路由：</span></span><br><span class="line">&lt;Route path=<span class="string">"/user/:username"</span> component=&#123;User&#125;/&gt;</span><br><span class="line"><span class="comment">//渲染的组件：利用match获取参数；</span></span><br><span class="line"><span class="keyword">const</span> User = <span class="function">(<span class="params">&#123; match &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello &#123;match.params.username&#125;!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="render"><a href="#render" class="headerlink" title="render"></a>render</h6><blockquote>
+<p>render(func)：以函数方式返回渲染的内容，可替代要显示的component；</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//【示例】</span></span><br><span class="line">&lt;Route path=<span class="string">"/home"</span> render=&#123;() =&gt; <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Home<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>&#125;/&gt;</span><br></pre></td></tr></table></figure>
+<h6 id="children"><a href="#children" class="headerlink" title="children"></a>children</h6><blockquote>
+<p>children(func): 与render属性的工作方式基本一样，不管地址匹配与否都会被调用;</p>
+</blockquote>
+<h4 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h4><p>用于控制路由跳转的；</p>
+<h5 id="API属性"><a href="#API属性" class="headerlink" title="API属性"></a>API属性</h5><ul>
+<li>to(string|object)：要跳转的路径或地址；</li>
+<li>replace(bool)：为true时，点击链接后将使用新地址替换掉访问历史记录里面的原地址；为false时，点击链接后将在原有访问历史记录的基础上添加一个新的纪录。默认为false；</li>
+</ul>
+<h5 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Link &#125; <span class="keyword">from</span> <span class="string">'react-router-dom'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//to: string</span></span><br><span class="line">&lt;Link to=<span class="string">"/a/123"</span>&gt;xxx&lt;<span class="regexp">/Link&gt;</span></span><br><span class="line"><span class="regexp">&lt;Link to="/</span>about<span class="string">"&gt;关于&lt;/Link&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//to: object</span></span><br><span class="line"><span class="string">&lt;Link to=&#123;&#123;</span></span><br><span class="line"><span class="string">  pathname: '/courses',</span></span><br><span class="line"><span class="string">  search: '?sort=name',</span></span><br><span class="line"><span class="string">  hash: '#the-hash',</span></span><br><span class="line"><span class="string">  state: &#123; fromDashboard: true &#125;</span></span><br><span class="line"><span class="string">&#125;&#125;/&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//replace </span></span><br><span class="line"><span class="string">&lt;Link to="</span>/courses<span class="string">" replace /&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="NavLink"><a href="#NavLink" class="headerlink" title="NavLink"></a>NavLink</h4><p><navlink>是<link>的一个特定版本, 会在匹配上当前 URL 的时候会给已经渲染的元素添加样式参数;</navlink></p>
+<h5 id="API属性-1"><a href="#API属性-1" class="headerlink" title="API属性"></a>API属性</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; activeClassName(string)：设置选中样式，默认值为 active；</span><br><span class="line">&gt; activeStyle(object)：当元素被选中时, 为此元素添加样式；</span><br><span class="line">&gt; exact(bool)：为true 时, 只有当地址完全匹配 class 和 style 才会应用；</span><br><span class="line">&gt; strict(bool)：为true 时，在确定位置是否与当前 URL 匹配时，将考虑位置 pathname 后的斜线；</span><br><span class="line">&gt; isActive(func)：判断链接是否激活的额外逻辑的功能；</span><br></pre></td></tr></table></figure>
+<h6 id="activeClassName"><a href="#activeClassName" class="headerlink" title="activeClassName"></a>activeClassName</h6><blockquote>
+<p>activeClassName(string)：设置选中样式类选择器，默认值为active；</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;NavLink</span><br><span class="line">  to=<span class="string">"/xxx"</span></span><br><span class="line">  activeClassName=<span class="string">"selected"</span></span><br><span class="line">&gt;显示xxx&lt;<span class="regexp">/NavLink&gt;</span></span><br></pre></td></tr></table></figure>
+<h6 id="activeStyle"><a href="#activeStyle" class="headerlink" title="activeStyle"></a>activeStyle</h6><blockquote>
+<p>activeStyle(object)：当元素被选中时, 为此元素直接添加样式；</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;NavLink</span><br><span class="line">  to=<span class="string">"/faq"</span></span><br><span class="line">  activeStyle=&#123;&#123;</span><br><span class="line">    fontWeight: <span class="string">'bold'</span>,</span><br><span class="line">    color: <span class="string">'red'</span></span><br><span class="line">   &#125;&#125;</span><br><span class="line">&gt;FAQs&lt;<span class="regexp">/NavLink&gt;</span></span><br></pre></td></tr></table></figure>
+<h6 id="exact-1"><a href="#exact-1" class="headerlink" title="exact"></a>exact</h6><blockquote>
+<p>exact(bool)：为true 时, 只有当地址完全匹配 class 和 style 才会应用；</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;NavLink</span><br><span class="line">  exact</span><br><span class="line">  to=<span class="string">"/profile"</span></span><br><span class="line">&gt;Profile&lt;<span class="regexp">/NavLink&gt;</span></span><br></pre></td></tr></table></figure>
+<h6 id="strict-1"><a href="#strict-1" class="headerlink" title="strict"></a>strict</h6><blockquote>
+<p>strict(bool)：为true 时，在确定位置是否与当前 URL 匹配时，将考虑位置 pathname 后的斜线；</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;NavLink</span><br><span class="line">  strict</span><br><span class="line">  to=<span class="string">"/events/"</span></span><br><span class="line">&gt;Events&lt;<span class="regexp">/NavLink&gt;</span></span><br></pre></td></tr></table></figure>
+<h6 id="isActive"><a href="#isActive" class="headerlink" title="isActive"></a>isActive</h6><blockquote>
+<p>isActive(func)：判断链接是否激活的额外逻辑的功能；</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 当event id为奇数的时候，激活链接</span></span><br><span class="line"><span class="keyword">const</span> oddEvent = <span class="function">(<span class="params">match, location</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (!match) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> eventID = <span class="built_in">parseInt</span>(match.params.eventID)</span><br><span class="line">  <span class="keyword">return</span> !<span class="built_in">isNaN</span>(eventID) &amp;&amp; eventID % <span class="number">2</span> === <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;NavLink</span><br><span class="line">  to=<span class="string">"/events/123"</span></span><br><span class="line">  isActive=&#123;oddEvent&#125;</span><br><span class="line">&gt;Event <span class="number">123</span>&lt;<span class="regexp">/NavLink&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="Switch"><a href="#Switch" class="headerlink" title="Switch"></a>Switch</h4><p>Switch常常会用来包裹多个Route，根据path匹配一个Route，它里面不能放其他元素，仅用来匹配显示一个路由，避免路由的重复匹配问题。</p>
+<h4 id="Redirect"><a href="#Redirect" class="headerlink" title="Redirect"></a>Redirect</h4><p>渲染<redirect>将导航到新位置。新位置将覆盖历史堆栈中的当前位置，如服务器端重定向（HTTP 3xx）。</redirect></p>
+<h5 id="属性-1"><a href="#属性-1" class="headerlink" title="属性"></a>属性</h5><h6 id="to"><a href="#to" class="headerlink" title="to"></a>to</h6><blockquote>
+<p>to(string|object): 要重定向到的网址或位置;</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;Redirect to=<span class="string">"/somewhere/else"</span>/&gt;</span><br><span class="line">&lt;Redirect to=&#123;&#123;</span><br><span class="line">    pathname: <span class="string">'/login'</span>,</span><br><span class="line">    search: <span class="string">'?utm=your+face'</span>,</span><br><span class="line">    state: &#123; <span class="attr">referrer</span>: currentLocation &#125;</span><br><span class="line">&#125;&#125;/&gt;</span><br></pre></td></tr></table></figure>
+<h6 id="push"><a href="#push" class="headerlink" title="push"></a>push</h6><blockquote>
+<p>push(bool)：当为true时，重定向会将新条目推入历史记录，而不是替换当前条目。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Redirect push to=<span class="string">"/somewhere/else"</span>/&gt;</span><br></pre></td></tr></table></figure>
+<h6 id="from"><a href="#from" class="headerlink" title="from"></a>from</h6><blockquote>
+<p>from(string)：匹配需要要重定向的路径名。这只能用于在<switch>内部呈现<redirect>时匹配位置。</redirect></switch></p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;Switch&gt;</span><br><span class="line">    &lt;Redirect <span class="keyword">from</span>=<span class="string">'/old-path'</span> to=<span class="string">'/new-path'</span>/&gt;</span><br><span class="line">    &lt;Route path=<span class="string">'/new-path'</span> component=&#123;Place&#125;/&gt;</span><br><span class="line">&lt;<span class="regexp">/Switch&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="示例代码-1"><a href="#示例代码-1" class="headerlink" title="示例代码"></a>示例代码</h5><p>根据登录或未登录渲染不同改的内容：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Route, Redirect &#125; <span class="keyword">from</span> <span class="string">'react-router'</span></span><br><span class="line"></span><br><span class="line">&lt;Route exact path=<span class="string">"/"</span> render=&#123;() =&gt; (</span><br><span class="line">    loggedIn ? (<span class="xml"><span class="tag">&lt;<span class="name">Redirect</span> <span class="attr">to</span>=<span class="string">"/dashboard"</span>/&gt;</span>) : (<span class="tag">&lt;<span class="name">PublicHomePage</span>/&gt;</span>)</span></span><br><span class="line"><span class="xml">)&#125;/&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="Route内置对象"><a href="#Route内置对象" class="headerlink" title="Route内置对象"></a>Route内置对象</h3><p>react router提供了几个重要的内置对象，用来获取页面路由的信息，如下：</p>
+<ul>
+<li>location；</li>
+<li>history；</li>
+<li>match；</li>
+</ul>
+<h4 id="match"><a href="#match" class="headerlink" title="match"></a>match</h4><p>match(这里称匹配对象)包含与Route的path匹配的信息；</p>
+<h5 id="获取方式"><a href="#获取方式" class="headerlink" title="获取方式"></a>获取方式</h5><h6 id="component-1"><a href="#component-1" class="headerlink" title="component"></a>component</h6><p>Route component中使用this.props.match获取match, 或者使用箭头函数传入一个match:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;Route path=<span class="string">"/user/:username"</span> component=&#123;User&#125;/&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> User = <span class="function">(<span class="params">&#123; match &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello &#123;match.params.username&#125;!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h6 id="render-1"><a href="#render-1" class="headerlink" title="render"></a>render</h6><p>Route render中使用({ match }) =&gt; ()方式获取：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;Route path=&#123;<span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.props.match.path&#125;</span>/:id`</span>&#125;</span><br><span class="line">    render=&#123;(&#123;match&#125;) =&gt; &#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>当前组件是带参数的A,参数是：&#123;match.params.id&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;/&gt;</span><br></pre></td></tr></table></figure>
+<h6 id="children-1"><a href="#children-1" class="headerlink" title="children"></a>children</h6><p>Route children中用({ match }) =&gt; ()方式获取：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Route children=&#123;(&#123; match, ...rest &#125;) =&gt; (//...)&#125;/&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="属性-2"><a href="#属性-2" class="headerlink" title="属性"></a>属性</h5><p>match对象包含以下属性：</p>
+<ul>
+<li>params(object)：根据path路径(url)解析相关参数信息；</li>
+<li>isExact(bool): 如果匹配整个URL，则为true（不包括尾部斜杠字符）;</li>
+<li>path(string)：用于匹配的路径模式。 用于构建嵌套的Route；</li>
+<li>url(string): URL的匹配部分。 用于构建嵌套的Link;</li>
+</ul>
+<h4 id="location"><a href="#location" class="headerlink" title="location"></a>location</h4><p>页面的位置信息；</p>
+<h5 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h5><p>location代表应用程序现在的位置，您希望它去的位置，甚至是它的位置。 它看起来像这样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  key: <span class="string">'ac3df4'</span>, <span class="comment">// not with HashHistory!</span></span><br><span class="line">  pathname: <span class="string">'/somewhere'</span></span><br><span class="line">  search: <span class="string">'?some=search-string'</span>,</span><br><span class="line">  hash: <span class="string">'#howdy'</span>,</span><br><span class="line">  state: &#123;</span><br><span class="line">    [userDefined]: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="获取方式-1"><a href="#获取方式-1" class="headerlink" title="获取方式"></a>获取方式</h5><p>与match类似</p>
+<h4 id="history"><a href="#history" class="headerlink" title="history"></a>history</h4><p>浏览器的路由历史，获取方式同match类似；</p>
+<h5 id="属性方法"><a href="#属性方法" class="headerlink" title="属性方法"></a>属性方法</h5><p>history对象通常具有以下属性和方法：</p>
+<ul>
+<li>length - (number) 历史堆栈中的条目数；</li>
+<li>action - (string) 当前操作（PUSH，REPLACE或POP）；</li>
+<li>location - (object) 目前的location对象。 </li>
+<li>push(path, [state]) - (function) 将新条目推送到历史堆栈。</li>
+<li>replace(path, [state]) - (function) 替换历史堆栈上的当前条目。</li>
+<li>go(n) - (function) 通过n个条目移动历史堆栈中的指针；</li>
+<li>goBack() - (function) 回退一条历史；</li>
+<li>goForward() - (function) 前进一条历史；</li>
+<li>block(prompt) - (function) 组织导航；</li>
+</ul>
+<h4 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h4><h5 id="简单传参"><a href="#简单传参" class="headerlink" title="简单传参"></a>简单传参</h5><p>路由显示带参数组件A和不带参数组件B：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;HashRouter <span class="keyword">as</span> Router, Link, Route, Switch&#125; <span class="keyword">from</span> <span class="string">'react-router-dom'</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                Component A</span><br><span class="line">                接受的参数是：&#123;<span class="keyword">this</span>.props.match.params.id&#125;</span><br><span class="line">            &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        );</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">class B extends React.Component &#123;</span></span><br><span class="line"><span class="regexp">    render() &#123;</span></span><br><span class="line"><span class="regexp">        return (</span></span><br><span class="line"><span class="regexp">            &lt;div&gt;Component B&lt;/</span>div&gt;</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Link用作跳转导航</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Wrapper</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;Link to=<span class="string">"/a/123"</span>&gt;显示组件A，带参数&lt;<span class="regexp">/Link&gt;</span></span><br><span class="line"><span class="regexp">                &lt;br/</span>&gt;</span><br><span class="line">                &lt;Link to=<span class="string">"/b"</span>&gt;显示组件B&lt;<span class="regexp">/Link&gt;</span></span><br><span class="line"><span class="regexp">                &#123;this.props.children&#125;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>div&gt;</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义router路由规则,用于匹配Link做跳转导航；</span></span><br><span class="line">ReactDOM.render(</span><br><span class="line">    &lt;Router&gt;</span><br><span class="line">        &lt;Wrapper&gt;</span><br><span class="line">            &#123;<span class="comment">/*带参数*/</span>&#125;</span><br><span class="line">            &lt;Route path=<span class="string">"/a/:id"</span> component=&#123;A&#125;/&gt;</span><br><span class="line">            &lt;Route path=<span class="string">"/b"</span> component=&#123;B&#125;/&gt;</span><br><span class="line">        &lt;<span class="regexp">/Wrapper&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>Router&gt;,</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">'app'</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h5 id="相同路径匹配真假参数"><a href="#相同路径匹配真假参数" class="headerlink" title="相同路径匹配真假参数"></a>相同路径匹配真假参数</h5><ul>
+<li>子组件中使用Route来匹配带参数和不带参数path,使用Switch来进行匹配;</li>
+<li>路径结构相同时：区分子路径是否是参数的办法是，将参数通配路径置后；</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;HashRouter <span class="keyword">as</span> Router, Link, Route, Switch&#125; <span class="keyword">from</span> <span class="string">'react-router-dom'</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                Component A</span><br><span class="line">                &#123;<span class="comment">/*子组件内部switch匹配对应路由规则*/</span>&#125;</span><br><span class="line">                &lt;Switch&gt;</span><br><span class="line">                    &#123;<span class="comment">/*path不是完全匹配,如果需要完全等于某路径,需要path前面加上exact关键字*/</span>&#125;</span><br><span class="line">                    &lt;Route exact path=&#123;<span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.props.match.path&#125;</span>`</span>&#125;</span><br><span class="line">                           render=&#123;() =&gt; &#123;</span><br><span class="line">                               <span class="keyword">return</span> (<span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>当前组件是不带参数的A<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>);</span><br><span class="line">                           &#125;&#125;/&gt;</span><br><span class="line">                    &#123;<span class="comment">/*路径结构相似，为了区分子路径名和通配参数，需要将带通配的参数Route放在后面；*/</span>&#125;</span><br><span class="line">                    &lt;Route exact path=&#123;<span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.props.match.path&#125;</span>/sub`</span>&#125;</span><br><span class="line">                           render=&#123;() =&gt; &#123;</span><br><span class="line">                               <span class="keyword">return</span> (<span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>当前组件是与带参数的A路径结构相同，但是sub不是参数<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>);</span><br><span class="line">                           &#125;&#125;/&gt;</span><br><span class="line">                    &lt;Route path=&#123;<span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.props.match.path&#125;</span>/:id`</span>&#125;</span><br><span class="line">                           render=&#123;(route) =&gt; &#123;</span><br><span class="line">                               <span class="keyword">return</span> (<span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>当前组件是带参数的A,参数是：&#123;route.match.params.id&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>);</span><br><span class="line">                           &#125;&#125;/&gt;</span><br><span class="line">                &lt;<span class="regexp">/Switch&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>div&gt;</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">            &lt;div&gt;Component B&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        );</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/Link用作跳转导航</span></span><br><span class="line"><span class="regexp">class Wrapper extends React.Component &#123;</span></span><br><span class="line"><span class="regexp">    render() &#123;</span></span><br><span class="line"><span class="regexp">        return (</span></span><br><span class="line"><span class="regexp">            &lt;div&gt;</span></span><br><span class="line"><span class="regexp">                &lt;Link to="/</span>a/sub<span class="string">"&gt;显示组件A的sub路径，不带参数&lt;/Link&gt;</span></span><br><span class="line"><span class="string">                &lt;br/&gt;</span></span><br><span class="line"><span class="string">                &lt;Link to="</span>/a/<span class="number">123</span><span class="string">"&gt;显示组件A，带参数&lt;/Link&gt;</span></span><br><span class="line"><span class="string">                &lt;br/&gt;</span></span><br><span class="line"><span class="string">                &lt;Link to="</span>/a<span class="string">"&gt;显示组件A，不带参数&lt;/Link&gt;</span></span><br><span class="line"><span class="string">                &lt;br/&gt;</span></span><br><span class="line"><span class="string">                &lt;Link to="</span>/b<span class="string">"&gt;显示组件B&lt;/Link&gt;</span></span><br><span class="line"><span class="string">                &#123;this.props.children&#125;</span></span><br><span class="line"><span class="string">            &lt;/div&gt;</span></span><br><span class="line"><span class="string">        );</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//定义router路由规则,用于匹配Link做跳转导航；</span></span><br><span class="line"><span class="string">ReactDOM.render(</span></span><br><span class="line"><span class="string">    &lt;Router&gt;</span></span><br><span class="line"><span class="string">        &lt;Wrapper&gt;</span></span><br><span class="line"><span class="string">            &#123;/*带参数*/&#125;</span></span><br><span class="line"><span class="string">            &lt;Route path="</span>/a<span class="string">" component=&#123;A&#125;/&gt;</span></span><br><span class="line"><span class="string">            &lt;Route path="</span>/b<span class="string">" component=&#123;B&#125;/&gt;</span></span><br><span class="line"><span class="string">        &lt;/Wrapper&gt;</span></span><br><span class="line"><span class="string">    &lt;/Router&gt;,</span></span><br><span class="line"><span class="string">    document.getElementById('app')</span></span><br><span class="line"><span class="string">);</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/uploads/images/reward/wechat-reward-image.jpg" alt="ethancalc 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/uploads/images/reward/alipay-reward-image.jpg" alt="ethancalc 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/大前端/" rel="tag"><i class="fa fa-tag"></i> 大前端</a>
+          
+            <a href="/tags/React/" rel="tag"><i class="fa fa-tag"></i> React</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/01/web/React/React学习笔记/" rel="next" title="React学习笔记">
+                <i class="fa fa-chevron-left"></i> React学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/10/web/React/Redux笔记/" rel="prev" title="Redux笔记">
+                Redux笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="SOHUCS"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="/uploads/images/head/avatar.jpg" alt="ethancalc">
+          
+            <p class="site-author-name" itemprop="name">ethancalc</p>
+            <p class="site-description motion-element" itemprop="description">操千曲而后晓声，观千剑而后识器.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ethancalc" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.google.com/" title="google" target="_blank">google</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#文章概述"><span class="nav-number">1.</span> <span class="nav-text">文章概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-number">2.</span> <span class="nav-text">参考资料</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">3.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插件安装"><span class="nav-number">4.</span> <span class="nav-text">插件安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#react-router-dom"><span class="nav-number">4.1.</span> <span class="nav-text">react-router-dom</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#安装"><span class="nav-number">4.1.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#引入"><span class="nav-number">4.1.2.</span> <span class="nav-text">引入</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内置组件简介"><span class="nav-number">5.</span> <span class="nav-text">内置组件简介</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Router"><span class="nav-number">5.1.</span> <span class="nav-text">Router</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#使用示例"><span class="nav-number">5.1.1.</span> <span class="nav-text">使用示例</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#概述"><span class="nav-number">5.1.2.</span> <span class="nav-text">概述</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Route"><span class="nav-number">5.2.</span> <span class="nav-text">Route</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#概述-1"><span class="nav-number">5.2.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#属性"><span class="nav-number">5.2.2.</span> <span class="nav-text">属性</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#path"><span class="nav-number">5.2.2.1.</span> <span class="nav-text">path</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#exact"><span class="nav-number">5.2.2.2.</span> <span class="nav-text">exact</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#strict"><span class="nav-number">5.2.2.3.</span> <span class="nav-text">strict</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#component"><span class="nav-number">5.2.2.4.</span> <span class="nav-text">component</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#render"><span class="nav-number">5.2.2.5.</span> <span class="nav-text">render</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#children"><span class="nav-number">5.2.2.6.</span> <span class="nav-text">children</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Link"><span class="nav-number">5.3.</span> <span class="nav-text">Link</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#API属性"><span class="nav-number">5.3.1.</span> <span class="nav-text">API属性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#示例代码"><span class="nav-number">5.3.2.</span> <span class="nav-text">示例代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NavLink"><span class="nav-number">5.4.</span> <span class="nav-text">NavLink</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#API属性-1"><span class="nav-number">5.4.1.</span> <span class="nav-text">API属性</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#activeClassName"><span class="nav-number">5.4.1.1.</span> <span class="nav-text">activeClassName</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#activeStyle"><span class="nav-number">5.4.1.2.</span> <span class="nav-text">activeStyle</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#exact-1"><span class="nav-number">5.4.1.3.</span> <span class="nav-text">exact</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#strict-1"><span class="nav-number">5.4.1.4.</span> <span class="nav-text">strict</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#isActive"><span class="nav-number">5.4.1.5.</span> <span class="nav-text">isActive</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Switch"><span class="nav-number">5.5.</span> <span class="nav-text">Switch</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Redirect"><span class="nav-number">5.6.</span> <span class="nav-text">Redirect</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#属性-1"><span class="nav-number">5.6.1.</span> <span class="nav-text">属性</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#to"><span class="nav-number">5.6.1.1.</span> <span class="nav-text">to</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#push"><span class="nav-number">5.6.1.2.</span> <span class="nav-text">push</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#from"><span class="nav-number">5.6.1.3.</span> <span class="nav-text">from</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#示例代码-1"><span class="nav-number">5.6.2.</span> <span class="nav-text">示例代码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Route内置对象"><span class="nav-number">6.</span> <span class="nav-text">Route内置对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#match"><span class="nav-number">6.1.</span> <span class="nav-text">match</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#获取方式"><span class="nav-number">6.1.1.</span> <span class="nav-text">获取方式</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#component-1"><span class="nav-number">6.1.1.1.</span> <span class="nav-text">component</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#render-1"><span class="nav-number">6.1.1.2.</span> <span class="nav-text">render</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#children-1"><span class="nav-number">6.1.1.3.</span> <span class="nav-text">children</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#属性-2"><span class="nav-number">6.1.2.</span> <span class="nav-text">属性</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#location"><span class="nav-number">6.2.</span> <span class="nav-text">location</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#简介-1"><span class="nav-number">6.2.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#获取方式-1"><span class="nav-number">6.2.2.</span> <span class="nav-text">获取方式</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#history"><span class="nav-number">6.3.</span> <span class="nav-text">history</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#属性方法"><span class="nav-number">6.3.1.</span> <span class="nav-text">属性方法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#案例"><span class="nav-number">6.4.</span> <span class="nav-text">案例</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#简单传参"><span class="nav-number">6.4.1.</span> <span class="nav-text">简单传参</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#相同路径匹配真假参数"><span class="nav-number">6.4.2.</span> <span class="nav-text">相同路径匹配真假参数</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ethancalc</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytFhNP7b';
+      var conf = 'a8f0e5bccaabb0580489df2a08f8a24f';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+</body>
+</html>
+

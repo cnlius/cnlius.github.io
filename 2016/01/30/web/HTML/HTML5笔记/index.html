@@ -1,0 +1,1717 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="大前端,HTML,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/logo.jpg?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="文章概述 本篇文章记录HTML5笔记。">
+<meta name="keywords" content="大前端,HTML">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML5笔记">
+<meta property="og:url" content="http://liusong.site/2016/01/30/web/HTML/HTML5笔记/index.html">
+<meta property="og:site_name" content="挑灯看剑">
+<meta property="og:description" content="文章概述 本篇文章记录HTML5笔记。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/cnlius/GP-Resource/master/Web/JavaScript/canvas_grid.png">
+<meta property="og:updated_time" content="2019-01-10T05:08:14.773Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTML5笔记">
+<meta name="twitter:description" content="文章概述 本篇文章记录HTML5笔记。">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/cnlius/GP-Resource/master/Web/JavaScript/canvas_grid.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liusong.site/2016/01/30/web/HTML/HTML5笔记/">
+
+
+
+
+
+  <title>HTML5笔记 | 挑灯看剑</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <a href="https://github.com/ethancalc"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/121cd7cbdc3e4855075ea8b558508b91ac463ac2/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_green_007200.png"></a>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">挑灯看剑</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Personal Blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            文章列表
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            联系我
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liusong.site/2016/01/30/web/HTML/HTML5笔记/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ethancalc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/images/head/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="挑灯看剑">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">HTML5笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-01-30T00:00:00+08:00">
+                2016-01-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/大前端/" itemprop="url" rel="index">
+                    <span itemprop="name">大前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/大前端/HTML/" itemprop="url" rel="index">
+                    <span itemprop="name">HTML</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2016/01/30/web/HTML/HTML5笔记/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2016/01/30/web/HTML/HTML5笔记/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </span></div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="文章概述"><a href="#文章概述" class="headerlink" title="文章概述"></a>文章概述</h3><blockquote>
+<p>本篇文章记录HTML5笔记。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="视频"><a href="#视频" class="headerlink" title="视频"></a>视频</h3><p>video</p>
+<h4 id="语法格式"><a href="#语法格式" class="headerlink" title="语法格式"></a>语法格式</h4><ul>
+<li>controls 属性供添加播放、暂停和音量控件。</li>
+<li>video标签中间可插入文本作为浏览器不支持时的错误提示；</li>
+<li>video元素允许多个 source 元素。source 元素可以链接不同的视频文件。浏览器将使用第一个可识别的格式：</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">width</span>=<span class="string">"320"</span> <span class="attr">height</span>=<span class="string">"240"</span> <span class="attr">controls</span>=<span class="string">"controls"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">"movie.ogg"</span> <span class="attr">type</span>=<span class="string">"video/ogg"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">"movie.mp4"</span> <span class="attr">type</span>=<span class="string">"video/mp4"</span>&gt;</span></span><br><span class="line">  Your browser does not support the video tag.</span><br><span class="line"><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="视频格式"><a href="#视频格式" class="headerlink" title="视频格式"></a>视频格式</h4><p>当前，video 元素支持三种视频格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Ogg = 带有 Theora 视频编码和 Vorbis 音频编码的 Ogg 文件</span><br><span class="line">MPEG4 = 带有 H.264 视频编码和 AAC 音频编码的 MPEG 4 文件</span><br><span class="line">WebM = 带有 VP8 视频编码和 Vorbis 音频编码的 WebM 文件</span><br></pre></td></tr></table></figure>
+<h4 id="标签属性"><a href="#标签属性" class="headerlink" title="标签属性"></a>标签属性</h4><ul>
+<li>autoplay=”autoplay”：如果出现该属性，则视频在就绪后马上播放。</li>
+<li>controls=”controls”：如果出现该属性，则向用户显示控件，比如播放按钮。</li>
+<li>loop=”loop”    如果出现该属性，则当媒介文件完成播放后再次开始播放。</li>
+<li>preload=”auto” </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">如果出现该属性，则视频在页面加载时进行加载，并预备播放。</span><br><span class="line">如果使用 &quot;autoplay&quot;，则忽略该属性。</span><br><span class="line"></span><br><span class="line">可能的值：</span><br><span class="line">auto - 当页面加载后载入整个视频</span><br><span class="line">meta - 当页面加载后只载入元数据</span><br><span class="line">none - 当页面加载后不载入视频</span><br></pre></td></tr></table></figure>
+<ul>
+<li>src=”url”：要播放的视频的 URL。</li>
+<li>height：设置视频播放器的高度。</li>
+<li>width：设置视频播放器的宽度。</li>
+<li>poster=”url”：规定视频下载时显示的图像，或者在用户点击播放按钮前显示的图像。</li>
+<li>muted=”muted”：规定视频的音频输出应该被静音。</li>
+</ul>
+<h4 id="DOM控制"><a href="#DOM控制" class="headerlink" title="DOM控制"></a>DOM控制</h4><ul>
+<li>HTML5 video元素同样拥有方法、属性和事件。</li>
+<li>方法用于播放、暂停以及加载等。</li>
+<li>属性（比如时长、音量等）可以被读取或设置。</li>
+<li>DOM 事件能够通知您，比方说，video 元素开始播放、已暂停，已停止，等等。</li>
+</ul>
+<h3 id="音频"><a href="#音频" class="headerlink" title="音频"></a>音频</h3><p>audio</p>
+<h4 id="语法格式-1"><a href="#语法格式-1" class="headerlink" title="语法格式"></a>语法格式</h4><ul>
+<li>controls 属性供添加播放、暂停和音量控件。</li>
+<li>audio标签中间可插入文本作为浏览器不支持时的错误提示；</li>
+<li>audio 元素允许多个 source 元素。source 元素可以链接不同的音频文件。浏览器将使用第一个可识别的格式；</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">audio</span> <span class="attr">controls</span>=<span class="string">"controls"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">"song.ogg"</span> <span class="attr">type</span>=<span class="string">"audio/ogg"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">"song.mp3"</span> <span class="attr">type</span>=<span class="string">"audio/mpeg"</span>&gt;</span></span><br><span class="line">Your browser does not support the audio tag.</span><br><span class="line"><span class="tag">&lt;/<span class="name">audio</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="音频格式"><a href="#音频格式" class="headerlink" title="音频格式"></a>音频格式</h4><p>audio 元素支持三种音频格式：</p>
+<ul>
+<li>Ogg Vorbis     </li>
+<li>MP3              </li>
+<li>Wav</li>
+</ul>
+<h4 id="标签属性-1"><a href="#标签属性-1" class="headerlink" title="标签属性"></a>标签属性</h4><ul>
+<li>autoplay=”autoplay”：如果出现该属性，则视频在就绪后马上播放。</li>
+<li>controls=”controls”：如果出现该属性，则向用户显示控件，比如播放按钮。</li>
+<li>loop=”loop”    如果出现该属性，则当媒介文件完成播放后再次开始播放。</li>
+<li>preload=”auto” </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">如果出现该属性，则视频在页面加载时进行加载，并预备播放。</span><br><span class="line">如果使用 &quot;autoplay&quot;，则忽略该属性。</span><br><span class="line"></span><br><span class="line">可能的值：</span><br><span class="line">auto - 当页面加载后载入整个视频</span><br><span class="line">meta - 当页面加载后只载入元数据</span><br><span class="line">none - 当页面加载后不载入视频</span><br></pre></td></tr></table></figure>
+<ul>
+<li>src=”url”：要播放的视频的 URL。</li>
+<li>muted=”muted”：规定视频的音频输出应该被静音。</li>
+</ul>
+<h3 id="拖放"><a href="#拖放" class="headerlink" title="拖放"></a>拖放</h3><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><ul>
+<li>即抓取对象以后拖到另一个位置。</li>
+<li>在 HTML5 中，拖放是标准的一部分，任何元素都能够拖放。</li>
+</ul>
+<h4 id="拖放步骤"><a href="#拖放步骤" class="headerlink" title="拖放步骤"></a>拖放步骤</h4><h5 id="配置被拖动元素"><a href="#配置被拖动元素" class="headerlink" title="配置被拖动元素"></a>配置被拖动元素</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1. 设置元素为可拖放：draggable=&quot;true&quot;</span><br><span class="line">2. 元素被拖动时，指定事件：ondragstart=&quot;drag(event)&quot;,设置被拖动的数据类型和值：ev.dataTransfer.setData(&quot;Text&quot;,ev.target.id)。</span><br></pre></td></tr></table></figure>
+<h5 id="配置目标容器"><a href="#配置目标容器" class="headerlink" title="配置目标容器"></a>配置目标容器</h5><ol>
+<li>容器设置放置被拖动的数据: ondragover=”allowDrop(event)” </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ondragover默认无法将数据/元素放置到其他元素中。</span><br><span class="line">如果需要设置允许放置，必须通过event.preventDefault()阻止对元素的默认处理方式。</span><br></pre></td></tr></table></figure>
+<ol>
+<li>放置被拖数据时发生ondrop事件，指定处理方法：ondrop=”drop(event)”</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1&gt; drop需要调用 preventDefault() 来避免浏览器对数据的默认处理（drop 事件的默认行为是以链接形式打开）；</span><br><span class="line">2&gt; 通过 dataTransfer.getData(&quot;Text&quot;) 方法获得被拖的数据。该方法将返回在 setData() 方法中设置为相同类型的任何数据。</span><br><span class="line">3&gt; 把被拖元素追加到放置元素（目标元素）中</span><br></pre></td></tr></table></figure>
+<h5 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">drag</span>(<span class="params">ev</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="comment">// setData方法设置被拖数据的数据类型和值：</span></span></span><br><span class="line"><span class="javascript">        ev.dataTransfer.setData(<span class="string">"Text"</span>,ev.target.id);</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">allowDrop</span>(<span class="params">ev</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="comment">// 元素默认无法防止，阻止默认处理方式；</span></span></span><br><span class="line"><span class="undefined">        ev.preventDefault();</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">drop</span>(<span class="params">ev</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="comment">// 避免浏览器对数据的默认处理（drop 事件的默认行为是以链接形式打开）</span></span></span><br><span class="line"><span class="undefined">        ev.preventDefault();</span></span><br><span class="line"><span class="javascript">        <span class="comment">// 获得被拖的数据</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> data=ev.dataTransfer.getData(<span class="string">"Text"</span>);</span></span><br><span class="line"><span class="javascript">        <span class="comment">// 被拖元素追加到放置元素（目标元素）中</span></span></span><br><span class="line"><span class="javascript">        ev.target.appendChild(<span class="built_in">document</span>.getElementById(data));</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"divX"</span> </span></span><br><span class="line"><span class="tag">    <span class="attr">ondrop</span>=<span class="string">"drop(event)"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">ondragover</span>=<span class="string">"allowDrop(event)"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">"dragX"</span> </span></span><br><span class="line"><span class="tag">    <span class="attr">draggable</span>=<span class="string">"true"</span> </span></span><br><span class="line"><span class="tag">    <span class="attr">ondragstart</span>=<span class="string">"drag(event)"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><h5 id="DataTransfer"><a href="#DataTransfer" class="headerlink" title="DataTransfer"></a>DataTransfer</h5><p>DataTransfer(<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/DataTransfer" target="_blank" rel="noopener">MDN注释</a>) 对象用来保存，通过拖放动作，拖动到浏览器的数据；<br>这个对象在所有的拖动事件属性dataTransfer  都是可用的，但是不能单独创建。</p>
+<h6 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h6><ul>
+<li>obj.setData(type,data)：<br>设置被拖数据的数据类型和值；<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">为一个给定的类型设置数据。</span><br><span class="line">如果该数据类型不存在，它将添加到的末尾，这样类型列表中的最后一个项目将是新的格式。</span><br><span class="line">如果已经存在的数据类型，替换相同的位置的现有数据。</span><br><span class="line">就是，当更换相同类型的数据时，不会更改类型列表的顺序。</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Canvas"><a href="#Canvas" class="headerlink" title="Canvas"></a>Canvas</h3><h4 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h4><ul>
+<li>HTML5 的 canvas 元素使用 JavaScript 在网页上绘制图像。</li>
+<li>Canvas可以用JavaScript在上面绘制各种图表、动画等。</li>
+<li>画布是一个矩形区域，您可以控制其每一像素。</li>
+<li>canvas 拥有多种绘制路径、矩形、圆形、字符以及添加图像的方法。</li>
+<li>JavaScript 使用 id 来寻找 canvas 元素;</li>
+<li>js通过getContext(“2d|3d”)创建用于绘制的对象；</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">"myCanvas"</span> <span class="attr">width</span>=<span class="string">"200"</span> <span class="attr">height</span>=<span class="string">"100"</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> c=<span class="built_in">document</span>.getElementById(<span class="string">"myCanvas"</span>);</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> cxt=c.getContext(<span class="string">"2d"</span>); </span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="与svg比较"><a href="#与svg比较" class="headerlink" title="与svg比较"></a>与svg比较</h4><ul>
+<li>依赖分辨率</li>
+<li>不支持事件处理器</li>
+<li>弱的文本渲染能力</li>
+<li>能够以 .png 或 .jpg 格式保存结果图像</li>
+<li>最适合图像密集型的游戏，其中的许多对象会被频繁重绘</li>
+</ul>
+<h4 id="Canvas支持"><a href="#Canvas支持" class="headerlink" title="Canvas支持"></a>Canvas支持</h4><ul>
+<li>由于浏览器对HTML5标准支持不一致，通常在<canvas>内部添加一些说明性HTML代码，如果浏览器支持Canvas，它将忽略<canvas>内部的HTML，如果浏览器不支持Canvas，它将显示<canvas>内部的HTML；</canvas></canvas></canvas></li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">"test-stock"</span> <span class="attr">width</span>=<span class="string">"300"</span> <span class="attr">height</span>=<span class="string">"200"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Current Price: 25.51<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>js判断浏览器是否支持Canvas，用canvas.getContext；</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- HTML代码 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">"test-canvas"</span> <span class="attr">width</span>=<span class="string">"200"</span> <span class="attr">heigth</span>=<span class="string">"100"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>你的浏览器不支持Canvas<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">'test-canvas'</span>);</span></span><br><span class="line"><span class="javascript">    <span class="keyword">if</span> (canvas.getContext) &#123;</span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(<span class="string">'你的浏览器支持Canvas!'</span>);</span></span><br><span class="line"><span class="javascript">    &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(<span class="string">'你的浏览器不支持Canvas!'</span>);</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="2D图"><a href="#2D图" class="headerlink" title="2D图"></a>2D图</h4><h5 id="2D-Canvas对象"><a href="#2D-Canvas对象" class="headerlink" title="2D Canvas对象"></a>2D Canvas对象</h5><p>getContext(‘2d’)方法让我们拿到一个CanvasRenderingContext2D对象，所有的绘图操作都需要通过这个对象完成。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ctx = canvas.getContext(<span class="string">'2d'</span>);</span><br></pre></td></tr></table></figure>
+<h5 id="坐标系统"><a href="#坐标系统" class="headerlink" title="坐标系统"></a>坐标系统</h5><p>Canvas的坐标以左上角为原点，水平向右为X轴，垂直向下为Y轴，以像素为单位，所以每个点都是非负整数。<br><img src="https://raw.githubusercontent.com/cnlius/GP-Resource/master/Web/JavaScript/canvas_grid.png" alt="image"></p>
+<h5 id="绘制线条"><a href="#绘制线条" class="headerlink" title="绘制线条"></a>绘制线条</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> c=<span class="built_in">document</span>.getElementById(<span class="string">"myCanvas"</span>);</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> cxt=c.getContext(<span class="string">"2d"</span>);</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 把路径移动到画布中的指定点，不创建线条</span></span></span><br><span class="line"><span class="undefined">    cxt.moveTo(10,10);</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 添加一个新点，然后在画布中创建从该点到最后指定点的线条</span></span></span><br><span class="line"><span class="undefined">    cxt.lineTo(150,50);</span></span><br><span class="line"><span class="undefined">    cxt.lineTo(10,50);</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 实际地绘制出通过 moveTo() 和 lineTo() 方法定义的路径。默认颜色是黑色。</span></span></span><br><span class="line"><span class="undefined">    cxt.stroke();</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">"myCanvas"</span> <span class="attr">width</span>=<span class="string">"200"</span> <span class="attr">height</span>=<span class="string">"100"</span> <span class="attr">style</span>=<span class="string">"border:1px solid #c3c3c3;"</span>&gt;</span></span><br><span class="line">Your browser does not support the canvas element.</span><br><span class="line"><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="路径图形"><a href="#路径图形" class="headerlink" title="路径图形"></a>路径图形</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">'test-shape-canvas'</span>);</span><br><span class="line"><span class="keyword">var</span> ctx = canvas.getContext(<span class="string">'2d'</span>);</span><br><span class="line"></span><br><span class="line">ctx.clearRect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">200</span>, <span class="number">200</span>); <span class="comment">// 擦除(0,0)位置大小为200x200的矩形，擦除的意思是把该区域变为透明</span></span><br><span class="line">ctx.fillStyle = <span class="string">'#dddddd'</span>; <span class="comment">// 设置颜色</span></span><br><span class="line">ctx.fillRect(<span class="number">10</span>, <span class="number">10</span>, <span class="number">130</span>, <span class="number">130</span>); <span class="comment">// 把(10,10)位置大小为130x130的矩形涂色</span></span><br><span class="line"><span class="comment">// 利用Path绘制复杂路径:</span></span><br><span class="line"><span class="keyword">var</span> path=<span class="keyword">new</span> Path2D();</span><br><span class="line"><span class="comment">// 创建弧/曲线（用于创建圆形或部分圆）</span></span><br><span class="line">path.arc(<span class="number">75</span>, <span class="number">75</span>, <span class="number">50</span>, <span class="number">0</span>, <span class="built_in">Math</span>.PI*<span class="number">2</span>, <span class="literal">true</span>);</span><br><span class="line">path.moveTo(<span class="number">110</span>,<span class="number">75</span>);</span><br><span class="line">path.arc(<span class="number">75</span>, <span class="number">75</span>, <span class="number">35</span>, <span class="number">0</span>, <span class="built_in">Math</span>.PI, <span class="literal">false</span>);</span><br><span class="line">path.moveTo(<span class="number">65</span>, <span class="number">65</span>);</span><br><span class="line">path.arc(<span class="number">60</span>, <span class="number">65</span>, <span class="number">5</span>, <span class="number">0</span>, <span class="built_in">Math</span>.PI*<span class="number">2</span>, <span class="literal">true</span>);</span><br><span class="line">path.moveTo(<span class="number">95</span>, <span class="number">65</span>);</span><br><span class="line">path.arc(<span class="number">90</span>, <span class="number">65</span>, <span class="number">5</span>, <span class="number">0</span>, <span class="built_in">Math</span>.PI*<span class="number">2</span>, <span class="literal">true</span>);</span><br><span class="line"><span class="comment">// 线条颜色</span></span><br><span class="line">ctx.strokeStyle = <span class="string">'#0000ff'</span>;</span><br><span class="line"><span class="comment">// 绘制</span></span><br><span class="line">ctx.stroke(path);</span><br></pre></td></tr></table></figure>
+<h5 id="绘制文本"><a href="#绘制文本" class="headerlink" title="绘制文本"></a>绘制文本</h5><p>绘制文本就是在指定的位置输出文本，可以设置文本的字体、样式、阴影等，与CSS完全一致；</p>
+<h6 id="带阴影的文字"><a href="#带阴影的文字" class="headerlink" title="带阴影的文字"></a>带阴影的文字</h6><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">'test-shape-canvas'</span>);</span><br><span class="line"><span class="keyword">var</span> ctx = canvas.getContext(<span class="string">'2d'</span>);</span><br><span class="line"></span><br><span class="line">ctx.clearRect(<span class="number">0</span>, <span class="number">0</span>, canvas.width, canvas.height);</span><br><span class="line">ctx.shadowOffsetX = <span class="number">2</span>;</span><br><span class="line">ctx.shadowOffsetY = <span class="number">2</span>;</span><br><span class="line">ctx.shadowBlur = <span class="number">2</span>;</span><br><span class="line">ctx.shadowColor = <span class="string">'#666666'</span>;</span><br><span class="line">ctx.font = <span class="string">'24px Arial'</span>;</span><br><span class="line">ctx.fillStyle = <span class="string">'#333333'</span>;</span><br><span class="line">ctx.fillText(<span class="string">'带阴影的文字'</span>, <span class="number">20</span>, <span class="number">40</span>);</span><br></pre></td></tr></table></figure>
+<h5 id="渐变"><a href="#渐变" class="headerlink" title="渐变"></a>渐变</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> c=<span class="built_in">document</span>.getElementById(<span class="string">"myCanvas"</span>);</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> cxt=c.getContext(<span class="string">"2d"</span>);</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> grd=cxt.createLinearGradient(<span class="number">0</span>,<span class="number">0</span>,<span class="number">175</span>,<span class="number">50</span>);</span></span><br><span class="line"><span class="javascript">    grd.addColorStop(<span class="number">0</span>,<span class="string">"#FF0000"</span>);</span></span><br><span class="line"><span class="javascript">    grd.addColorStop(<span class="number">1</span>,<span class="string">"#00FF00"</span>);</span></span><br><span class="line"><span class="undefined">    cxt.fillStyle=grd;</span></span><br><span class="line"><span class="undefined">    cxt.fillRect(0,0,175,50);</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">"myCanvas"</span> <span class="attr">width</span>=<span class="string">"200"</span> <span class="attr">height</span>=<span class="string">"100"</span> <span class="attr">style</span>=<span class="string">"border:1px solid #c3c3c3;"</span>&gt;</span></span><br><span class="line">Your browser does not support the canvas element.</span><br><span class="line"><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="图像"><a href="#图像" class="headerlink" title="图像"></a>图像</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> c=<span class="built_in">document</span>.getElementById(<span class="string">"myCanvas"</span>);</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> cxt=c.getContext(<span class="string">"2d"</span>);</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> img=<span class="keyword">new</span> Image()</span></span><br><span class="line"><span class="javascript">    img.src=<span class="string">"flower.png"</span></span></span><br><span class="line"><span class="undefined">    cxt.drawImage(img,0,0);</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">"myCanvas"</span> <span class="attr">width</span>=<span class="string">"200"</span> <span class="attr">height</span>=<span class="string">"100"</span> <span class="attr">style</span>=<span class="string">"border:1px solid #c3c3c3;"</span>&gt;</span></span><br><span class="line">Your browser does not support the canvas element.</span><br><span class="line"><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="绘制其他"><a href="#绘制其他" class="headerlink" title="绘制其他"></a>绘制其他</h5><p>Canvas除了能绘制基本的形状和文本，还可以实现动画、缩放、各种滤镜和像素转换等高级操作。</p>
+<p>如果要实现非常复杂的操作，考虑以下优化方案：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- 通过创建一个不可见的Canvas来绘图，然后将最终绘制结果复制到页面的可见Canvas中；</span><br><span class="line">- 尽量使用整数坐标而不是浮点数；</span><br><span class="line">- 可以创建多个重叠的Canvas绘制不同的层，而不是在一个Canvas中绘制非常复杂的图；</span><br><span class="line">- 背景图片如果不变可以直接用&lt;img&gt;标签并放到最底层。</span><br></pre></td></tr></table></figure>
+<h4 id="3D图"><a href="#3D图" class="headerlink" title="3D图"></a>3D图</h4><p>HTML5有一个WebGL规范，允许在Canvas中绘制3D图形；</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gl = canvas.getContext(<span class="string">"webgl"</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="内联SVG"><a href="#内联SVG" class="headerlink" title="内联SVG"></a>内联SVG</h3><h4 id="参考网站"><a href="#参考网站" class="headerlink" title="参考网站"></a>参考网站</h4><ul>
+<li><a href="http://www.w3school.com.cn/svg/index.asp" target="_blank" rel="noopener">SVG教程</a></li>
+</ul>
+<h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><ul>
+<li>SVG 指可伸缩矢量图形 (Scalable Vector Graphics)</li>
+<li>SVG 用于定义用于网络的基于矢量的图形</li>
+<li>SVG 使用 XML 格式定义图形</li>
+<li>SVG 图像在放大或改变尺寸的情况下其图形质量不会有损失</li>
+<li>SVG 是万维网联盟的标准</li>
+</ul>
+<h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><ul>
+<li>SVG 图像可通过文本编辑器来创建和修改</li>
+<li>SVG 图像可被搜索、索引、脚本化或压缩</li>
+<li>SVG 是可伸缩的</li>
+<li>SVG 图像可在任何的分辨率下被高质量地打印</li>
+<li>SVG 可在图像质量不下降的情况下被放大</li>
+</ul>
+<h4 id="与canvas比较"><a href="#与canvas比较" class="headerlink" title="与canvas比较"></a>与canvas比较</h4><ul>
+<li>不依赖分辨率</li>
+<li>支持事件处理器</li>
+<li>最适合带有大型渲染区域的应用程序（比如谷歌地图）</li>
+<li>复杂度高会减慢渲染速度（任何过度使用 DOM 的应用都不快）</li>
+<li>不适合游戏应用</li>
+</ul>
+<h4 id="浏览器支持"><a href="#浏览器支持" class="headerlink" title="浏览器支持"></a>浏览器支持</h4><p>Internet Explorer 9、Firefox、Opera、Chrome 以及 Safari 支持内联 SVG。</p>
+<h4 id="写入HTML"><a href="#写入HTML" class="headerlink" title="写入HTML"></a>写入HTML</h4><p>多边形svg图像polygon：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/2000/svg"</span> <span class="attr">version</span>=<span class="string">"1.1"</span> <span class="attr">height</span>=<span class="string">"190"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">polygon</span> <span class="attr">points</span>=<span class="string">"100,10 40,180 190,60 10,60 160,180"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">style</span>=<span class="string">"fill:lime;stroke:purple;stroke-width:5;fill-rule:evenodd;"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="地理定位"><a href="#地理定位" class="headerlink" title="地理定位"></a>地理定位</h3><ul>
+<li>HTML5 Geolocation API 用于获得用户的地理位置。</li>
+<li>鉴于该特性可能侵犯用户的隐私，除非用户同意，否则用户位置信息是不可用的。</li>
+</ul>
+<h4 id="Navigator获取"><a href="#Navigator获取" class="headerlink" title="Navigator获取"></a>Navigator获取</h4><ul>
+<li>Navigator对象包含有关浏览器的信息。</li>
+<li>使用 getCurrentPosition() 方法来获得用户的位置。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">getLocation</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">if</span> (navigator.geolocation) &#123;</span></span><br><span class="line"><span class="undefined">            navigator.geolocation.getCurrentPosition(showPosition, showError);</span></span><br><span class="line"><span class="javascript">        &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="javascript">            alert(<span class="string">"该浏览器不支持定位功能！"</span>);</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">showPosition</span>(<span class="params">position</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        alert(<span class="string">"纬度："</span> + position.coords.latitude + <span class="string">"\n经度："</span></span></span><br><span class="line"><span class="undefined">            + position.coords.longitude)</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">showError</span>(<span class="params">error</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">switch</span> (error.code) &#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">case</span> error.PERMISSION_DENIED:</span></span><br><span class="line"><span class="javascript">                alert(<span class="string">"用户拒绝对获取地理位置的请求"</span>);</span></span><br><span class="line"><span class="javascript">                <span class="keyword">break</span>;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">case</span> error.POSITION_UNAVAILABLE:</span></span><br><span class="line"><span class="javascript">                alert(<span class="string">"位置信息是不可用的"</span>);</span></span><br><span class="line"><span class="javascript">                <span class="keyword">break</span>;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">case</span> error.TIMEOUT:</span></span><br><span class="line"><span class="javascript">                alert(<span class="string">"请求用户地理位置超时"</span>);</span></span><br><span class="line"><span class="javascript">                <span class="keyword">break</span>;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">case</span> error.UNKNOWN_ERROR:</span></span><br><span class="line"><span class="javascript">                alert(<span class="string">"未知错误"</span>);</span></span><br><span class="line"><span class="javascript">                <span class="keyword">break</span>;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"getLocation()"</span>&gt;</span>点击<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Web存储"><a href="#Web存储" class="headerlink" title="Web存储"></a>Web存储</h3><p>HTML5 提供了两种在客户端存储数据的新方法：</p>
+<ul>
+<li>localStorage - 没有时间限制的数据存储</li>
+<li>sessionStorage - 针对一个 session 的数据存储</li>
+</ul>
+<h4 id="localStorage"><a href="#localStorage" class="headerlink" title="localStorage"></a>localStorage</h4><ul>
+<li>localStorage 方法存储的数据没有时间限制。第二天、第二周或下一年之后，数据依然可用。</li>
+<li>存储数据以key-value形式，value只能是基础数据类型，不能是对象；</li>
+</ul>
+<h5 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//查看</span></span><br><span class="line"><span class="built_in">window</span>.localStorage;</span><br><span class="line"><span class="comment">//设置</span></span><br><span class="line">localStorage.setItem(<span class="string">"lastname"</span>, <span class="string">"Gates"</span>);</span><br><span class="line"><span class="comment">//获取</span></span><br><span class="line">localStorage.getItem(<span class="string">"lastname"</span>)</span><br></pre></td></tr></table></figure>
+<h5 id="浏览器支持-1"><a href="#浏览器支持-1" class="headerlink" title="浏览器支持"></a>浏览器支持</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">testM</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 校验浏览器是否支持</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span>(Storage) !== <span class="literal">undefined</span>) &#123;</span><br><span class="line">        localStorage.setItem(<span class="string">"lastname"</span>, <span class="string">"Gates"</span>);</span><br><span class="line">        alert(localStorage.getItem(<span class="string">"lastname"</span>));</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        alert(<span class="string">"抱歉！您的浏览器不支持 Web Storage ..."</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="sessionStorage"><a href="#sessionStorage" class="headerlink" title="sessionStorage"></a>sessionStorage</h4><ul>
+<li>sessionStorage方法存储的数据在会话结束就会删除。</li>
+<li>存储数据以key-value形式，value只能是基础数据类型，不能是对象；</li>
+<li>操作方法同localStorage类似；</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">testM</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 校验浏览器是否支持</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span>(Storage) !== <span class="literal">undefined</span>) &#123;</span><br><span class="line">        sessionStorage.setItem(<span class="string">"lastname"</span>, <span class="string">"Gates"</span>);</span><br><span class="line">        sessionStorage.setItem(<span class="string">"x"</span>,<span class="string">"xxx"</span>)</span><br><span class="line">        alert(sessionStorage.getItem(<span class="string">"lastname"</span>));</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        alert(<span class="string">"抱歉！您的浏览器不支持 Web Storage ..."</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="应用程序缓存"><a href="#应用程序缓存" class="headerlink" title="应用程序缓存"></a>应用程序缓存</h3><p>HTML5 引入了应用程序缓存，这意味着 web 应用可进行缓存，并可在没有因特网连接时进行访问。</p>
+<h4 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h4><ul>
+<li>离线浏览 - 用户可在应用离线时使用它们</li>
+<li>速度 - 已缓存资源加载得更快</li>
+<li>减少服务器负载 - 浏览器将只从服务器下载更新过或更改过的资源。</li>
+</ul>
+<h4 id="浏览器支持-2"><a href="#浏览器支持-2" class="headerlink" title="浏览器支持"></a>浏览器支持</h4><ul>
+<li>所有主流浏览器均支持应用程序缓存，除了 Internet Explorer。</li>
+<li>浏览器对缓存数据的容量限制可能不太一样（某些浏览器设置的限制是每个站点 5MB）。</li>
+</ul>
+<h4 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h4><ul>
+<li>每个指定了manifest的页面在用户对其访问时都会被缓存。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE HTML&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">manifest</span>=<span class="string">"demo.appcache"</span>&gt;</span></span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="manifest文件"><a href="#manifest文件" class="headerlink" title="manifest文件"></a>manifest文件</h5><ul>
+<li>manifest 文件的建议的文件扩展名是：”.appcache”。</li>
+<li>manifest 文件需要配置正确的 MIME-type，即 “text/cache-manifest”。必须在 web 服务器上进行配置。</li>
+<li>manifest 文件是简单的文本文件，它告知浏览器被缓存的内容（以及不缓存的内容）。</li>
+<li>manifest 文件可分为三个部分：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CACHE MANIFEST - 在此标题下列出的文件将在首次下载后进行缓存</span><br><span class="line">NETWORK - 在此标题下列出的文件需要与服务器的连接，且不会被缓存</span><br><span class="line">FALLBACK - 在此标题下列出的文件规定当页面无法访问时的回退页面（比如 404 页面）</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">CACHE MANIFEST</span><br><span class="line">/theme.css</span><br><span class="line">/logo.gif</span><br><span class="line">/main.js</span><br><span class="line"></span><br><span class="line">NETWORK:</span><br><span class="line">login.asp</span><br><span class="line"></span><br><span class="line">NETWORK:</span><br><span class="line"># 使用星号来指示所有其他资源/文件都需要因特网连接：</span><br><span class="line">*</span><br><span class="line"></span><br><span class="line">FALLBACK:</span><br><span class="line"># 第一个 URI 是资源，第二个是替补。</span><br><span class="line">/html5/ /404.html</span><br></pre></td></tr></table></figure>
+<h4 id="更新缓存"><a href="#更新缓存" class="headerlink" title="更新缓存"></a>更新缓存</h4><p>一旦应用被缓存，它就会保持缓存直到发生下列情况：</p>
+<ul>
+<li>用户清空浏览器缓存</li>
+<li>manifest 文件被修改（参阅下面的提示）</li>
+<li>由程序来更新应用缓存</li>
+</ul>
+<p>更新注释行中的日期和版本号是一种使浏览器重新缓存文件的办法。</p>
+<h3 id="Web-Worker"><a href="#Web-Worker" class="headerlink" title="Web Worker"></a>Web Worker</h3><p>web worker是运行在后台的JavaScript，不会影响页面的性能。</p>
+<h4 id="浏览器支持-3"><a href="#浏览器支持-3" class="headerlink" title="浏览器支持"></a>浏览器支持</h4><p>所有主流浏览器均支持 web worker，除了Internet Explorer。</p>
+<h5 id="检测是否支持"><a href="#检测是否支持" class="headerlink" title="检测是否支持"></a>检测是否支持</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">typeof</span>(Worker)!==<span class="string">"undefined"</span>)&#123;</span><br><span class="line">  <span class="comment">// Yes! Web worker support!</span></span><br><span class="line">  <span class="comment">// Some code.....</span></span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">  <span class="comment">// Sorry! No Web Worker support..</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h4><ol>
+<li>创建外部工作脚本test_worker.js，通过postMessage发送消息；</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">timedCount</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    i=i+<span class="number">1</span>;</span><br><span class="line">    <span class="comment">// 向HTML页面传回一段消息</span></span><br><span class="line">    postMessage(i);</span><br><span class="line">    setTimeout(timedCount,<span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line">timedCount();</span><br></pre></td></tr></table></figure>
+<ol>
+<li>创建worker对象，调用外部脚本发消息，并接收消息；</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>计数:</span><br><span class="line">    <span class="tag">&lt;<span class="name">output</span> <span class="attr">id</span>=<span class="string">"result"</span>&gt;</span><span class="tag">&lt;/<span class="name">output</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"startWorker()"</span>&gt;</span>开始 Worker<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"stopWorker()"</span>&gt;</span>停止 Worker<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> w;</span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">startWorker</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">if</span> (<span class="keyword">typeof</span>(Worker) !== <span class="string">"undefined"</span>) &#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">if</span> (<span class="keyword">typeof</span>(w) === <span class="string">"undefined"</span>) &#123;</span></span><br><span class="line"><span class="javascript">                w = <span class="keyword">new</span> Worker(<span class="string">"test_worker.js"</span>);</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="javascript">            <span class="comment">// 接收postMessage发送的消息</span></span></span><br><span class="line"><span class="javascript">            w.onmessage = <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="built_in">document</span>.getElementById(<span class="string">"result"</span>).innerHTML = event.data;</span></span><br><span class="line"><span class="undefined">            &#125;;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">document</span>.getElementById(<span class="string">"result"</span>).innerHTML = <span class="string">"Sorry, your browserdoes not support Web Workers..."</span>;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">stopWorker</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="undefined">        w.terminate();</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="服务器发送事件"><a href="#服务器发送事件" class="headerlink" title="服务器发送事件"></a>服务器发送事件</h3><p>HTML5 服务器发送事件（server-sent event）允许网页获得来自服务器的更新。</p>
+<h4 id="Server-Sent事件"><a href="#Server-Sent事件" class="headerlink" title="Server-Sent事件"></a>Server-Sent事件</h4><p>Server-Sent事件指的是网页自动获取来自服务器的更新。</p>
+<h4 id="EventSource对象"><a href="#EventSource对象" class="headerlink" title="EventSource对象"></a>EventSource对象</h4><p>用于接收服务器事件；</p>
+<p>方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">事件	描述</span><br><span class="line">onopen	当通往服务器的连接被打开</span><br><span class="line">onmessage	当接收到消息</span><br><span class="line">onerror	当错误发生</span><br></pre></td></tr></table></figure></p>
+<h4 id="浏览器支持-4"><a href="#浏览器支持-4" class="headerlink" title="浏览器支持"></a>浏览器支持</h4><p>所有主流浏览器均支持服务器发送事件，除了Internet Explorer。</p>
+<h5 id="js验证支持"><a href="#js验证支持" class="headerlink" title="js验证支持"></a>js验证支持</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span>(EventSource) !== <span class="string">"undefined"</span>) &#123;</span><br><span class="line">    <span class="comment">// Yes! Server-sent events support!</span></span><br><span class="line">    <span class="comment">// Some code.....</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// Sorry! No server-sent events support..</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a>使用步骤</h4><ol>
+<li>服务器端事件流的语法是非常简单的。把 “Content-Type” 报头设置为 “text/event-stream”。可以开始发送事件流了。</li>
+<li>创建一个新的 EventSource 对象，然后规定发送更新的页面的 URL（本例中是 “demo_sse.php”），通过onmessage接收通知；</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> source=<span class="keyword">new</span> EventSource(<span class="string">"demo_sse.php"</span>);</span><br><span class="line">source.onmessage=<span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">"result"</span>).innerHTML+=event.data + <span class="string">"&lt;br /&gt;"</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h3><p>HTML5 拥有多个新的表单输入类型。这些新特性提供了更好的输入控制和验证。</p>
+<h4 id="输入类型"><a href="#输入类型" class="headerlink" title="输入类型"></a>输入类型</h4><ul>
+<li>email</li>
+<li>url</li>
+<li>number</li>
+<li>range</li>
+<li>Date pickers (date, month, week, time, datetime, datetime-local)</li>
+<li>search</li>
+<li>color</li>
+</ul>
+<h5 id="email"><a href="#email" class="headerlink" title="email"></a>email</h5><ul>
+<li>email 类型用于应该包含 e-mail 地址的输入域。</li>
+<li>在提交表单时，会自动验证 email 域的值；</li>
+<li>注意：未填写时会验证通过。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"email"</span> <span class="attr">name</span>=<span class="string">"user_email"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="url"><a href="#url" class="headerlink" title="url"></a>url</h5><ul>
+<li>url 类型用于应该包含 URL 地址的输入域。</li>
+<li>在提交表单时，会自动验证 url 域的值。</li>
+<li>注意：未填写时会验证通过。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"url"</span> <span class="attr">name</span>=<span class="string">"user_url"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="number"><a href="#number" class="headerlink" title="number"></a>number</h5><ul>
+<li>number 类型用于应该包含数值的输入域。</li>
+<li>您还能够设定对所接受的数字的限定；</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">属性	值	描述</span><br><span class="line">max	number	规定允许的最大值</span><br><span class="line">min	number	规定允许的最小值</span><br><span class="line">step	number	规定合法的数字间隔（如果 step=&quot;3&quot;，则合法的数是 -3,0,3,6 等）</span><br><span class="line">value	number	规定默认值</span><br></pre></td></tr></table></figure>
+<ul>
+<li>注意：未填写时会验证通过。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"number"</span> <span class="attr">name</span>=<span class="string">"points"</span> <span class="attr">min</span>=<span class="string">"1"</span> <span class="attr">max</span>=<span class="string">"10"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="range"><a href="#range" class="headerlink" title="range"></a>range</h5><ul>
+<li>range 类型用于应该包含一定范围内数字值的输入域。</li>
+<li>range 类型显示为滑动条。</li>
+<li>您还能够设定对所接受的数字的限定：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">max	number	规定允许的最大值</span><br><span class="line">min	number	规定允许的最小值</span><br><span class="line">step	number	规定合法的数字间隔（如果 step=&quot;3&quot;，则合法的数是 -3,0,3,6 等）</span><br><span class="line">value	number	规定默认值</span><br></pre></td></tr></table></figure>
+<ul>
+<li>注意：未填写时会验证通过。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"range"</span> <span class="attr">name</span>=<span class="string">"points"</span> <span class="attr">min</span>=<span class="string">"1"</span> <span class="attr">max</span>=<span class="string">"10"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="Date-Pickers"><a href="#Date-Pickers" class="headerlink" title="Date Pickers"></a>Date Pickers</h5><p>HTML5 拥有多个可供选取日期和时间的新输入类型：</p>
+<ul>
+<li>date - 选取日、月、年</li>
+<li>month - 选取月、年</li>
+<li>week - 选取周和年</li>
+<li>time - 选取时间（小时和分钟）</li>
+<li>datetime - 选取时间、日、月、年（UTC 时间）</li>
+<li>datetime-local - 选取时间、日、月、年（本地时间）</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"date"</span> <span class="attr">name</span>=<span class="string">"user_date"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="search"><a href="#search" class="headerlink" title="search"></a>search</h5><p>提供可输入的搜索框，可以清空；<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"search"</span> <span class="attr">name</span>=<span class="string">"user_date"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h5 id="color"><a href="#color" class="headerlink" title="color"></a>color</h5><p>弹出颜色框，用于选择颜色；<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"color"</span> <span class="attr">name</span>=<span class="string">"user_date"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="新增表单元素"><a href="#新增表单元素" class="headerlink" title="新增表单元素"></a>新增表单元素</h4><p>新的表单元素：</p>
+<ul>
+<li>datalist</li>
+<li>keygen</li>
+<li>output</li>
+</ul>
+<h5 id="datalist"><a href="#datalist" class="headerlink" title="datalist"></a>datalist</h5><ul>
+<li>datalist 元素规定输入域的选项列表。</li>
+<li>列表是通过 datalist 内的 option 元素创建的。</li>
+<li>如需把datalist绑定到输入域，请用输入域的list属性引用datalist的id;</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"url"</span> <span class="attr">list</span>=<span class="string">"url_list"</span> <span class="attr">name</span>=<span class="string">"link"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">datalist</span> <span class="attr">id</span>=<span class="string">"url_list"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">label</span>=<span class="string">"W3School"</span> <span class="attr">value</span>=<span class="string">"http://www.W3School.com.cn"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">label</span>=<span class="string">"Google"</span> <span class="attr">value</span>=<span class="string">"http://www.google.com"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">label</span>=<span class="string">"Microsoft"</span> <span class="attr">value</span>=<span class="string">"http://www.microsoft.com"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">datalist</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="keygen"><a href="#keygen" class="headerlink" title="keygen"></a>keygen</h5><ul>
+<li>keygen 元素的作用是提供一种验证用户的可靠方法。</li>
+<li>keygen 元素是密钥对生成器（key-pair generator）。当提交表单时，会生成两个键，一个是私钥，一个公钥。</li>
+<li>私钥（private key）存储于客户端，公钥（public key）则被发送到服务器。公钥可用于之后验证用户的客户端证书（client certificate）。</li>
+<li>目前，浏览器对此元素的糟糕的支持度不足以使其成为一种有用的安全标准。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"demo_form.asp"</span> <span class="attr">method</span>=<span class="string">"get"</span>&gt;</span></span><br><span class="line">Username: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"usr_name"</span> /&gt;</span></span><br><span class="line">Encryption: <span class="tag">&lt;<span class="name">keygen</span> <span class="attr">name</span>=<span class="string">"security"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="output"><a href="#output" class="headerlink" title="output"></a>output</h5><p>output 元素用于不同类型的输出，比如计算或脚本输出,默认没有占位样式；</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">output</span> <span class="attr">id</span>=<span class="string">"result"</span>&gt;</span><span class="tag">&lt;/<span class="name">output</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="新增表单属性"><a href="#新增表单属性" class="headerlink" title="新增表单属性"></a>新增表单属性</h4><ol>
+<li>form标签属性：</li>
+</ol>
+<ul>
+<li>autocomplete</li>
+<li>novalidate</li>
+</ul>
+<ol>
+<li>input标签属性：</li>
+</ol>
+<ul>
+<li>autocomplete</li>
+<li>autofocus</li>
+<li>form</li>
+<li>form overrides (formaction, formenctype, formmethod, formnovalidate, formtarget)</li>
+<li>height 和 width</li>
+<li>list</li>
+<li>min, max 和 step</li>
+<li>multiple</li>
+<li>pattern (regexp)</li>
+<li>placeholder</li>
+<li>required</li>
+</ul>
+<h5 id="autocomplete"><a href="#autocomplete" class="headerlink" title="autocomplete"></a>autocomplete</h5><ul>
+<li>用户输入后，再次重载页面，输入时，会显示输入过的选项；</li>
+<li>autocomplete 适用于 <form> 标签，对以下类型的input标签有效：text, search, url, telephone, email, password, datepickers, range 以及 color。</form></li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"demo_form.asp"</span> <span class="attr">method</span>=<span class="string">"get"</span> <span class="attr">autocomplete</span>=<span class="string">"on"</span>&gt;</span></span><br><span class="line">First name: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"fname"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">Last name: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"lname"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">E-mail: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"email"</span> <span class="attr">name</span>=<span class="string">"email"</span> <span class="attr">autocomplete</span>=<span class="string">"off"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="autofocus"><a href="#autofocus" class="headerlink" title="autofocus"></a>autofocus</h5><ul>
+<li>autofocus 属性规定在页面加载时，域自动地获得焦点。</li>
+<li>autofocus 属性适用于所有 <input> 标签的类型。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"user_name"</span>  <span class="attr">autofocus</span>=<span class="string">"autofocus"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="form"><a href="#form" class="headerlink" title="form"></a>form</h5><ul>
+<li>form 属性规定输入域所属的一个或多个表单。</li>
+<li>form 属性适用于所有input标签的类型。</li>
+<li>form 属性必须引用所属表单的 id：</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"demo_form.asp"</span> <span class="attr">method</span>=<span class="string">"get"</span> <span class="attr">id</span>=<span class="string">"user_form"</span>&gt;</span></span><br><span class="line">First name:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"fname"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">Last name: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"lname"</span> <span class="attr">form</span>=<span class="string">"user_form"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="表单重写属性"><a href="#表单重写属性" class="headerlink" title="表单重写属性"></a>表单重写属性</h5><ul>
+<li>表单重写属性（form override attributes）允许您重写 form 元素的某些属性设定。</li>
+<li>表单重写属性适用于以下类型的input标签：submit 和 image。</li>
+<li>对于创建不同的提交按钮很有帮助。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">表单重写属性有：</span><br><span class="line"></span><br><span class="line">- formaction - 重写表单的 action 属性</span><br><span class="line">- formenctype - 重写表单的 enctype 属性</span><br><span class="line">- formmethod - 重写表单的 method 属性</span><br><span class="line">- formnovalidate - 重写表单的 novalidate 属性</span><br><span class="line">- formtarget - 重写表单的 target 属性</span><br></pre></td></tr></table></figure>
+<h5 id="list"><a href="#list" class="headerlink" title="list"></a>list</h5><ul>
+<li>list 属性规定输入域的 datalist。datalist 是输入域的选项列表。</li>
+<li>list 属性适用于以下类型的input标签：text, search, url, telephone, email, date pickers, number, range 以及 color。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"url"</span> <span class="attr">list</span>=<span class="string">"url_list"</span> <span class="attr">name</span>=<span class="string">"link"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">datalist</span> <span class="attr">id</span>=<span class="string">"url_list"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">option</span> <span class="attr">label</span>=<span class="string">"W3Schools"</span> <span class="attr">value</span>=<span class="string">"http://www.w3school.com.cn"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">option</span> <span class="attr">label</span>=<span class="string">"Google"</span> <span class="attr">value</span>=<span class="string">"http://www.google.com"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">option</span> <span class="attr">label</span>=<span class="string">"Microsoft"</span> <span class="attr">value</span>=<span class="string">"http://www.microsoft.com"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">datalist</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="min、max和step"><a href="#min、max和step" class="headerlink" title="min、max和step"></a>min、max和step</h5><p>min、max 和 step 属性用于为包含数字或日期的input 类型规定限定（约束）。</p>
+<ul>
+<li>min、max 和 step 属性适用于以下类型的input标签：date pickers、number 以及 range。</li>
+<li>下面的例子显示一个数字域，该域接受介于 0 到 10 之间的值，且步进为 3（即合法的值为 0、3、6 和 9）：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- max 属性规定输入域所允许的最大值。</span><br><span class="line">- min 属性规定输入域所允许的最小值。</span><br><span class="line">- step 属性为输入域规定合法的数字间隔（如果 step=&quot;3&quot;，则合法的数是 -3,0,3,6 等）。</span><br></pre></td></tr></table></figure>
+<h5 id="multiple"><a href="#multiple" class="headerlink" title="multiple"></a>multiple</h5><ul>
+<li>multiple 属性规定输入域中可选择多个值。</li>
+<li>multiple 属性适用于以下类型的input标签：email 和 file。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">name</span>=<span class="string">"img"</span> <span class="attr">multiple</span>=<span class="string">"multiple"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="novalidate"><a href="#novalidate" class="headerlink" title="novalidate"></a>novalidate</h5><ul>
+<li>novalidate 属性规定在提交表单时不应该验证 form 或 input 域。</li>
+<li>novalidate 属性适用于form,对以类型的input标签验证：text, search, url, telephone, email, password, date pickers, range 以及 color.</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"demo_form.asp"</span> <span class="attr">method</span>=<span class="string">"get"</span> <span class="attr">novalidate</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">E-mail: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"email"</span> <span class="attr">name</span>=<span class="string">"user_email"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="pattern"><a href="#pattern" class="headerlink" title="pattern"></a>pattern</h5><ul>
+<li>pattern 属性规定用于验证 input 域的模式（pattern）。</li>
+<li>模式（pattern） 是正则表达式。</li>
+<li>pattern 属性适用于以下类型的input标签：text, search, url, telephone, email 以及 password。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"country_code"</span></span></span><br><span class="line"><span class="tag"><span class="attr">pattern</span>=<span class="string">"[A-z]&#123;3&#125;"</span> <span class="attr">title</span>=<span class="string">"Three letter country code"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="placeholder"><a href="#placeholder" class="headerlink" title="placeholder"></a>placeholder</h5><ul>
+<li>placeholder 属性提供一种提示（hint），描述输入域所期待的值。</li>
+<li>placeholder 属性适用于以下类型的input标签：text, search, url, telephone, email 以及 password。</li>
+<li>提示（hint）会在输入域为空时显示出现，会在输入域获得焦点时消失;</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"search"</span> <span class="attr">name</span>=<span class="string">"user_search"</span>  <span class="attr">placeholder</span>=<span class="string">"Search W3School"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="required"><a href="#required" class="headerlink" title="required"></a>required</h5><ul>
+<li>required 属性规定必须在提交之前填写输入域（不能为空）。</li>
+<li>required 属性适用于以下类型的input标签：text, search, url, telephone, email, password, date pickers, number, checkbox, radio 以及 file。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"usr_name"</span> <span class="attr">required</span>=<span class="string">"required"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="参考-1"><a href="#参考-1" class="headerlink" title="参考"></a>参考</h3><h4 id="参考网站-1"><a href="#参考网站-1" class="headerlink" title="参考网站"></a>参考网站</h4><ul>
+<li><a href="http://www.w3school.com.cn" target="_blank" rel="noopener">w3school中文网</a></li>
+</ul>
+<h4 id="Canvas2D"><a href="#Canvas2D" class="headerlink" title="Canvas2D"></a>Canvas2D</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HTML5 &lt;canvas&gt; 标签用于绘制图像（通过脚本，通常是 JavaScript）。</span><br><span class="line">getContext() 方法可返回一个对象，该对象提供了用于在画布上绘图的方法和属性。</span><br></pre></td></tr></table></figure>
+<p>此处：提供完整的 getContext(“2d”) 对象属性和方法，可用于在画布上绘制文本、线条、矩形、圆形等等。</p>
+<h5 id="颜色-样式和阴影"><a href="#颜色-样式和阴影" class="headerlink" title="颜色.样式和阴影"></a>颜色.样式和阴影</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">属性	描述</span><br><span class="line">fillStyle	设置或返回用于填充绘画的颜色、渐变或模式</span><br><span class="line">strokeStyle	设置或返回用于笔触的颜色、渐变或模式</span><br><span class="line">shadowColor	设置或返回用于阴影的颜色</span><br><span class="line">shadowBlur	设置或返回用于阴影的模糊级别</span><br><span class="line">shadowOffsetX	设置或返回阴影距形状的水平距离</span><br><span class="line">shadowOffsetY	设置或返回阴影距形状的垂直距离</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">方法	描述</span><br><span class="line">createLinearGradient()	创建线性渐变（用在画布内容上）</span><br><span class="line">createPattern()	在指定的方向上重复指定的元素</span><br><span class="line">createRadialGradient()	创建放射状/环形的渐变（用在画布内容上）</span><br><span class="line">addColorStop()	规定渐变对象中的颜色和停止位置</span><br></pre></td></tr></table></figure>
+<h5 id="线条样式"><a href="#线条样式" class="headerlink" title="线条样式"></a>线条样式</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">属性	描述</span><br><span class="line">lineCap	设置或返回线条的结束端点样式</span><br><span class="line">lineJoin	设置或返回两条线相交时，所创建的拐角类型</span><br><span class="line">lineWidth	设置或返回当前的线条宽度</span><br><span class="line">miterLimit	设置或返回最大斜接长度</span><br></pre></td></tr></table></figure>
+<h5 id="矩形"><a href="#矩形" class="headerlink" title="矩形"></a>矩形</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">方法	描述</span><br><span class="line">rect()	创建矩形</span><br><span class="line">fillRect()	绘制“被填充”的矩形</span><br><span class="line">strokeRect()	绘制矩形（无填充）</span><br><span class="line">clearRect()	在给定的矩形内清除指定的像素</span><br></pre></td></tr></table></figure>
+<h5 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">方法	描述</span><br><span class="line">fill()	填充当前绘图（路径）</span><br><span class="line">stroke()	绘制已定义的路径</span><br><span class="line">beginPath()	起始一条路径，或重置当前路径</span><br><span class="line">moveTo()	把路径移动到画布中的指定点，不创建线条</span><br><span class="line">closePath()	创建从当前点回到起始点的路径</span><br><span class="line">lineTo()	添加一个新点，然后在画布中创建从该点到最后指定点的线条</span><br><span class="line">clip()	从原始画布剪切任意形状和尺寸的区域</span><br><span class="line">quadraticCurveTo()	创建二次贝塞尔曲线</span><br><span class="line">bezierCurveTo()	创建三次方贝塞尔曲线</span><br><span class="line">arc()	创建弧/曲线（用于创建圆形或部分圆）</span><br><span class="line">arcTo()	创建两切线之间的弧/曲线</span><br><span class="line">isPointInPath()	如果指定的点位于当前路径中，则返回 true，否则返回 false</span><br></pre></td></tr></table></figure>
+<h5 id="转换"><a href="#转换" class="headerlink" title="转换"></a>转换</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">方法	描述</span><br><span class="line">scale()	缩放当前绘图至更大或更小</span><br><span class="line">rotate()	旋转当前绘图</span><br><span class="line">translate()	重新映射画布上的 (0,0) 位置</span><br><span class="line">transform()	替换绘图的当前转换矩阵</span><br><span class="line">setTransform()	将当前转换重置为单位矩阵。然后运行 transform()</span><br></pre></td></tr></table></figure>
+<h5 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">属性	描述</span><br><span class="line">font	设置或返回文本内容的当前字体属性</span><br><span class="line">textAlign	设置或返回文本内容的当前对齐方式</span><br><span class="line">textBaseline	设置或返回在绘制文本时使用的当前文本基线</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">方法	描述</span><br><span class="line">fillText()	在画布上绘制“被填充的”文本</span><br><span class="line">strokeText()	在画布上绘制文本（无填充）</span><br><span class="line">measureText()	返回包含指定文本宽度的对象</span><br></pre></td></tr></table></figure>
+<h5 id="图像绘制"><a href="#图像绘制" class="headerlink" title="图像绘制"></a>图像绘制</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">方法	描述</span><br><span class="line">drawImage()	向画布上绘制图像、画布或视频</span><br></pre></td></tr></table></figure>
+<h5 id="像素操作"><a href="#像素操作" class="headerlink" title="像素操作"></a>像素操作</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">属性	描述</span><br><span class="line">width	返回 ImageData 对象的宽度</span><br><span class="line">height	返回 ImageData 对象的高度</span><br><span class="line">data	返回一个对象，其包含指定的 ImageData 对象的图像数据</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">方法	描述</span><br><span class="line">createImageData()	创建新的、空白的 ImageData 对象</span><br><span class="line">getImageData()	返回 ImageData 对象，该对象为画布上指定的矩形复制像素数据</span><br><span class="line">putImageData()	把图像数据（从指定的 ImageData 对象）放回画布上</span><br></pre></td></tr></table></figure>
+<h5 id="合成"><a href="#合成" class="headerlink" title="合成"></a>合成</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">属性	描述</span><br><span class="line">globalAlpha	设置或返回绘图的当前 alpha 或透明值</span><br><span class="line">globalCompositeOperation	设置或返回新图像如何绘制到已有的图像上</span><br></pre></td></tr></table></figure>
+<h5 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">方法	描述</span><br><span class="line">save()	保存当前环境的状态</span><br><span class="line">restore()	返回之前保存过的路径状态和属性</span><br><span class="line">createEvent()	 </span><br><span class="line">getContext()	 </span><br><span class="line">toDataURL()</span><br></pre></td></tr></table></figure>
+<h4 id="视频-音频"><a href="#视频-音频" class="headerlink" title="视频/音频"></a>视频/音频</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1. HTML5 DOM 为 &lt;audio&gt; 和 &lt;video&gt; 元素提供了方法、属性和事件。</span><br><span class="line">2. 方法、属性和事件允许您使用 JavaScript 来操作 &lt;audio&gt; 和 &lt;video&gt; 元素。</span><br></pre></td></tr></table></figure>
+<h5 id="方法-1"><a href="#方法-1" class="headerlink" title="方法"></a>方法</h5><ul>
+<li>addTextTrack()    向音频/视频添加新的文本轨道</li>
+<li>canPlayType()    检测浏览器是否能播放指定的音频/视频类型</li>
+<li>load()    重新加载音频/视频元素</li>
+<li>play()    开始播放音频/视频</li>
+<li>pause()    暂停当前播放的音频/视频</li>
+</ul>
+<h5 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h5><ul>
+<li>audioTracks    返回表示可用音轨的 AudioTrackList 对象</li>
+<li>autoplay    设置或返回是否在加载完成后随即播放音频/视频</li>
+<li>buffered    返回表示音频/视频已缓冲部分的 TimeRanges 对象</li>
+<li>controller    返回表示音频/视频当前媒体控制器的 MediaController 对象</li>
+<li>controls    设置或返回音频/视频是否显示控件（比如播放/暂停等）</li>
+<li>crossOrigin    设置或返回音频/视频的 CORS 设置</li>
+<li>currentSrc    返回当前音频/视频的 URL</li>
+<li>currentTime    设置或返回音频/视频中的当前播放位置（以秒计）</li>
+<li>defaultMuted    设置或返回音频/视频默认是否静音</li>
+<li>defaultPlaybackRate    设置或返回音频/视频的默认播放速度</li>
+<li>duration    返回当前音频/视频的长度（以秒计）</li>
+<li>ended    返回音频/视频的播放是否已结束</li>
+<li>error    返回表示音频/视频错误状态的 MediaError 对象</li>
+<li>loop    设置或返回音频/视频是否应在结束时重新播放</li>
+<li>mediaGroup    设置或返回音频/视频所属的组合（用于连接多个音频/视频元素）</li>
+<li>muted    设置或返回音频/视频是否静音</li>
+<li>networkState    返回音频/视频的当前网络状态</li>
+<li>paused    设置或返回音频/视频是否暂停</li>
+<li>playbackRate    设置或返回音频/视频播放的速度</li>
+<li>played    返回表示音频/视频已播放部分的 TimeRanges 对象</li>
+<li>preload    设置或返回音频/视频是否应该在页面加载后进行加载</li>
+<li>readyState    返回音频/视频当前的就绪状态</li>
+<li>seekable    返回表示音频/视频可寻址部分的 TimeRanges 对象</li>
+<li>seeking    返回用户是否正在音频/视频中进行查找</li>
+<li>src    设置或返回音频/视频元素的当前来源</li>
+<li>startDate    返回表示当前时间偏移的 Date 对象</li>
+<li>textTracks    返回表示可用文本轨道的 TextTrackList 对象</li>
+<li>videoTracks    返回表示可用视频轨道的 VideoTrackList 对象</li>
+<li>volume    设置或返回音频/视频的音量</li>
+</ul>
+<h5 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h5><ul>
+<li>abort    当音频/视频的加载已放弃时</li>
+<li>canplay    当浏览器可以播放音频/视频时</li>
+<li>canplaythrough    当浏览器可在不因缓冲而停顿的情况下进行播放时</li>
+<li>durationchange    当音频/视频的时长已更改时</li>
+<li>emptied    当目前的播放列表为空时</li>
+<li>ended    当目前的播放列表已结束时</li>
+<li>error    当在音频/视频加载期间发生错误时</li>
+<li>loadeddata    当浏览器已加载音频/视频的当前帧时</li>
+<li>loadedmetadata    当浏览器已加载音频/视频的元数据时</li>
+<li>loadstart    当浏览器开始查找音频/视频时</li>
+<li>pause    当音频/视频已暂停时</li>
+<li>play    当音频/视频已开始或不再暂停时</li>
+<li>playing    当音频/视频在已因缓冲而暂停或停止后已就绪时</li>
+<li>progress    当浏览器正在下载音频/视频时</li>
+<li>ratechange    当音频/视频的播放速度已更改时</li>
+<li>seeked    当用户已移动/跳跃到音频/视频中的新位置时</li>
+<li>seeking    当用户开始移动/跳跃到音频/视频中的新位置时</li>
+<li>stalled    当浏览器尝试获取媒体数据，但数据不可用时</li>
+<li>suspend    当浏览器刻意不获取媒体数据时</li>
+<li>timeupdate    当目前的播放位置已更改时</li>
+<li>volumechange    当音量已更改时</li>
+<li>waiting    当视频由于需要缓冲下一帧而停止</li>
+</ul>
+<h4 id="全局属性"><a href="#全局属性" class="headerlink" title="全局属性"></a>全局属性</h4><p>下面的全局属性可用于任何 HTML 元素。</p>
+<ul>
+<li>accesskey    规定激活元素的快捷键。</li>
+<li>class    规定元素的一个或多个类名（引用样式表中的类）。</li>
+<li>contenteditable    规定元素内容是否可编辑。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">contenteditable</span>=<span class="string">"true"</span>&gt;</span>这是一个可编辑的段落。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>contextmenu    规定元素的上下文菜单。上下文菜单在用户点击元素时显示。</li>
+<li>data-*    用于存储页面或应用程序的私有定制数据。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-animal-type</span>=<span class="string">"鸟类"</span>&gt;</span>喜鹊<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>dir    规定元素中内容的文本方向。</li>
+<li>draggable    规定元素是否可拖动。</li>
+<li>dropzone    规定在拖动被拖动数据时是否进行复制、移动或链接。</li>
+<li>hidden    规定元素仍未或不再相关。</li>
+<li>id    规定元素的唯一 id。</li>
+<li>lang    规定元素内容的语言。</li>
+<li>spellcheck    规定是否对元素进行拼写和语法检查。</li>
+<li>style    规定元素的行内 CSS 样式。</li>
+<li>tabindex    规定元素的 tab 键次序。</li>
+<li>title    规定有关元素的额外信息。</li>
+<li>translate    规定是否应该翻译元素内容。</li>
+</ul>
+<h4 id="全局事件属性"><a href="#全局事件属性" class="headerlink" title="全局事件属性"></a>全局事件属性</h4><p>列出了添加到 HTML 元素以定义事件动作的全局事件属性，通过js方法作为值来驱动.</p>
+<h5 id="Window事件属性"><a href="#Window事件属性" class="headerlink" title="Window事件属性"></a>Window事件属性</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">针对window 对象触发的事件（应用到 &lt;body&gt; 标签）：</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">属性	值	描述</span><br><span class="line">onafterprint	script	文档打印之后运行的脚本。</span><br><span class="line">onbeforeprint	script	文档打印之前运行的脚本。</span><br><span class="line">onbeforeunload	script	文档卸载之前运行的脚本。</span><br><span class="line">onerror	script	在错误发生时运行的脚本。</span><br><span class="line">onhaschange	script	当文档已改变时运行的脚本。</span><br><span class="line">onload	script	页面结束加载之后触发。</span><br><span class="line">onmessage	script	在消息被触发时运行的脚本。</span><br><span class="line">onoffline	script	当文档离线时运行的脚本。</span><br><span class="line">ononline	script	当文档上线时运行的脚本。</span><br><span class="line">onpagehide	script	当窗口隐藏时运行的脚本。</span><br><span class="line">onpageshow	script	当窗口成为可见时运行的脚本。</span><br><span class="line">onpopstate	script	当窗口历史记录改变时运行的脚本。</span><br><span class="line">onredo	script	当文档执行撤销（redo）时运行的脚本。</span><br><span class="line">onresize	script	当浏览器窗口被调整大小时触发。</span><br><span class="line">onstorage	script	在 Web Storage 区域更新后运行的脚本。</span><br><span class="line">onundo	script	在文档执行 undo 时运行的脚本。</span><br><span class="line">onunload	script	一旦页面已下载时触发（或者浏览器窗口已被关闭）。</span><br></pre></td></tr></table></figure>
+<h5 id="Form事件"><a href="#Form事件" class="headerlink" title="Form事件"></a>Form事件</h5><p>由 HTML 表单内的动作触发的事件（应用到几乎所有 HTML 元素，但最常用在 form 元素中）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">属性	值	描述</span><br><span class="line">onblur	script	元素失去焦点时运行的脚本。</span><br><span class="line">onchange	script	在元素值被改变时运行的脚本。</span><br><span class="line">oncontextmenu	script	当上下文菜单被触发时运行的脚本。</span><br><span class="line">onfocus	script	当元素获得焦点时运行的脚本。</span><br><span class="line">onformchange	script	在表单改变时运行的脚本（失效）。</span><br><span class="line">onforminput	script	当表单获得用户输入时运行的脚本。</span><br><span class="line">oninput	script	当元素获得用户输入时运行的脚本。</span><br><span class="line">oninvalid	script	当元素无效时运行的脚本。</span><br><span class="line">onreset	script	当表单中的重置按钮被点击时触发。HTML5 中不支持。</span><br><span class="line">onselect	script	在元素中文本被选中后触发。</span><br><span class="line">onsubmit	script	在提交表单时触发。</span><br></pre></td></tr></table></figure>
+<h5 id="Keyboard事件"><a href="#Keyboard事件" class="headerlink" title="Keyboard事件"></a>Keyboard事件</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">属性	值	描述</span><br><span class="line">onkeydown	script	在用户按下按键时触发。</span><br><span class="line">onkeypress	script	在用户敲击按钮时触发。</span><br><span class="line">onkeyup	script	当用户释放按键时触发。</span><br></pre></td></tr></table></figure>
+<h5 id="Mouse事件"><a href="#Mouse事件" class="headerlink" title="Mouse事件"></a>Mouse事件</h5><p>由鼠标或类似用户动作触发的事件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">属性	值	描述</span><br><span class="line">onclick	script	元素上发生鼠标点击时触发。</span><br><span class="line">ondblclick	script	元素上发生鼠标双击时触发。</span><br><span class="line">ondrag	script	元素被拖动时运行的脚本。</span><br><span class="line">ondragend	script	在拖动操作末端运行的脚本。</span><br><span class="line">ondragenter	script	当元素元素已被拖动到有效拖放区域时运行的脚本。</span><br><span class="line">ondragleave	script	当元素离开有效拖放目标时运行的脚本。</span><br><span class="line">ondragover	script	当元素在有效拖放目标上正在被拖动时运行的脚本。</span><br><span class="line">ondragstart	script	在拖动操作开端运行的脚本。</span><br><span class="line">ondrop	script	当被拖元素正在被拖放时运行的脚本。</span><br><span class="line">onmousedown	script	当元素上按下鼠标按钮时触发。</span><br><span class="line">onmousemove	script	当鼠标指针移动到元素上时触发。</span><br><span class="line">onmouseout	script	当鼠标指针移出元素时触发。</span><br><span class="line">onmouseover	script	当鼠标指针移动到元素上时触发。</span><br><span class="line">onmouseup	script	当在元素上释放鼠标按钮时触发。</span><br><span class="line">onmousewheel	script	当鼠标滚轮正在被滚动时运行的脚本。</span><br><span class="line">onscroll	script	当元素滚动条被滚动时运行的脚本。</span><br></pre></td></tr></table></figure>
+<h5 id="Media事件"><a href="#Media事件" class="headerlink" title="Media事件"></a>Media事件</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">由媒介（比如视频、图像和音频）触发的事件。</span><br><span class="line">适用于所有 HTML 元素，但常见于媒介元素中。</span><br><span class="line">比如 &lt;audio&gt;、&lt;embed&gt;、&lt;img&gt;、&lt;object&gt; 以及 &lt;video&gt;）:</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">属性	值	描述</span><br><span class="line">onabort	script	在退出时运行的脚本。</span><br><span class="line">oncanplay	script	当文件就绪可以开始播放时运行的脚本（缓冲已足够开始时）。</span><br><span class="line">oncanplaythrough	script	当媒介能够无需因缓冲而停止即可播放至结尾时运行的脚本。</span><br><span class="line">ondurationchange	script	当媒介长度改变时运行的脚本。</span><br><span class="line">onemptied	script	当发生故障并且文件突然不可用时运行的脚本（比如连接意外断开时）。</span><br><span class="line">onended	script	当媒介已到达结尾时运行的脚本（可发送类似“感谢观看”之类的消息）。</span><br><span class="line">onerror	script	当在文件加载期间发生错误时运行的脚本。</span><br><span class="line">onloadeddata	script	当媒介数据已加载时运行的脚本。</span><br><span class="line">onloadedmetadata	script	当元数据（比如分辨率和时长）被加载时运行的脚本。</span><br><span class="line">onloadstart	script	在文件开始加载且未实际加载任何数据前运行的脚本。</span><br><span class="line">onpause	script	当媒介被用户或程序暂停时运行的脚本。</span><br><span class="line">onplay	script	当媒介已就绪可以开始播放时运行的脚本。</span><br><span class="line">onplaying	script	当媒介已开始播放时运行的脚本。</span><br><span class="line">onprogress	script	当浏览器正在获取媒介数据时运行的脚本。</span><br><span class="line">onratechange	script	每当回放速率改变时运行的脚本（比如当用户切换到慢动作或快进模式）。</span><br><span class="line">onreadystatechange	script	每当就绪状态改变时运行的脚本（就绪状态监测媒介数据的状态）。</span><br><span class="line">onseeked	script	当 seeking 属性设置为 false（指示定位已结束）时运行的脚本。</span><br><span class="line">onseeking	script	当 seeking 属性设置为 true（指示定位是活动的）时运行的脚本。</span><br><span class="line">onstalled	script	在浏览器不论何种原因未能取回媒介数据时运行的脚本。</span><br><span class="line">onsuspend	script	在媒介数据完全加载之前不论何种原因终止取回媒介数据时运行的脚本。</span><br><span class="line">ontimeupdate	script	当播放位置改变时（比如当用户快进到媒介中一个不同的位置时）运行的脚本。</span><br><span class="line">onvolumechange	script	每当音量改变时（包括将音量设置为静音）时运行的脚本。</span><br><span class="line">onwaiting	script	当媒介已停止播放但打算继续播放时（比如当媒介暂停已缓冲更多数据）运行脚本</span><br></pre></td></tr></table></figure>
+<h4 id="HTTP状态消息"><a href="#HTTP状态消息" class="headerlink" title="HTTP状态消息"></a>HTTP状态消息</h4><p>当浏览器从 web 服务器请求服务时，可能会发生错误。返回一系列状态码。</p>
+<h5 id="1xx信息"><a href="#1xx信息" class="headerlink" title="1xx信息"></a>1xx信息</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">消息:	描述:</span><br><span class="line">100 Continue	服务器仅接收到部分请求，但是一旦服务器并没有拒绝该请求，客户端应该继续发送其余的请求。</span><br><span class="line">101 Switching Protocols	服务器转换协议：服务器将遵从客户的请求转换到另外一种协议。</span><br></pre></td></tr></table></figure>
+<h5 id="2xx成功"><a href="#2xx成功" class="headerlink" title="2xx成功"></a>2xx成功</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">消息:	描述:</span><br><span class="line">200 OK	请求成功（其后是对GET和POST请求的应答文档。）</span><br><span class="line">201 Created	请求被创建完成，同时新的资源被创建。</span><br><span class="line">202 Accepted	供处理的请求已被接受，但是处理未完成。</span><br><span class="line">203 Non-authoritative Information	文档已经正常地返回，但一些应答头可能不正确，因为使用的是文档的拷贝。</span><br><span class="line">204 No Content	没有新文档。浏览器应该继续显示原来的文档。如果用户定期地刷新页面，而Servlet可以确定用户文档足够新，这个状态代码是很有用的。</span><br><span class="line">205 Reset Content	没有新文档。但浏览器应该重置它所显示的内容。用来强制浏览器清除表单输入内容。</span><br><span class="line">206 Partial Content	客户发送了一个带有Range头的GET请求，服务器完成了它。</span><br></pre></td></tr></table></figure>
+<h5 id="3xx重定向"><a href="#3xx重定向" class="headerlink" title="3xx重定向"></a>3xx重定向</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">300 Multiple Choices	多重选择。链接列表。用户可以选择某链接到达目的地。最多允许五个地址。</span><br><span class="line">301 Moved Permanently	所请求的页面已经转移至新的url。</span><br><span class="line">302 Found	所请求的页面已经临时转移至新的url。</span><br><span class="line">303 See Other	所请求的页面可在别的url下被找到。</span><br><span class="line">304 Not Modified	未按预期修改文档。客户端有缓冲的文档并发出了一个条件性的请求（一般是提供If-Modified-Since头表示客户只想比指定日期更新的文档）。服务器告诉客户，原来缓冲的文档还可以继续使用。</span><br><span class="line">305 Use Proxy	客户请求的文档应该通过Location头所指明的代理服务器提取。</span><br><span class="line">306 Unused	此代码被用于前一版本。目前已不再使用，但是代码依然被保留。</span><br><span class="line">307 Temporary Redirect	被请求的页面已经临时移至新的url。</span><br></pre></td></tr></table></figure>
+<h5 id="4xx客户端错误"><a href="#4xx客户端错误" class="headerlink" title="4xx客户端错误"></a>4xx客户端错误</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">消息:	描述:</span><br><span class="line">400 Bad Request	服务器未能理解请求。</span><br><span class="line">401 Unauthorized	被请求的页面需要用户名和密码。</span><br><span class="line">402 Payment Required	此代码尚无法使用。</span><br><span class="line">403 Forbidden	对被请求页面的访问被禁止。</span><br><span class="line">404 Not Found	服务器无法找到被请求的页面。</span><br><span class="line">405 Method Not Allowed	请求中指定的方法不被允许。</span><br><span class="line">406 Not Acceptable	服务器生成的响应无法被客户端所接受。</span><br><span class="line">407 Proxy Authentication Required	用户必须首先使用代理服务器进行验证，这样请求才会被处理。</span><br><span class="line">408 Request Timeout	请求超出了服务器的等待时间。</span><br><span class="line">409 Conflict	由于冲突，请求无法被完成。</span><br><span class="line">410 Gone	被请求的页面不可用。</span><br><span class="line">411 Length Required	&quot;Content-Length&quot; 未被定义。如果无此内容，服务器不会接受请求。</span><br><span class="line">412 Precondition Failed	请求中的前提条件被服务器评估为失败。</span><br><span class="line">413 Request Entity Too Large	由于所请求的实体的太大，服务器不会接受请求。</span><br><span class="line">414 Request-url Too Long	由于url太长，服务器不会接受请求。当post请求被转换为带有很长的查询信息的get请求时，就会发生这种情况。</span><br><span class="line">415 Unsupported Media Type	由于媒介类型不被支持，服务器不会接受请求。</span><br><span class="line">416 	服务器不能满足客户在请求中指定的Range头。</span><br><span class="line">417 Expectation Failed</span><br></pre></td></tr></table></figure>
+<h5 id="5xx服务器错误"><a href="#5xx服务器错误" class="headerlink" title="5xx服务器错误"></a>5xx服务器错误</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">消息:	描述:</span><br><span class="line">500 Internal Server Error	请求未完成。服务器遇到不可预知的情况。</span><br><span class="line">501 Not Implemented	请求未完成。服务器不支持所请求的功能。</span><br><span class="line">502 Bad Gateway	请求未完成。服务器从上游服务器收到一个无效的响应。</span><br><span class="line">503 Service Unavailable	请求未完成。服务器临时过载或当机。</span><br><span class="line">504 Gateway Timeout	网关超时。</span><br><span class="line">505 HTTP Version Not Supported	服务器不支持请求中指明的HTTP协议版本。</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/uploads/images/reward/wechat-reward-image.jpg" alt="ethancalc 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/uploads/images/reward/alipay-reward-image.jpg" alt="ethancalc 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/大前端/" rel="tag"><i class="fa fa-tag"></i> 大前端</a>
+          
+            <a href="/tags/HTML/" rel="tag"><i class="fa fa-tag"></i> HTML</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/23/web/jQuery/jQuery笔记/" rel="next" title="jQuery笔记">
+                <i class="fa fa-chevron-left"></i> jQuery笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/02/14/web/CSS/CSS3笔记/" rel="prev" title="CSS3笔记">
+                CSS3笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="SOHUCS"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="/uploads/images/head/avatar.jpg" alt="ethancalc">
+          
+            <p class="site-author-name" itemprop="name">ethancalc</p>
+            <p class="site-description motion-element" itemprop="description">操千曲而后晓声，观千剑而后识器.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ethancalc" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.google.com/" title="google" target="_blank">google</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#文章概述"><span class="nav-number">1.</span> <span class="nav-text">文章概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#视频"><span class="nav-number">2.</span> <span class="nav-text">视频</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#语法格式"><span class="nav-number">2.1.</span> <span class="nav-text">语法格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#视频格式"><span class="nav-number">2.2.</span> <span class="nav-text">视频格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#标签属性"><span class="nav-number">2.3.</span> <span class="nav-text">标签属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DOM控制"><span class="nav-number">2.4.</span> <span class="nav-text">DOM控制</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#音频"><span class="nav-number">3.</span> <span class="nav-text">音频</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#语法格式-1"><span class="nav-number">3.1.</span> <span class="nav-text">语法格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#音频格式"><span class="nav-number">3.2.</span> <span class="nav-text">音频格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#标签属性-1"><span class="nav-number">3.3.</span> <span class="nav-text">标签属性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拖放"><span class="nav-number">4.</span> <span class="nav-text">拖放</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概述"><span class="nav-number">4.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#拖放步骤"><span class="nav-number">4.2.</span> <span class="nav-text">拖放步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#配置被拖动元素"><span class="nav-number">4.2.1.</span> <span class="nav-text">配置被拖动元素</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#配置目标容器"><span class="nav-number">4.2.2.</span> <span class="nav-text">配置目标容器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#示例代码"><span class="nav-number">4.2.3.</span> <span class="nav-text">示例代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考"><span class="nav-number">4.3.</span> <span class="nav-text">参考</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#DataTransfer"><span class="nav-number">4.3.1.</span> <span class="nav-text">DataTransfer</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#方法"><span class="nav-number">4.3.1.1.</span> <span class="nav-text">方法</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Canvas"><span class="nav-number">5.</span> <span class="nav-text">Canvas</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概述-1"><span class="nav-number">5.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#与svg比较"><span class="nav-number">5.2.</span> <span class="nav-text">与svg比较</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Canvas支持"><span class="nav-number">5.3.</span> <span class="nav-text">Canvas支持</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2D图"><span class="nav-number">5.4.</span> <span class="nav-text">2D图</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2D-Canvas对象"><span class="nav-number">5.4.1.</span> <span class="nav-text">2D Canvas对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#坐标系统"><span class="nav-number">5.4.2.</span> <span class="nav-text">坐标系统</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#绘制线条"><span class="nav-number">5.4.3.</span> <span class="nav-text">绘制线条</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#路径图形"><span class="nav-number">5.4.4.</span> <span class="nav-text">路径图形</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#绘制文本"><span class="nav-number">5.4.5.</span> <span class="nav-text">绘制文本</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#带阴影的文字"><span class="nav-number">5.4.5.1.</span> <span class="nav-text">带阴影的文字</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#渐变"><span class="nav-number">5.4.6.</span> <span class="nav-text">渐变</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#图像"><span class="nav-number">5.4.7.</span> <span class="nav-text">图像</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#绘制其他"><span class="nav-number">5.4.8.</span> <span class="nav-text">绘制其他</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3D图"><span class="nav-number">5.5.</span> <span class="nav-text">3D图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内联SVG"><span class="nav-number">6.</span> <span class="nav-text">内联SVG</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#参考网站"><span class="nav-number">6.1.</span> <span class="nav-text">参考网站</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#概念"><span class="nav-number">6.2.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特点"><span class="nav-number">6.3.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#与canvas比较"><span class="nav-number">6.4.</span> <span class="nav-text">与canvas比较</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#浏览器支持"><span class="nav-number">6.5.</span> <span class="nav-text">浏览器支持</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#写入HTML"><span class="nav-number">6.6.</span> <span class="nav-text">写入HTML</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地理定位"><span class="nav-number">7.</span> <span class="nav-text">地理定位</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Navigator获取"><span class="nav-number">7.1.</span> <span class="nav-text">Navigator获取</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web存储"><span class="nav-number">8.</span> <span class="nav-text">Web存储</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#localStorage"><span class="nav-number">8.1.</span> <span class="nav-text">localStorage</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#操作"><span class="nav-number">8.1.1.</span> <span class="nav-text">操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#浏览器支持-1"><span class="nav-number">8.1.2.</span> <span class="nav-text">浏览器支持</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sessionStorage"><span class="nav-number">8.2.</span> <span class="nav-text">sessionStorage</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用程序缓存"><span class="nav-number">9.</span> <span class="nav-text">应用程序缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#优势"><span class="nav-number">9.1.</span> <span class="nav-text">优势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#浏览器支持-2"><span class="nav-number">9.2.</span> <span class="nav-text">浏览器支持</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#缓存"><span class="nav-number">9.3.</span> <span class="nav-text">缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#manifest文件"><span class="nav-number">9.3.1.</span> <span class="nav-text">manifest文件</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更新缓存"><span class="nav-number">9.4.</span> <span class="nav-text">更新缓存</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web-Worker"><span class="nav-number">10.</span> <span class="nav-text">Web Worker</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#浏览器支持-3"><span class="nav-number">10.1.</span> <span class="nav-text">浏览器支持</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#检测是否支持"><span class="nav-number">10.1.1.</span> <span class="nav-text">检测是否支持</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#语法"><span class="nav-number">10.2.</span> <span class="nav-text">语法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器发送事件"><span class="nav-number">11.</span> <span class="nav-text">服务器发送事件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Server-Sent事件"><span class="nav-number">11.1.</span> <span class="nav-text">Server-Sent事件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#EventSource对象"><span class="nav-number">11.2.</span> <span class="nav-text">EventSource对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#浏览器支持-4"><span class="nav-number">11.3.</span> <span class="nav-text">浏览器支持</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#js验证支持"><span class="nav-number">11.3.1.</span> <span class="nav-text">js验证支持</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用步骤"><span class="nav-number">11.4.</span> <span class="nav-text">使用步骤</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表单"><span class="nav-number">12.</span> <span class="nav-text">表单</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#输入类型"><span class="nav-number">12.1.</span> <span class="nav-text">输入类型</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#email"><span class="nav-number">12.1.1.</span> <span class="nav-text">email</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#url"><span class="nav-number">12.1.2.</span> <span class="nav-text">url</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#number"><span class="nav-number">12.1.3.</span> <span class="nav-text">number</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#range"><span class="nav-number">12.1.4.</span> <span class="nav-text">range</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Date-Pickers"><span class="nav-number">12.1.5.</span> <span class="nav-text">Date Pickers</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#search"><span class="nav-number">12.1.6.</span> <span class="nav-text">search</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#color"><span class="nav-number">12.1.7.</span> <span class="nav-text">color</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新增表单元素"><span class="nav-number">12.2.</span> <span class="nav-text">新增表单元素</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#datalist"><span class="nav-number">12.2.1.</span> <span class="nav-text">datalist</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#keygen"><span class="nav-number">12.2.2.</span> <span class="nav-text">keygen</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#output"><span class="nav-number">12.2.3.</span> <span class="nav-text">output</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新增表单属性"><span class="nav-number">12.3.</span> <span class="nav-text">新增表单属性</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#autocomplete"><span class="nav-number">12.3.1.</span> <span class="nav-text">autocomplete</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#autofocus"><span class="nav-number">12.3.2.</span> <span class="nav-text">autofocus</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#form"><span class="nav-number">12.3.3.</span> <span class="nav-text">form</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#表单重写属性"><span class="nav-number">12.3.4.</span> <span class="nav-text">表单重写属性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#list"><span class="nav-number">12.3.5.</span> <span class="nav-text">list</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#min、max和step"><span class="nav-number">12.3.6.</span> <span class="nav-text">min、max和step</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#multiple"><span class="nav-number">12.3.7.</span> <span class="nav-text">multiple</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#novalidate"><span class="nav-number">12.3.8.</span> <span class="nav-text">novalidate</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#pattern"><span class="nav-number">12.3.9.</span> <span class="nav-text">pattern</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#placeholder"><span class="nav-number">12.3.10.</span> <span class="nav-text">placeholder</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#required"><span class="nav-number">12.3.11.</span> <span class="nav-text">required</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考-1"><span class="nav-number">13.</span> <span class="nav-text">参考</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#参考网站-1"><span class="nav-number">13.1.</span> <span class="nav-text">参考网站</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Canvas2D"><span class="nav-number">13.2.</span> <span class="nav-text">Canvas2D</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#颜色-样式和阴影"><span class="nav-number">13.2.1.</span> <span class="nav-text">颜色.样式和阴影</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#线条样式"><span class="nav-number">13.2.2.</span> <span class="nav-text">线条样式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#矩形"><span class="nav-number">13.2.3.</span> <span class="nav-text">矩形</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#路径"><span class="nav-number">13.2.4.</span> <span class="nav-text">路径</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#转换"><span class="nav-number">13.2.5.</span> <span class="nav-text">转换</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#文本"><span class="nav-number">13.2.6.</span> <span class="nav-text">文本</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#图像绘制"><span class="nav-number">13.2.7.</span> <span class="nav-text">图像绘制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#像素操作"><span class="nav-number">13.2.8.</span> <span class="nav-text">像素操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#合成"><span class="nav-number">13.2.9.</span> <span class="nav-text">合成</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#其他"><span class="nav-number">13.2.10.</span> <span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#视频-音频"><span class="nav-number">13.3.</span> <span class="nav-text">视频/音频</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#方法-1"><span class="nav-number">13.3.1.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#属性"><span class="nav-number">13.3.2.</span> <span class="nav-text">属性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#事件"><span class="nav-number">13.3.3.</span> <span class="nav-text">事件</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全局属性"><span class="nav-number">13.4.</span> <span class="nav-text">全局属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全局事件属性"><span class="nav-number">13.5.</span> <span class="nav-text">全局事件属性</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Window事件属性"><span class="nav-number">13.5.1.</span> <span class="nav-text">Window事件属性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Form事件"><span class="nav-number">13.5.2.</span> <span class="nav-text">Form事件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Keyboard事件"><span class="nav-number">13.5.3.</span> <span class="nav-text">Keyboard事件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Mouse事件"><span class="nav-number">13.5.4.</span> <span class="nav-text">Mouse事件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Media事件"><span class="nav-number">13.5.5.</span> <span class="nav-text">Media事件</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP状态消息"><span class="nav-number">13.6.</span> <span class="nav-text">HTTP状态消息</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1xx信息"><span class="nav-number">13.6.1.</span> <span class="nav-text">1xx信息</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2xx成功"><span class="nav-number">13.6.2.</span> <span class="nav-text">2xx成功</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3xx重定向"><span class="nav-number">13.6.3.</span> <span class="nav-text">3xx重定向</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4xx客户端错误"><span class="nav-number">13.6.4.</span> <span class="nav-text">4xx客户端错误</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5xx服务器错误"><span class="nav-number">13.6.5.</span> <span class="nav-text">5xx服务器错误</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ethancalc</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytFhNP7b';
+      var conf = 'a8f0e5bccaabb0580489df2a08f8a24f';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+</body>
+</html>
+

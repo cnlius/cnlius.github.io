@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="大前端,nodejs,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/logo.jpg?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="文章概述 本篇文章介绍koa2框架的使用。">
+<meta name="keywords" content="大前端,nodejs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="细说koa2框架">
+<meta property="og:url" content="http://liusong.site/2017/03/11/web/nodejs/细说koa2框架/index.html">
+<meta property="og:site_name" content="挑灯看剑">
+<meta property="og:description" content="文章概述 本篇文章介绍koa2框架的使用。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-10T05:08:14.776Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="细说koa2框架">
+<meta name="twitter:description" content="文章概述 本篇文章介绍koa2框架的使用。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liusong.site/2017/03/11/web/nodejs/细说koa2框架/">
+
+
+
+
+
+  <title>细说koa2框架 | 挑灯看剑</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <a href="https://github.com/ethancalc"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/121cd7cbdc3e4855075ea8b558508b91ac463ac2/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_green_007200.png"></a>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">挑灯看剑</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Personal Blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            文章列表
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            联系我
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liusong.site/2017/03/11/web/nodejs/细说koa2框架/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ethancalc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/images/head/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="挑灯看剑">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">细说koa2框架</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-11T00:00:00+08:00">
+                2017-03-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/大前端/" itemprop="url" rel="index">
+                    <span itemprop="name">大前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/大前端/nodejs/" itemprop="url" rel="index">
+                    <span itemprop="name">nodejs</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/03/11/web/nodejs/细说koa2框架/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2017/03/11/web/nodejs/细说koa2框架/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </span></div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="文章概述"><a href="#文章概述" class="headerlink" title="文章概述"></a>文章概述</h3><blockquote>
+<p>本篇文章介绍koa2框架的使用。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="koa历史"><a href="#koa历史" class="headerlink" title="koa历史"></a>koa历史</h3><ul>
+<li>基于2.x</li>
+</ul>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
+<li>Koa GitHub地址：<a href="https://github.com/koajs/koa" target="_blank" rel="noopener">https://github.com/koajs/koa</a></li>
+</ul>
+<h3 id="安装koa"><a href="#安装koa" class="headerlink" title="安装koa"></a>安装koa</h3><ol>
+<li>npm安装koa到node_modules：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install koa --save</span><br></pre></td></tr></table></figure>
+<ol>
+<li>js文件中引入：</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="koa概述"><a href="#koa概述" class="headerlink" title="koa概述"></a>koa概述</h3><p>koa是Express的下一代基于Node.js的web框架，目前有1.x和2.0两个版本，此处基于2.x版本；</p>
+<h4 id="异步概念"><a href="#异步概念" class="headerlink" title="异步概念"></a>异步概念</h4><p>koa2完全使用Promise并配合async来实现异步， koa可以把很多async函数组成一个处理链；</p>
+<h5 id="异步执行流程"><a href="#异步执行流程" class="headerlink" title="异步执行流程"></a>异步执行流程</h5><p>每收到一个http请求，koa就会调用通过app.use()注册的async函数，并传入ctx和next参数，async函数内部，用await next()来调用下一个async函数，async函数按顺序用app.use()注册，next函数也是按注册顺序调用，如果一个async函数内没有调用await next()，则后续的async函数将不再执行。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">    <span class="keyword">await</span> next();</span><br><span class="line">    <span class="keyword">var</span> data = <span class="keyword">await</span> doReadFile();</span><br><span class="line">    ctx.response.type = <span class="string">'text/plain'</span>;</span><br><span class="line">    ctx.response.body = data;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">【async异步函数参数】</span><br><span class="line">- ctx：是由koa传入的封装了request和response的变量，可对ctx操作，设置返回内容;</span><br><span class="line">  ----------------------------------</span><br><span class="line">  ctx.url相当于ctx.request.url;</span><br><span class="line">  ctx.type相当于ctx.response.type;</span><br><span class="line">  ----------------------------------</span><br><span class="line">- next：是koa传入的将要处理的下一个异步函数；</span><br><span class="line">【wait】</span><br><span class="line">- wait作用是等待出入的promise执行结束；</span><br></pre></td></tr></table></figure>
+<h5 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h5><p>每个async函数称为middleware，这些middleware可以组合起来，完成很多有用的功能。</p>
+<h3 id="koa-bodyparser模块"><a href="#koa-bodyparser模块" class="headerlink" title="koa-bodyparser模块"></a>koa-bodyparser模块</h3><p>详见：HTTP服务章节；</p>
+<ul>
+<li>koa-bodyparser库用来解析原始request请求，然后，把解析后的参数，绑定到ctx.request.body中。</li>
+<li>在koa中，我们只需要给ctx.response.body赋值一个JavaScript对象，koa会自动把该对象序列化为JSON并输出到客户端。</li>
+<li>非常适合编写rest-api;</li>
+</ul>
+<h3 id="处理url"><a href="#处理url" class="headerlink" title="处理url"></a>处理url</h3><p>使用koa-router路由来集中处理url.</p>
+<h4 id="koa原生处理"><a href="#koa原生处理" class="headerlink" title="koa原生处理"></a>koa原生处理</h4><p>koa原生api可以处理url，来响应不同的请求，如下，但是当支持的请求越多就会越混乱；<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 导入koa</span></span><br><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个Koa对象表示web app本身:</span></span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</span><br><span class="line"></span><br><span class="line">app.use(<span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (ctx.request.path === <span class="string">'/'</span>) &#123;</span><br><span class="line">        ctx.response.body = <span class="string">'index page'</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">await</span> next();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.use(<span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (ctx.request.path === <span class="string">'/test'</span>) &#123;</span><br><span class="line">        ctx.response.body = <span class="string">'TEST page'</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">await</span> next();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.use(<span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (ctx.request.path === <span class="string">'/error'</span>) &#123;</span><br><span class="line">        ctx.response.body = <span class="string">'ERROR page'</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">await</span> next();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在端口3000监听:</span></span><br><span class="line">app.listen(<span class="number">3000</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'server on http://localhost:3000/'</span>);</span><br></pre></td></tr></table></figure></p>
+<h4 id="koa-router"><a href="#koa-router" class="headerlink" title="koa-router"></a>koa-router</h4><p>为了处理URL，我们需要引入koa-router这个middleware，让它负责处理URL映射，这样开发者不用每次都去调用await next(),而只需要关心请求的处理。</p>
+<h5 id="get请求"><a href="#get请求" class="headerlink" title="get请求"></a>get请求</h5><p>使用router.get(‘/path’, async fn)来注册一个GET请求。</p>
+<h6 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h6><ul>
+<li>可以在请求路径中使用带变量的/hello/:name，变量可以通过ctx.params.name访问。</li>
+</ul>
+<h6 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h6><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 注意require('koa-router')返回的是函数:</span></span><br><span class="line"><span class="keyword">const</span> router = <span class="built_in">require</span>(<span class="string">'koa-router'</span>)();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</span><br><span class="line"></span><br><span class="line"><span class="comment">// log request URL:</span></span><br><span class="line">app.use(<span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`Process <span class="subst">$&#123;ctx.request.method&#125;</span> <span class="subst">$&#123;ctx.request.url&#125;</span>...`</span>);</span><br><span class="line">    <span class="keyword">await</span> next();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// add url-route:</span></span><br><span class="line">router.get(<span class="string">'/hello/:name'</span>, <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">    <span class="keyword">var</span> name = ctx.params.name;</span><br><span class="line">    ctx.response.body = <span class="string">`&lt;h1&gt;Hello, <span class="subst">$&#123;name&#125;</span>!&lt;/h1&gt;`</span>;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">router.get(<span class="string">'/'</span>, <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">    ctx.response.body = <span class="string">'&lt;h1&gt;Index&lt;/h1&gt;'</span>;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// add router middleware:</span></span><br><span class="line">app.use(router.routes());</span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">3000</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'server on http://localhost:3000/'</span>);</span><br></pre></td></tr></table></figure>
+<h5 id="post请求"><a href="#post请求" class="headerlink" title="post请求"></a>post请求</h5><h6 id="请求参数"><a href="#请求参数" class="headerlink" title="请求参数"></a>请求参数</h6><blockquote>
+<p>用post请求处理URL时，post请求通常会发送一个表单，或者JSON，它作为request的body发送，但是Node.js原始request对象、koa提供的request对象，都不提供解析request的body的功能。</p>
+</blockquote>
+<p>koa-bodyparser库用来解析原始request请求，然后，把解析后的参数，绑定到ctx.request.body中。</p>
+<ol>
+<li>安装koa-bodyparser库：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install --save koa-bodyparser</span><br></pre></td></tr></table></figure>
+<ol>
+<li>导入,在router.routes()之前调用：</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> bodyParser = <span class="built_in">require</span>(<span class="string">'koa-bodyparser'</span>);</span><br><span class="line"><span class="comment">//...</span></span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</span><br><span class="line"><span class="comment">//...</span></span><br><span class="line">app.use(bodyParser());</span><br><span class="line">app.use(router.routes());</span><br></pre></td></tr></table></figure>
+<h6 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h6><p>一个post请求登录的实例<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 注意require('koa-router')返回的是函数:</span></span><br><span class="line"><span class="keyword">const</span> router = <span class="built_in">require</span>(<span class="string">'koa-router'</span>)();</span><br><span class="line"><span class="keyword">const</span> bodyParser = <span class="built_in">require</span>(<span class="string">'koa-bodyparser'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</span><br><span class="line"></span><br><span class="line"><span class="comment">// log request URL:</span></span><br><span class="line">app.use(<span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`Process <span class="subst">$&#123;ctx.request.method&#125;</span> <span class="subst">$&#123;ctx.request.url&#125;</span>...`</span>);</span><br><span class="line">    <span class="keyword">await</span> next();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">router.get(<span class="string">'/'</span>, <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">    ctx.response.body = <span class="string">`&lt;h1&gt;Index&lt;/h1&gt;</span></span><br><span class="line"><span class="string">        &lt;form action="/signin" method="post"&gt;</span></span><br><span class="line"><span class="string">            &lt;p&gt;Name: &lt;input name="name" value="koa"&gt;&lt;/p&gt;</span></span><br><span class="line"><span class="string">            &lt;p&gt;Password: &lt;input name="password" type="password"&gt;&lt;/p&gt;</span></span><br><span class="line"><span class="string">            &lt;p&gt;&lt;input type="submit" value="Submit"&gt;&lt;/p&gt;</span></span><br><span class="line"><span class="string">        &lt;/form&gt;`</span>;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">router.post(<span class="string">'/signin'</span>, <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">    <span class="keyword">var</span></span><br><span class="line">        name = ctx.request.body.name || <span class="string">''</span>,</span><br><span class="line">        password = ctx.request.body.password || <span class="string">''</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`signin with name: <span class="subst">$&#123;name&#125;</span>, password: <span class="subst">$&#123;password&#125;</span>`</span>);</span><br><span class="line">    <span class="keyword">if</span> (name === <span class="string">'koa'</span> &amp;&amp; password === <span class="string">'12345'</span>) &#123;</span><br><span class="line">        ctx.response.body = <span class="string">`&lt;h1&gt;Welcome, <span class="subst">$&#123;name&#125;</span>!&lt;/h1&gt;`</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        ctx.response.body = <span class="string">`&lt;h1&gt;Login failed!&lt;/h1&gt;</span></span><br><span class="line"><span class="string">        &lt;p&gt;&lt;a href="/"&gt;Try again&lt;/a&gt;&lt;/p&gt;`</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.use(bodyParser());</span><br><span class="line">app.use(router.routes());</span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">3000</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'server on http://localhost:3000/'</span>);</span><br></pre></td></tr></table></figure></p>
+<h3 id="HTTP-API封装"><a href="#HTTP-API封装" class="headerlink" title="HTTP-API封装"></a>HTTP-API封装</h3><ol>
+<li>创建controller文件夹，用来处理请求业务，包含hell.js和index.js文件；</li>
+</ol>
+<ul>
+<li>hello.js文件，处理hello页面相关请求：</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> fn_hello = <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> name = ctx.params.name;</span><br><span class="line">    ctx.response.body = <span class="string">`&lt;h1&gt;Hello, <span class="subst">$&#123;name&#125;</span>!&lt;/h1&gt;`</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    <span class="string">'GET /hello/:name'</span>: fn_hello</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>index.js登录页面处理登录相关请求：</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> fn_index = <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">    ctx.response.body = <span class="string">`&lt;h1&gt;Index&lt;/h1&gt;</span></span><br><span class="line"><span class="string">        &lt;form action="/signin" method="post"&gt;</span></span><br><span class="line"><span class="string">            &lt;p&gt;Name: &lt;input name="name" value="koa"&gt;&lt;/p&gt;</span></span><br><span class="line"><span class="string">            &lt;p&gt;Password: &lt;input name="password" type="password"&gt;&lt;/p&gt;</span></span><br><span class="line"><span class="string">            &lt;p&gt;&lt;input type="submit" value="Submit"&gt;&lt;/p&gt;</span></span><br><span class="line"><span class="string">        &lt;/form&gt;`</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> fn_signin = <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span></span><br><span class="line">        name = ctx.request.body.name || <span class="string">''</span>,</span><br><span class="line">        password = ctx.request.body.password || <span class="string">''</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`signin with name: <span class="subst">$&#123;name&#125;</span>, password: <span class="subst">$&#123;password&#125;</span>`</span>);</span><br><span class="line">    <span class="keyword">if</span> (name === <span class="string">'koa'</span> &amp;&amp; password === <span class="string">'12345'</span>) &#123;</span><br><span class="line">        ctx.response.body = <span class="string">`&lt;h1&gt;Welcome, <span class="subst">$&#123;name&#125;</span>!&lt;/h1&gt;`</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        ctx.response.body = <span class="string">`&lt;h1&gt;Login failed!&lt;/h1&gt;</span></span><br><span class="line"><span class="string">        &lt;p&gt;&lt;a href="/"&gt;Try again&lt;/a&gt;&lt;/p&gt;`</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    <span class="string">'GET /'</span>: fn_index,</span><br><span class="line">    <span class="string">'POST /signin'</span>: fn_signin</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>controller.js文件，用于扫描controller目录里面的js请求处理文件；</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// add url-route in /controllers:</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addMapping</span>(<span class="params">router, mapping</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> url <span class="keyword">in</span> mapping) &#123;</span><br><span class="line">        <span class="keyword">if</span> (url.startsWith(<span class="string">'GET '</span>)) &#123;</span><br><span class="line">            <span class="keyword">let</span> path = url.substring(<span class="number">4</span>);</span><br><span class="line">            router.get(path, mapping[url]);</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">`register URL mapping: GET <span class="subst">$&#123;path&#125;</span>`</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (url.startsWith(<span class="string">'POST '</span>)) &#123;</span><br><span class="line">            <span class="keyword">let</span> path = url.substring(<span class="number">5</span>);</span><br><span class="line">            router.post(path, mapping[url]);</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">`register URL mapping: POST <span class="subst">$&#123;path&#125;</span>`</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (url.startsWith(<span class="string">'PUT '</span>)) &#123;</span><br><span class="line">            <span class="keyword">let</span> path = url.substring(<span class="number">4</span>);</span><br><span class="line">            router.put(path, mapping[url]);</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">`register URL mapping: PUT <span class="subst">$&#123;path&#125;</span>`</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (url.startsWith(<span class="string">'DELETE '</span>)) &#123;</span><br><span class="line">            <span class="keyword">let</span> path = url.substring(<span class="number">7</span>);</span><br><span class="line">            router.del(path, mapping[url]);</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">`register URL mapping: DELETE <span class="subst">$&#123;path&#125;</span>`</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">`invalid URL: <span class="subst">$&#123;url&#125;</span>`</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addControllers</span>(<span class="params">router, dir</span>) </span>&#123;</span><br><span class="line">    fs.readdirSync(__dirname + <span class="string">'/'</span> + dir).filter(<span class="function">(<span class="params">f</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> f.endsWith(<span class="string">'.js'</span>);</span><br><span class="line">    &#125;).forEach(<span class="function">(<span class="params">f</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`process controller: <span class="subst">$&#123;f&#125;</span>...`</span>);</span><br><span class="line">        <span class="keyword">let</span> mapping = <span class="built_in">require</span>(__dirname + <span class="string">'/'</span> + dir + <span class="string">'/'</span> + f);</span><br><span class="line">        addMapping(router, mapping);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params">dir</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span></span><br><span class="line">        controllers_dir = dir || <span class="string">'controllers'</span>,</span><br><span class="line">        router = <span class="built_in">require</span>(<span class="string">'koa-router'</span>)();</span><br><span class="line">    addControllers(router, controllers_dir);</span><br><span class="line">    <span class="keyword">return</span> router.routes();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>app.js作为程序的入口： </li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</span><br><span class="line"><span class="keyword">const</span> bodyParser = <span class="built_in">require</span>(<span class="string">'koa-bodyparser'</span>);</span><br><span class="line"><span class="keyword">const</span> controller = <span class="built_in">require</span>(<span class="string">'./controller'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</span><br><span class="line"></span><br><span class="line"><span class="comment">// log request URL:</span></span><br><span class="line">app.use(<span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`Process <span class="subst">$&#123;ctx.request.method&#125;</span> <span class="subst">$&#123;ctx.request.url&#125;</span>...`</span>);</span><br><span class="line">    <span class="keyword">await</span> next();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app.use(bodyParser());</span><br><span class="line">app.use(controller());</span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">3000</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'http://localhost:3000'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="REST-API"><a href="#REST-API" class="headerlink" title="REST-API"></a>REST-API</h3><h4 id="规范"><a href="#规范" class="headerlink" title="规范"></a>规范</h4><p>编写REST API，实际上就是编写处理HTTP请求的async函数，不过，REST请求和普通的HTTP请求有几个特殊的地方：</p>
+<ol>
+<li>REST请求仍然是标准的HTTP请求，但是，除了GET请求外，POST、PUT等请求的body是JSON数据格式，请求的Content-Type为application/json；</li>
+<li>REST响应返回的结果是JSON数据格式，因此，响应的Content-Type也是application/json。</li>
+<li>REST请求只是一种请求类型和响应类型均为JSON的HTTP请求；</li>
+</ol>
+<h4 id="rest-url示例"><a href="#rest-url示例" class="headerlink" title="rest-url示例"></a>rest-url示例</h4><ul>
+<li>GET请求：获取所有Product的URL：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /api/products</span><br></pre></td></tr></table></figure>
+<ul>
+<li>GET请求：id为123的Product的URL:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /api/products/123</span><br></pre></td></tr></table></figure>
+<ul>
+<li>GET请求：资源还可以按层次组织。例如，获取某个Product的所有评论，使用：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /api/products/123/reviews</span><br></pre></td></tr></table></figure>
+<ul>
+<li>GET请求：当我们只需要获取部分数据时，可通过参数限制返回的结果集，例如，返回第2页评论，每页10项，按时间排序：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /api/products/123/reviews?page=2&amp;size=10&amp;sort=time</span><br></pre></td></tr></table></figure>
+<ul>
+<li>POST请求: 新建一个Product，JSON数据参数包含在body中，URL如下：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">POST /api/products</span><br></pre></td></tr></table></figure>
+<ul>
+<li>PUT请求: 更新一个Product使用PUT请求，例如，更新id为123的Product，其URL如下：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PUT /api/products/123</span><br></pre></td></tr></table></figure>
+<ul>
+<li>DELETE请求：删除一个Product使用DELETE请求，例如，删除id为123的Product，其URL如下：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE /api/products/123</span><br></pre></td></tr></table></figure>
+<h4 id="编写rest-api"><a href="#编写rest-api" class="headerlink" title="编写rest-api"></a>编写rest-api</h4><p>这里使用koa-bodyparser模块库来让ctx.request.body直接访问解析后的JavaScript对象。</p>
+<blockquote>
+<p>在koa中处理REST请求是非常简单的。bodyParser()这个middleware可以解析请求的JSON数据并绑定到ctx.request.body上，输出JSON时我们先指定ctx.response.type = ‘application/json’，然后把JavaScript对象赋值给ctx.response.body就完成了REST请求的处理。</p>
+</blockquote>
+<h5 id="示例-2"><a href="#示例-2" class="headerlink" title="示例"></a>示例</h5><p>创建Product.js处理product相关的api请求：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 存储Product列表，相当于模拟数据库:</span></span><br><span class="line"><span class="keyword">let</span> products = [&#123;</span><br><span class="line">    name: <span class="string">'iPhone'</span>,</span><br><span class="line">    price: <span class="number">6999</span></span><br><span class="line">&#125;, &#123;</span><br><span class="line">    name: <span class="string">'Kindle'</span>,</span><br><span class="line">    price: <span class="number">999</span></span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    <span class="comment">// localhost:3000/api/products</span></span><br><span class="line">    <span class="string">'GET /api/products'</span>: <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">        <span class="comment">// 设置Content-Type:</span></span><br><span class="line">        ctx.response.type = <span class="string">'application/json'</span>;</span><br><span class="line">        <span class="comment">// 设置Response Body:</span></span><br><span class="line">        <span class="comment">// json object</span></span><br><span class="line">        <span class="comment">// ctx.response.body = &#123;</span></span><br><span class="line">        <span class="comment">//     products: products</span></span><br><span class="line">        <span class="comment">// &#125;;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// json array</span></span><br><span class="line">        ctx.response.body = products;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// url：localhost:3000/api/products</span></span><br><span class="line">    <span class="comment">// Content-Type：application/json</span></span><br><span class="line">    <span class="comment">// params-style-body: &#123;"name":"XBox","price":3999&#125;</span></span><br><span class="line">    <span class="string">'POST /api/products'</span>: <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">        <span class="keyword">let</span> p = &#123;</span><br><span class="line">            name: ctx.request.body.name,</span><br><span class="line">            price: ctx.request.body.price</span><br><span class="line">        &#125;;</span><br><span class="line">        products.push(p);</span><br><span class="line">        ctx.response.type = <span class="string">'application/json'</span>;</span><br><span class="line">        ctx.response.body = p;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h3 id="Nunjucks"><a href="#Nunjucks" class="headerlink" title="Nunjucks"></a>Nunjucks</h3><p><a href="https://mozilla.github.io/nunjucks/cn/getting-started.html" target="_blank" rel="noopener">官方文档</a></p>
+<p>Nunjucks官方文档自带中文版翻译；</p>
+<h4 id="模板引擎"><a href="#模板引擎" class="headerlink" title="模板引擎"></a>模板引擎</h4><p>Nunjucks是一个模板引擎，模板引擎就是基于模板配合数据构造出字符串输出的一个组件。</p>
+<h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>Nunjucks是Mozilla开发的一个纯JavaScript编写的模板引擎，既可以用在Node环境下，又可以运行在浏览器端。但是，主要还是运行在Node环境下，因为浏览器端有更好的模板解决方案，例如MVVM框架。</p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install nunjucks --save</span><br></pre></td></tr></table></figure>
+<h4 id="API"><a href="#API" class="headerlink" title="API"></a>API</h4><p>Nunjucks支持在html模板中使用一些NunjucksAPI的逻辑语法；</p>
+<h5 id="block区块"><a href="#block区块" class="headerlink" title="block区块"></a>block区块</h5><p>模板可以通过block拆分成许多区块；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;% block css %&#125;</span><br><span class="line">&lt;link rel=&quot;stylesheet&quot; href=&quot;app.css&quot; /&gt;</span><br><span class="line">&#123;% endblock %&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="模板继承"><a href="#模板继承" class="headerlink" title="模板继承"></a>模板继承</h5><ol>
+<li>先定义一个基本的网页框架base.html：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;&lt;body&gt;</span><br><span class="line">&#123;% block header %&#125; &lt;h3&gt;Unnamed&lt;/h3&gt; &#123;% endblock %&#125;</span><br><span class="line">&#123;% block body %&#125; &lt;div&gt;No body&lt;/div&gt; &#123;% endblock %&#125;</span><br><span class="line">&#123;% block footer %&#125; &lt;div&gt;copyright&lt;/div&gt; &#123;% endblock %&#125;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>base.html定义了三个可编辑的块，分别命名为header、body和footer。子模板可以有选择地对块进行重新定义：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;% extends &apos;base.html&apos; %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% block header %&#125;&lt;h1&gt;&#123;&#123; header &#125;&#125;&lt;/h1&gt;&#123;% endblock %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% block body %&#125;&lt;p&gt;&#123;&#123; body &#125;&#125;&lt;/p&gt;&#123;% endblock %&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="koa2中使用"><a href="#koa2中使用" class="headerlink" title="koa2中使用"></a>koa2中使用</h4><ol>
+<li>封装nunjucks，为koa异步函数的ctx添加render属性，用于渲染模板：</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 模板引擎nunjucks封装，目的是给异步函数的ctx添加render方法，来调用模板引擎渲染视图</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> nunjucks = <span class="built_in">require</span>(<span class="string">'nunjucks'</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createEnv</span>(<span class="params">path, opts</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span></span><br><span class="line">        autoescape = opts.autoescape === <span class="literal">undefined</span> ? <span class="literal">true</span> : opts.autoescape,</span><br><span class="line">        noCache = opts.noCache || <span class="literal">false</span>,</span><br><span class="line">        watch = opts.watch || <span class="literal">false</span>,</span><br><span class="line">        throwOnUndefined = opts.throwOnUndefined || <span class="literal">false</span>,</span><br><span class="line">        env = <span class="keyword">new</span> nunjucks.Environment(</span><br><span class="line">            <span class="keyword">new</span> nunjucks.FileSystemLoader(path, &#123;</span><br><span class="line">                noCache: noCache,</span><br><span class="line">                watch: watch,</span><br><span class="line">            &#125;), &#123;</span><br><span class="line">                autoescape: autoescape,</span><br><span class="line">                throwOnUndefined: throwOnUndefined</span><br><span class="line">            &#125;);</span><br><span class="line">    <span class="keyword">if</span> (opts.filters) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> f <span class="keyword">in</span> opts.filters) &#123;</span><br><span class="line">            env.addFilter(f, opts.filters[f]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> env;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * ctx添加render方法，调用时会调用nunjucks模板引擎渲染模板</span></span><br><span class="line"><span class="comment"> * @param path</span></span><br><span class="line"><span class="comment"> * @param opts</span></span><br><span class="line"><span class="comment"> * @returns &#123;function(*, *)&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">templating</span>(<span class="params">path, opts</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> env = createEnv(path, opts);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">        ctx.render = <span class="function"><span class="keyword">function</span> (<span class="params">view, model</span>) </span>&#123;</span><br><span class="line">            ctx.response.body = env.render(view, <span class="built_in">Object</span>.assign(&#123;&#125;, ctx.state || &#123;&#125;, model || &#123;&#125;));</span><br><span class="line">            ctx.response.type = <span class="string">'text/html'</span>;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">await</span> next();</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = templating;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>koa中,加载controller网络请求前加载模板引擎配置：</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</span><br><span class="line"><span class="keyword">const</span> bodyParser = <span class="built_in">require</span>(<span class="string">'koa-bodyparser'</span>);</span><br><span class="line"><span class="keyword">const</span> controller = <span class="built_in">require</span>(<span class="string">'./controller'</span>);</span><br><span class="line"><span class="keyword">const</span> templating = <span class="built_in">require</span>(<span class="string">'./templating'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</span><br><span class="line"></span><br><span class="line"><span class="comment">// log request URL:</span></span><br><span class="line">app.use(<span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'----------------start----------------'</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`Process <span class="subst">$&#123;ctx.request.method&#125;</span> <span class="subst">$&#123;ctx.request.url&#125;</span>...`</span>);</span><br><span class="line">    <span class="keyword">await</span> next();</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'----------------end----------------'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// request解析body</span></span><br><span class="line">app.use(bodyParser());</span><br><span class="line"></span><br><span class="line"><span class="comment">// nunjucks模板引擎</span></span><br><span class="line">app.use(templating(<span class="string">'views'</span>, &#123;</span><br><span class="line">    noCache: !isProduction,</span><br><span class="line">    watch: !isProduction</span><br><span class="line">&#125;));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 加载所有逻辑处理controller的请求函数</span></span><br><span class="line">app.use(controller());</span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">3000</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'server on http://localhost:3000/'</span>);</span><br></pre></td></tr></table></figure>
+<ol>
+<li>http请求响应调用模板引擎渲染：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">    &apos;GET /&apos;: async (ctx, next) =&gt; &#123;</span><br><span class="line">        ctx.render(&apos;index.html&apos;, &#123;</span><br><span class="line">            title: &apos;Welcome&apos;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/uploads/images/reward/wechat-reward-image.jpg" alt="ethancalc 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/uploads/images/reward/alipay-reward-image.jpg" alt="ethancalc 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/大前端/" rel="tag"><i class="fa fa-tag"></i> 大前端</a>
+          
+            <a href="/tags/nodejs/" rel="tag"><i class="fa fa-tag"></i> nodejs</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/04/web/nodejs/nodejs学习笔记/" rel="next" title="nodejs笔记">
+                <i class="fa fa-chevron-left"></i> nodejs笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/18/web/nodejs/nodejs中mime类型文件处理库node-mime/" rel="prev" title="nodejs中mime类型文件处理库node-mime">
+                nodejs中mime类型文件处理库node-mime <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="SOHUCS"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="/uploads/images/head/avatar.jpg" alt="ethancalc">
+          
+            <p class="site-author-name" itemprop="name">ethancalc</p>
+            <p class="site-description motion-element" itemprop="description">操千曲而后晓声，观千剑而后识器.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ethancalc" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.google.com/" title="google" target="_blank">google</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#文章概述"><span class="nav-number">1.</span> <span class="nav-text">文章概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#koa历史"><span class="nav-number">2.</span> <span class="nav-text">koa历史</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装koa"><span class="nav-number">4.</span> <span class="nav-text">安装koa</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#koa概述"><span class="nav-number">5.</span> <span class="nav-text">koa概述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#异步概念"><span class="nav-number">5.1.</span> <span class="nav-text">异步概念</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#异步执行流程"><span class="nav-number">5.1.1.</span> <span class="nav-text">异步执行流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#中间件"><span class="nav-number">5.1.2.</span> <span class="nav-text">中间件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#koa-bodyparser模块"><span class="nav-number">6.</span> <span class="nav-text">koa-bodyparser模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#处理url"><span class="nav-number">7.</span> <span class="nav-text">处理url</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#koa原生处理"><span class="nav-number">7.1.</span> <span class="nav-text">koa原生处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#koa-router"><span class="nav-number">7.2.</span> <span class="nav-text">koa-router</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#get请求"><span class="nav-number">7.2.1.</span> <span class="nav-text">get请求</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#参数"><span class="nav-number">7.2.1.1.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#示例"><span class="nav-number">7.2.1.2.</span> <span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#post请求"><span class="nav-number">7.2.2.</span> <span class="nav-text">post请求</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#请求参数"><span class="nav-number">7.2.2.1.</span> <span class="nav-text">请求参数</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#示例-1"><span class="nav-number">7.2.2.2.</span> <span class="nav-text">示例</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-API封装"><span class="nav-number">8.</span> <span class="nav-text">HTTP-API封装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#REST-API"><span class="nav-number">9.</span> <span class="nav-text">REST-API</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#规范"><span class="nav-number">9.1.</span> <span class="nav-text">规范</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rest-url示例"><span class="nav-number">9.2.</span> <span class="nav-text">rest-url示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编写rest-api"><span class="nav-number">9.3.</span> <span class="nav-text">编写rest-api</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#示例-2"><span class="nav-number">9.3.1.</span> <span class="nav-text">示例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nunjucks"><span class="nav-number">10.</span> <span class="nav-text">Nunjucks</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模板引擎"><span class="nav-number">10.1.</span> <span class="nav-text">模板引擎</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#简介"><span class="nav-number">10.2.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装"><span class="nav-number">10.3.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#API"><span class="nav-number">10.4.</span> <span class="nav-text">API</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#block区块"><span class="nav-number">10.4.1.</span> <span class="nav-text">block区块</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#模板继承"><span class="nav-number">10.4.2.</span> <span class="nav-text">模板继承</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#koa2中使用"><span class="nav-number">10.5.</span> <span class="nav-text">koa2中使用</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ethancalc</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytFhNP7b';
+      var conf = 'a8f0e5bccaabb0580489df2a08f8a24f';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+</body>
+</html>
+
